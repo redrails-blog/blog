@@ -1,0 +1,123 @@
+---
+layout: post
+title: 'SuDroid: Executando comando como super usuário (root) no Android'
+date: 2011-07-12 16:17:07.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+- Desenvolvimento
+- Projetos
+tags:
+- Android
+- QoV
+- SuDroid
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:1;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:2;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:3;a:4:{s:2:"ID";s:4:"1500";s:10:"post_title";s:51:"Arquivos
+    de Vídeo e Áudio Suportados Pelo Android";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2012/01/arquivos-de-video-e-audio-suportados-pelo-android/";}i:4;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:5;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:6;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"1";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:7;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}i:8;a:4:{s:2:"ID";s:4:"1463";s:10:"post_title";s:33:"Android
+    Picture Pack - MISC IN HD";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/12/android-picture-pack-misc-in-hd/";}i:9;a:4:{s:2:"ID";s:4:"1352";s:10:"post_title";s:48:"PROBLEMA
+    TIM BETA: Problema com Logradouro e CEP";s:7:"matches";s:1:"1";s:9:"permalink";s:74:"http://www.redrails.com.br/2011/11/tim-beta-problema-com-logradouro-e-cep/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><img src="{{ site.baseurl }}/assets/android2.jpg" alt="Android Hacker Super User RedRails" /></p>
+<p>Implementação do sistema de sondagem de sinal</p>
+<p>Para realizarmos um ping no Android precisamos executar chamadas em recursos do sistema através de métodos presentes no Java, já que esse recurso não está presente na API do sistema da Google. Um problema na realização dessa técnica para executar o PING é que ela necessita de permissões de super usuário para ser realizada em um</p>
+<p>Para realizar um ping no java, podemos utilizar o método Runtime.getRuntime().exec(); que realiza uma chamada no sistema, permitindo executar comandos como se estivessemos no console do sistema operacional. O problema desse procedimento é que o executável ping (/system/bin/ping) está limitado para usuários normais (figura 1), essa limitação permite que o ping serja feito apenas em endereço local (figura 2). Dessa maneira necessitamos de acesso de super usuário para que possamos realizar o ping sem tal empecilho.</p>
+<p>O processo de conceder acesso de super usuário (root) para um dispositivo é conhecido como rootear. um dispositivo rooteado (rooted) permite que usuários comuns executem ações de super usuário no dispositivo. Podemos rootear um dispositivo através de modificações no SO obtidas com por exemplos outros aplicativos que realizam esse processo.</p>
+<p>Em nosso exemplo utilizaremos um aplicativo chamado Superuser (https://market.android.com/details?id=com.noshufou.android.su)  para auxilio no gerenciamento de permissões do Android </p>
+<p>Abaixo a descrição da classe necessária para execução como super usuário.</p>
+<p><!--more--></p>
+<p>[java]</p>
+<p>package br.com.redrails;<br />
+/*<br />
+ * Luiz Carvalho<br />
+ * @LuizCarvalho<br />
+ * luizcarvalho@redrails.com.br<br />
+ * www.redrails.com.br<br />
+ * http://br.linkedin.com/in/luizkarvalho (recommend me)<br />
+ * more in http://www.redrails.com.br/tags/QoV/<br />
+ * */</p>
+<p>import java.io.BufferedReader;<br />
+import java.io.DataOutputStream;<br />
+import java.io.InputStream;<br />
+import java.io.InputStreamReader;</p>
+<p>public class SuDroid {<br />
+	// private static final String TAG = &quot;sudroid&quot;;</p>
+<p>	public String success_msg = null;<br />
+	public String error_msg = null;<br />
+	public Boolean success = false;</p>
+<p>	public SuDroid(String command) {<br />
+		Process proc = run(command);</p>
+<p>		try {</p>
+<p>			if (proc.waitFor() == 0)<br />
+				success = true;</p>
+<p>			success_msg = getResult(proc.getInputStream());<br />
+			error_msg = getResult(proc.getErrorStream());</p>
+<p>		} catch (InterruptedException ex) {<br />
+			success = false;<br />
+			print(&quot;Error in execute command: &quot; + ex.toString());<br />
+		} catch (NullPointerException ex) {<br />
+			success = false;<br />
+			print(&quot;Error in execute command:  &quot; + ex.toString());<br />
+		}</p>
+<p>	}</p>
+<p>	public String result() {<br />
+		return &quot;&quot;;<br />
+	}</p>
+<p>	public Process run(String command) {<br />
+		Process proc = null;<br />
+		try {<br />
+			proc = Runtime.getRuntime().exec(&quot;sudo&quot;);<br />
+			DataOutputStream dataProc = new DataOutputStream(proc.getOutputStream());<br />
+			dataProc.writeBytes(&quot;exec &quot; + command + &quot;\n&quot;);<br />
+			dataProc.flush();<br />
+		} catch (Exception ex) {<br />
+			print(ex.getMessage());<br />
+			success = false;<br />
+			proc = null;<br />
+		}<br />
+		return proc;<br />
+	}</p>
+<p>	private String getResult(InputStream istream) {<br />
+		String line = null;<br />
+		StringBuffer result = new StringBuffer();<br />
+		BufferedReader dataIstream = new BufferedReader(new InputStreamReader(<br />
+				istream));</p>
+<p>		try {<br />
+			while ((line = dataIstream.readLine()) != null) {<br />
+				result.append(line + &quot;\n&quot;);<br />
+			}<br />
+			dataIstream.close();<br />
+		} catch (Exception ex) {<br />
+			success = false;<br />
+			print(ex.getMessage());<br />
+		}</p>
+<p>		if (result != null) {<br />
+			return result.toString();<br />
+		} else<br />
+			return null;</p>
+<p>	}</p>
+<p>	public void print(String msg) {<br />
+		System.out.println(msg);<br />
+		// Log.e(TAG, &quot;A Error Occurred: &quot; + e.toString());<br />
+	}</p>
+<p>}</p>
+<p>[/java]</p>

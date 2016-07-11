@@ -1,0 +1,39 @@
+---
+layout: post
+title: 'Android: AsyncTasks e Handlers'
+date: 2014-03-01 21:22:53.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+tags: []
+meta:
+  _edit_last: '1'
+  _responsive_layout: default
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<div><a href="http://www.redrails.com.br/wp-content/uploads/2012/06/AndroidIconMaker0003.png"><img class="alignleft size-medium wp-image-1814" alt="AndroidIconMaker0003" src="{{ site.baseurl }}/assets/AndroidIconMaker0003-300x300.png" width="300" height="300" /></a></div>
+<p>A próxima classe de suporte de threand que vamos discutir é a classe AsyncTask. Essa classe fornece um quadro geral para a gestão de tarefas, que, como em nossos exemplos anteriores, envolver o trabalho que tem de ser compartilhado entre uma thread no segundo plano e uma UI thread. O fluxo de trabalho geral que você segue quando você está usando uma Async Task, é que o trabalho é dividido entre um background thread e a UI Thread.</p>
+<p>A thread em segundo plano executa a operação de longa duração, e pode, opcionalmente, informar o seu progresso. A UI Thread, por outro lado, é responsável pela configuração inicial da operação de longa duração. Ela é responsável pela publicação de informações sobre o andamento parcial da thread que está em segundo plano, e é responsável por completar a operação após essa thread terminar o seu trabalho.</p>
+<p>AsyncTask é uma classe genérica. Leva três tipos de parâmetros, Params, Progress, e Result. Params é o tipo dos parâmetros que são de entrada para os As-, ao AsyncTask. Progress é o tipo de quaisquer relatórios intermediários, e o resultado é o tipo de resultado que é calculado pela tarefa assíncrona. O fluxo de trabalho de uma AssyncTask é o seguinte, em primeiro lugar, o método OnPreExecute() é executado na UI thread do usuário antes que o método doInBackground inicie.</p>
+<p>OnPreExecute normalmente irá configurar a operação de longa duração. Depois disso, o método doInBackground realiza a maior parte da operação em segundo plano. E este método recebe uma lista variável de parâmetros de entrada e retorna um resultado do tipo de Result. Agora, enquanto doInBackground está rodando, ele pode, opcionalmente, chamar o método publishProgress, passando em uma lista de variáveis ​​de valores que supostamente fornecem alguma indicação do andamento as operações em execução. Se a background thread faz chamadas para publishProgress, então algumas chamadas para onProgressUpdate normalmente seria feita na UI Interface do usuário, enquanto a thread de segundo plano ainda está em execução.</p>
+<p>E, finalmente, OnPostExecute será chamado na UI Thread do usuário com o resultado retornado pela background thread. Vamos olhar para uma versão do nosso aplicativo LoadIcon implementado com uma AsyncTask.</p>
+<p>A última coisa que eu quero falar nesta lição é a classe Handler. Como a AsyncTask, a classe Handler é projetado para trabalhar entre as duas threads.</p>
+<p>A classe Handler é mais flexível, no entanto, em que ele vai trabalhar em conjunto com qualquer uma das duas threads, e não apenas para uma background thread ou uma UI Thread. A Handler está associado com uma thread específica. Um thread pode entregar o trabalho para outro thread, enviando mensagens ou postando Runnables para um Handler que está associado a essa outra thread. Então, primeiro, vamos discutir mensagens e Runnables, e depois nós vamos entrar na arquitetura da própria classe Handler.</p>
+<p>Agora, você já sabe sobre Runnables. Você pode usar eles quando o remetente sabe exatamente o que as etapas de trabalho a serem realizadas, mas quer que o trabalho realizado na thread do Handler. Uma mensagem, por outro lado, é de uma classe que pode conter dados como um código de mensagem, um objecto de dados qualuqer, e alguns valores inteiros.</p>
+<p>E você usa mensagens quando a thread remetente quer indicar uma operação que deve ser feita em outra thread, mas deixa a implementação dessa operação para a própria Handler. Então, agora vamos falar sobre como Handlers de usam essas mensagens e Runnables. Cada segmento Android está associada a um MessageQueue e um Looper.</p>
+<p>O MessageQueue é uma estrutura de dados. Ele contém mensagens e Runnables. O Looper leva essas mensagens e Runnables para fora do MessageQueue e os despacha de forma apropriada. Agora, este gráfico descreve uma thread que criou um executável. E isso tem usado um objeto Handler de publicar esse runnable para thread do Handler. Quando thread A faz isso, um runnable é colocado no MessageQueue da thread associada ao Handler.</p>
+<p>Agora algo muito semelhante acontece com as mensagens. E este gráfico descreve um thread B, que criou uma mensagem, e que é associada com um Handler, então método sendMessage manipulador enviar essa mensagem para thread do Handler. Quando segmento B faz isso, a mensagem é colocada na MessageQueue associado a esse Handler. Agora, enquanto tudo isso está acontecendo, o objeto Looper está sentado lá, apenas esperando o trabalho aparecer na MessageQueue.</p>
+<p>E quando esse trabalho for exibido, o Looper reage de uma de duas maneiras, dependendo do tipo de trabalho que acaba de chegar. Se esse trabalho é uma mensagem, o Looper vai lidar com a mensagem chamando o método handleMessage do Handler, e passando a mensagem em si. Se em vez disso, que o trabalho é um runnable, então o Looper vai lidar com isso simplesmente executando esse runnable.</p>
+<p>Agora, aqui estão alguns dos métodos que você usa ao postar Runnables a um Handler. Nós já vimos o método post, há uma série de outros métodos que permitem que você agendar o trabalho para execução em momentos diferentes. Por exemplo, você pode usar o método postAtTime para adicionar um runnable em uma MessageQueue, mas para executá-lo em um determinado momento.</p>
+<p>Há também um método postDelayed, e que permite que você adicione um runnable a um MessageQueue, mas para executá-lo depois de um tempo especificado. Se você quiser enviar mensagens, você precisa primeiro criar a mensagem. Uma maneira de fazer isso é usar o método ObtainMessage do Handler, que lhe dá uma mensagem com o Handler já definido.</p>
+<p>Você também pode usar o método de obtenção da classe de mensagem. E uma vez que você tem a mensagem, você vai querer definir os dados para a mensagem. Há uma série de variações para fazer isso por favor, confira a documentação. Tal como acontece com Runnables, há um certo número de métodos que podem ser utilizados para enviar a mensagem. Não é o método sendMessage que nós acabamos de falar.</p>
+<p>Há também uma versão que permite que você coloque a mensagem na frente do MessageQueue para tê-lo executar o mais rápido possível. Há um método sendMessageAtTime que adiciona a mensagem à fila, de acordo com o tempo especificado. Há também um método sendMessageDelayed que enfileira a mensagem no momento atual, mais o atraso especificado.</p>
+<p>&nbsp;</p>
+<p>Serie: Android: 5 - 6 - Thread, AsyncTasks e Handlers parte 2</p>

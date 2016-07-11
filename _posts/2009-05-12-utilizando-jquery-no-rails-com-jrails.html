@@ -1,0 +1,79 @@
+---
+layout: post
+title: Utilizando JQuery no Rails  com JRails
+date: 2009-05-12 19:55:27.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- Plugins
+- Ruby
+- RubyOnRails
+- Tutorial
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:1;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"2";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:2;a:4:{s:2:"ID";s:4:"1016";s:10:"post_title";s:129:"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby";s:7:"matches";s:1:"1";s:9:"permalink";s:155:"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/";}i:3;a:4:{s:2:"ID";s:4:"1005";s:10:"post_title";s:129:"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]";s:7:"matches";s:1:"1";s:9:"permalink";s:157:"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/";}i:4;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"1";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:5;a:4:{s:2:"ID";s:3:"837";s:10:"post_title";s:84:"Ruby:
+    Utilizando Open-URI e HPricot para descobrir sorteios realizados no sorteie.me";s:7:"matches";s:1:"1";s:9:"permalink";s:119:"http://www.redrails.com.br/2010/10/ruby-utilizando-open-uri-e-hpricot-para-descobrir-sorteios-realizados-no-sorteie-me/";}i:6;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"1";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:7;a:4:{s:2:"ID";s:3:"689";s:10:"post_title";s:56:"VIDEO:
+    Como Desafiar seus amigos no Joga Craque do Orkut";s:7:"matches";s:1:"1";s:9:"permalink";s:91:"http://www.redrails.com.br/2009/12/video-como-desafiar-seus-amigos-no-joga-craque-do-orkut/";}i:8;a:4:{s:2:"ID";s:3:"670";s:10:"post_title";s:61:"Super
+    Dica: Como Desafiar seus amigos no Joga Craque do Orkut";s:7:"matches";s:1:"1";s:9:"permalink";s:96:"http://www.redrails.com.br/2009/12/super-dica-como-desafiar-seus-amigos-no-joga-craque-do-orkut/";}i:9;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}}'
+  _relation_threshold: '1'
+  views: '3'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Bom, faz tempo que eu não coloco um Tutorial aqui e como vou passar ou já pessei esse conteúdo no mini-curso de Rails. aproveitei e vou postar aqui também.</p>
+<div class="chapter">
+<div class="chapter">
+<h2>1. Instalação</h2>
+<p>Console</p>
+<div class="code">
+<pre>./script/plugin install http://ennerchi.googlecode.com/svn/trunk/plugins/jrails</pre>
+</div>
+<p>No NetBeans</p>
+<p>Clique com o direito em seu projeto e vá em PLUG-INS RAILS, irá aparecer uma janela onde você clicará em REPOSITÓRIOS e no botão ADICIONAR URL. então você introduz a url do repositório:</p>
+<pre>http://ennerchi.googlecode.com/svn/trunk/plugins/</pre>
+<p><a href="http://maxonrails.files.wordpress.com/2009/05/01-install_jquery.png"><img class="aligncenter size-full wp-image-467" title="01 -Install_Jquery" src="{{ site.baseurl }}/assets/01-install_jquery.png" alt="01 -Install_Jquery" width="470" height="323" /></a></p>
+<p>Agora vá para a aba NOVOS PLUGINS encontre o JRAILS, o selecione e aperte no botão INSTALAR.</p>
+<p><a href="http://maxonrails.files.wordpress.com/2009/05/02-install_jquery1.png"><img class="aligncenter size-full wp-image-468" title="02 -Install_Jquery1" src="{{ site.baseurl }}/assets/02-install_jquery1.png" alt="02 -Install_Jquery1" width="343" height="346" /></a></p>
+<p>Após instalado feche a janela. uma pasta chamada jrails será criada na pasta Fornecedor(Vendor)/plugins</p>
+<div class="chapter">
+<h2><a href="http://maxonrails.files.wordpress.com/2009/05/03-install_jquery03.png"><img class="aligncenter size-full wp-image-469" title="03 -Install_Jquery03" src="{{ site.baseurl }}/assets/03-install_jquery03.png" alt="03 -Install_Jquery03" width="196" height="169" /></a></h2>
+<h2>2. Configuração</h2>
+<p>Vamos então chamar os respectivos Js's para nossa aplicação, para isso basta apenas inclur a seguinte tag(se ela já não existir) entre as TAGS&lt;head&gt; do seu APPLICATION.HTML.ERB.</p>
+<div class="code">
+<pre>&lt;%= javascript_include_tag :defaults  %&gt;
+<a href="http://maxonrails.files.wordpress.com/2009/05/04-install_jquery03.png" /></pre>
+<p><img class="aligncenter size-full wp-image-470" title="04 -Install_Jquery03" src="{{ site.baseurl }}/assets/04-install_jquery03.png" alt="04 -Install_Jquery03" width="407" height="121" />
+</div>
+<p>Vamos ver se tudo ocorreu corretamente. inicie a aplicação e observe o conteúdo da TAG&lt;head&gt;, se os arquivos <em><span class="attribute-value">jquery.js, </span><span class="attribute-value">jquery-ui.js, </span></em><span class="attribute-value"><em>jrails.js</em> </span>foram carregados tudo está OK!</p>
+<h2><a href="http://maxonrails.files.wordpress.com/2009/05/04-install_jquery04.png"><img class="aligncenter size-full wp-image-471" title="04 -Install_Jquery04" src="{{ site.baseurl }}/assets/04-install_jquery04.png" alt="04 -Install_Jquery04" width="565" height="146" /></a></h2>
+<p>Então pode-se deletar os arquivos do prototipe =D</p>
+<div class="chapter">
+<h2><a href="http://maxonrails.files.wordpress.com/2009/05/05-install_jquery03.png"><img class="aligncenter size-full wp-image-472" title="05 -Install_Jquery03" src="{{ site.baseurl }}/assets/05-install_jquery03.png" alt="05 -Install_Jquery03" width="191" height="233" /></a></h2>
+<h2>3. Utilização</h2>
+<p>Vamos fazer um coisinha simples, apenas pra testar nosso plugin. vamos criar um link para lugar nenhum que ao ser clicado ele mostrar os campos do formulário. que prefiamente vamos prepara-lo.</p>
+<p>Primeiro vamos criar uma DIV entre os campos do formulário e como atributos dessa DIV um "ID=formulario" que vamos manipular e um STYLE="display:none" assim fazendo com que esses campos começem ocultos.</p>
+<p>bom vai ficar mais ou menos assim:</p>
+<div class="code">
+<pre><a href="http://maxonrails.files.wordpress.com/2009/05/06-install_jquery03.png" /></pre>
+<p><img class="aligncenter size-full wp-image-476" title="06 -Install_Jquery03" src="{{ site.baseurl }}/assets/06-install_jquery03.png" alt="06 -Install_Jquery03" width="565" height="196" />
+</div>
+<p>Pronto, se tudo ocorreu bem! seu formulario vai aparecer com um delay de 0.6 segundo definidos pelo 600 dentro do parametro SHOW.</p></div>
+</div>
+</div>
+</div>

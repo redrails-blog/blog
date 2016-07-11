@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+<body>
+   <main class="container left-container">
+      <div class="row">
+        {% include sidebar.html %}
+        <section class="col-md-9 col-sm-12 col-md-offset-5 main-content">
+          <div class="sub-nav">
+            <a href="/" class="select-posts">Todos os Posts</a>
+          </div>
+          {{ content }}
+
+          {% include footer.html %}
+        </section><!-- main content -->
+      </div> <!--/row -->
+    </main>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+layout: post
+title: Geradores de Código
+date: 2011-04-13 11:31:27.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+tags:
+- Artigo
+- Desenvolvimento
+- Gerador de Código
+- Getna
+- Monografia
+- Otimização
+- programação
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"943";s:10:"post_title";s:65:"Object-Relational
+    Mapping(ORM) - Mapeamento de Objeto-Relacional ";s:7:"matches";s:1:"2";s:9:"permalink";s:96:"http://www.redrails.com.br/2011/04/object-relational-mappingorm-mapeamento-de-objeto-relacional/";}i:1;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:2;a:4:{s:2:"ID";s:3:"154";s:10:"post_title";s:49:"GEtna
+    - Ep. 3: Mapeando Tabelas do Banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/08/getna-ep-3-mapeando-tabelas-do-banco-de-dados/";}i:3;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"2";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:4;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"2";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:5;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}i:6;a:4:{s:2:"ID";s:4:"1422";s:10:"post_title";s:50:"Ginga
+    NCL: Criando um menú basico com navegação";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2011/12/ginga-ncl-criando-um-menu-basico-com-navegacao/";}i:7;a:4:{s:2:"ID";s:4:"1408";s:10:"post_title";s:40:"Ginga
+    NCL: Hello World - Exibindo vídeo";s:7:"matches";s:1:"1";s:9:"permalink";s:72:"http://www.redrails.com.br/2011/12/ginga-ncl-hello-world-exibindo-video/";}i:8;a:4:{s:2:"ID";s:4:"1401";s:10:"post_title";s:68:"Ginga
+    NCL: Exibindo Mapa com transparência, transição e duração";s:7:"matches";s:1:"1";s:9:"permalink";s:97:"http://www.redrails.com.br/2011/12/ginga-ncl-exibindo-mapa-com-transparencia-transicao-e-duracao/";}i:9;a:4:{s:2:"ID";s:4:"1398";s:10:"post_title";s:55:"Ginga-NCL:
+    Como colocar logo de canal no canto superior";s:7:"matches";s:1:"1";s:9:"permalink";s:90:"http://www.redrails.com.br/2011/12/ginga-ncl-como-colocar-logo-de-canal-no-canto-superior/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Geradores de código são basicamente programas que geram outros programas. Os geradores podem ser definidos como ferramentas tanto para formatar códigos simples quanto para gerar aplicações complexas a partir de modelos abstratos (templates). São muito utilizados para agilizar o processo de desenvolvimento, pois aumentam a produtividade e diminuem o tempo gasto na codificação da aplicação e, conseqüentemente, o custo final (AMBLER, 2004; KLUG, 2007).</p>
+<p>Segundo Herrington (2003), a geração de código é a técnica pela qual se constrói código utilizando programas. Os geradores de código podem trabalhar por meio de linhas de comando ou de interfaces gráficas, estas últimas são as formas mais interativas. Estes podem construir código em várias linguagens de programação, bem como efetuar a geração dos códigos de uma única vez ou em etapas. As entradas e saídas são definidas conforme a necessidade, sendo que o desenvolvedor especifica parâmetros de saída de forma manual. Portanto, é de extrema relevância que o programador saiba a priori o que se deseja obter como resultado.</p>
+<p><!--more--></p>
+<p>De acordo com Herrington (2003), a utilização de geradores para desenvolvimento de softwares traz enormes vantagens aos códigos gerados, tais como:</p>
+<ul>
+<li> qualidade: a escrita de grande quantidade de código vai gradualmente diminuindo a qualidade final do software. Na geração automática, a qualidade do software está diretamente ligada à qualidade dos templates. Esse, por sua vez, não possui qualidade associada à quantidade de código a ser desenvolvida, visto que os templates possuem uma estrutura fixa que não é alterada pelo tamanho do projeto;</li>
+<li>consistência: o código gerado tende a ser consistente, pois possui uma padronização de nomenclatura de classes, métodos, variáveis e localização (pastas e subpastas), o que torna o código de fácil entendimento e modificação;</li>
+<li>único ponto de conhecimento: caso seja necessária uma alteração de alguma estrutura de entrada do projeto, necessita-se apenas saber o local onde essa modificação deve ser realizada. Após isso, o código gerado se propagará para todos os processos seguintes à alteração, gerando sempre um código compatível com as entradas;</li>
+<li>maior tempo para o projeto: considerando-se o uso de uma biblioteca externa (API), podem acontecer alterações nessa fonte obrigando assim que modificações sejam feitas em todas as partes do código em que aquela modificação irá influenciar. Com a utilização do gerador, esse processo poderá ser feito apenas nos templates do gerador e uma nova geração efetuará as mudanças necessárias no código. Essa característica faz toda a diferença em cronogramas de projetos que utilizam ou não geradores (forma manual);</li>
+<li>abstração: como, normalmente, os geradores utilizam os modelos abstratos de dados (templates) do código alvo, fica fácil migrar de uma plataforma/linguagem para outra, necessitando apenas uma revisão no escopo de abstração, ou seja, modificar os templates de acordo com as necessidades da plataforma/linguagem alvo;</li>
+<li>agilidade: uma característica chave da geração de código é a maleabilidade do código de saída. No nível de negócio, o software será de mais fácil manutenção e implementação de novas funcionalidades. Mesmo considerando-se o tempo que se economiza no ato da geração, podemos afirmar que essa técnica dá um grande percentual de agilidade ao desenvolvedor.</li>
+</ul>
+<p>E ainda, segundo Herrington (2003), a construção de um gerador de código pode seguir as seguintes etapas de desenvolvimento:</p>
+<ul>
+<li> a definição de qual a saída se deseja obter;</li>
+<li> a identificação de qual entrada será utilizada e como essa será analisada;</li>
+<li> a definição de padrões na entrada, de como eles serão interpretados para obtenção e geração de uma saída formatada de acordo com as expectativas predefinidas; e</li>
+<li> a geração da saída a partir das informações extraídas da entrada.</li>
+</ul>
+<p>Geradores de código são uma boa forma de agilizar o desenvolvimento e melhorar o nível de qualidade no início do projeto. Fatores, esses, que podem decidir o futuro de uma aplicação.</p>
+<p>Artigo da série:<br />
+<a href="http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/"><img src="{{ site.baseurl }}/assets/getna_logo_light.png" alt="GETNA" /></a><a href="http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/"><img src="{{ site.baseurl }}/assets/getna_logo_light_blackpng.png" alt="GETNA" /></a><a href="http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/"><br />
+</a></p>

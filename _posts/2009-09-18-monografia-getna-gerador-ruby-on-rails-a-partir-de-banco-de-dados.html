@@ -1,0 +1,89 @@
+---
+layout: post
+title: 'Monografia: GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados'
+date: 2009-09-18 17:09:18.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+- Projetos
+tags:
+- download
+- Getna
+- Monografia
+- Rails
+- Ruby
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"154";s:10:"post_title";s:49:"GEtna
+    - Ep. 3: Mapeando Tabelas do Banco de Dados";s:7:"matches";s:1:"4";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/08/getna-ep-3-mapeando-tabelas-do-banco-de-dados/";}i:1;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"4";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:2;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"4";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:3;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"3";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:4;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"3";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:5;a:4:{s:2:"ID";s:3:"171";s:10:"post_title";s:64:"Getna
+    : Uma Abordagem geral sobre o processo de desenvolvimento.";s:7:"matches";s:1:"3";s:9:"permalink";s:97:"http://www.redrails.com.br/2008/09/getna-uma-abordagem-geral-sobre-o-processo-de-desenvolvimento/";}i:6;a:4:{s:2:"ID";s:3:"943";s:10:"post_title";s:65:"Object-Relational
+    Mapping(ORM) - Mapeamento de Objeto-Relacional ";s:7:"matches";s:1:"2";s:9:"permalink";s:96:"http://www.redrails.com.br/2011/04/object-relational-mappingorm-mapeamento-de-objeto-relacional/";}i:7;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"2";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}i:8;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:9;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}}'
+  _relation_threshold: '2'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p style="margin: 20px 0  40px 0;">Bom galera já estava em tempo de compatilhar minha monografia, de tempos em tempos a galera pedia para enviar, então nada mais justo (e fácil) que por ela aqui no blog.</p>
+<hr />
+<p style="text-align: center;"><strong>UNIVERSIDADE FEDERAL DO TOCANTINS<br />
+CAMPUS UNIVERSITÁRIO DE PALMAS<br />
+BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO</strong></p>
+<p style="text-align: center;"><strong>GETNA: GERADOR DE CÓDIGO RUBY ON RAILS<br />
+A PARTIR DE BANCO DE DADOS</strong></p>
+<p style="text-align: center;"><strong>Palmas<br />
+2008<br />
+LUIZ ARÃO ARAÚJO CARVALHO</strong></p>
+<p><strong>Resumo</strong><br />
+Na literatura, existem vários geradores de código disponíveis que tem como<br />
+principal propósito automatizar o processo de desenvolvimento de aplicações em<br />
+diversas linguagens de programação. Este trabalho apresenta o desenvolvimento<br />
+de um gerador de código, denominado GEtna, com a função de criar as classes a<br />
+partir de um determinado banco de dados. Vale a pena ressaltar que o gerador<br />
+GEtna difere dos existentes pelas suas funcionalidades disponibilizadas.<br />
+O gerador proposto aumenta a velocidade do processo de desenvolvimento<br />
+de uma aplicação Rails, pois recebe como entrada tabelas de um banco de dados<br />
+relacional (MySQL, PostgreSQL ou SQLite) e fornece como saída toda a estrutura<br />
+de arquivos (classes). Vale a pena ressaltar que o GEtna proporciona uma<br />
+padronização das classes geradas e, conseqüentemente, sustenta sua legibilidade,<br />
+que é um fator muito importante quando se trabalha com equipes de<br />
+desenvolvedores. Assim, neste trabalho será apresentada uma descrição sobre<br />
+geradores de código, padrões de projeto, métodos de mapeamento e definições de<br />
+dados que são fundamentais para o desenvolvimento de um gerador de código.</p>
+<p>Palavras-chave: Banco de Dados Relacional, Desenvolvimento de Sistema,<br />
+Gerador de Código, Rails.</p>
+<p><strong>ABSTRACT</strong></p>
+<p>In literature, there are several available code generators that have the main<br />
+goal to automatize the application development process for some programming<br />
+languages. This work presents the development of a code generator, named GEtna,<br />
+that creates classes from a specific database. It’s important to note that GEtna<br />
+generator differs of other generators by your available functionalities.<br />
+The proposed generator increases the velocity of a Rails application<br />
+development process because it receives as input relational database tables<br />
+(MySQL, PostgreSQL or SQLite), and provides as output the complete file structure<br />
+(class). The GEtna provides a padronization of generated classes and,<br />
+consequently, maintains the legibility that is a very important factor when there are<br />
+developers’ groups. So, in this work a description about code generators, design<br />
+patterns, mapping methods and data definition is presented because they are<br />
+essential for a code generator development.</p>
+<p>Keywords: Relational Database, System Development, Code Generator, Rails.</p>
+<hr />
+<p style="margin: 20px 0  5px 0;">Não, não eu não vou Copiar a Monografia toda aqui não, em baixo eu exportei em diversos formatos para que seja aberto não importa a situação. Coloquei também o Original podendo ser usado como Modelo para você redigir sua monografia no padrão usado pela UFT.  Só lembrando consegui um 10 com essa monografia então cuidem muito bem dela.</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2009/09/Monografia_v40_ULTIMATE_11-12-2008.docx" target="_blank"><img src="{{ site.baseurl }}/assets/file-extension-docx-microsoft-office-word-icon1.png" alt="" width="148" height="148" /></a>Original(DocX)</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2009/09/Monografia_v40_ULTIMATE_11-12-2008.pdf" target="_blank"><img src="{{ site.baseurl }}/assets/Adobe-Reader-File-150x150.png" alt="" /></a>Pdf</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2009/09/Monografia_v40_ULTIMATE_11-12-2008.txt" target="_blank"><img src="{{ site.baseurl }}/assets/Document.png" alt="" width="164" height="164" /></a>Txt</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2009/09/Monografia_v40_ULTIMATE_11-12-2008.mht" target="_blank"><img src="{{ site.baseurl }}/assets/HTML.png" alt="" width="151" height="151" /></a>Html</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2009/09/Monografia_v40_ULTIMATE_11-12-2008Convertido.doc" target="_blank"><img src="{{ site.baseurl }}/assets/WORD-FILE-2.png" alt="" /></a>Doc</p></p>

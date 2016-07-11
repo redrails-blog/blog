@@ -1,0 +1,33 @@
+---
+layout: post
+title: RAILS (ActiveRecord) Importando/Exportando um objeto de uma Base para Outra
+date: 2013-02-28 09:06:50.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Ruby
+- Sem categoria
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/07/rails_new.png"><img class="size-full wp-image-1102 alignleft" alt="rails_new" src="{{ site.baseurl }}/assets/rails_new.png" width="155" height="155" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>@object = YourObject.first<br />
+x = YAML::dump(@objeto)<br />
+@outro_obj = YAML:load(x)<br />
+attrs = @outro_obj.attributes<br />
+attrs.except!("id")<br />
+attrs.except!("updated_at")<br />
+attrs.except!("created_at")<br />
+YourOuterModel.create(attrs)</p>

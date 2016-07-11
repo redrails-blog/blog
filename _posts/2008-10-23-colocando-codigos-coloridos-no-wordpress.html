@@ -1,0 +1,78 @@
+---
+layout: post
+title: Colocando Códigos Coloridos no Wordpress
+date: 2008-10-23 14:07:35.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags:
+- dica
+- Java
+- Ruby
+- Sintaxe
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: "a:10:{i:0;a:4:{s:2:\"ID\";s:3:\"778\";s:10:\"post_title\";s:36:\"Prawn::Errors::CannotFit
+    (Resolvido)\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:68:\"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/\";}i:1;a:4:{s:2:\"ID\";s:3:\"277\";s:10:\"post_title\";s:47:\"Problemas
+    ao instalar Fast-Debuger (ruby-debug)\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:81:\"http://www.redrails.com.br/2008/10/problemas-ao-instalar-fast-debuger-ruby-debug/\";}i:2;a:4:{s:2:\"ID\";s:2:\"49\";s:10:\"post_title\";s:54:\"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:89:\"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/\";}i:3;a:4:{s:2:\"ID\";s:4:\"1602\";s:10:\"post_title\";s:67:\"How
+    to Make amazing and creative photo cover for facebook timeline \";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:102:\"http://www.redrails.com.br/2012/02/how-to-make-amazing-and-creative-photo-cover-for-facebook-timeline/\";}i:4;a:4:{s:2:\"ID\";s:4:\"1262\";s:10:\"post_title\";s:76:\"Instalar
+    aplicativos do cartão de mémoria (sdcard) para a memória interna\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/10/instalar-aplicativos-do-cartao-de-memoria-sdcard-para-a-memoria-interna/\";}i:5;a:4:{s:2:\"ID\";s:4:\"1029\";s:10:\"post_title\";s:78:\"\t!
+    LaTeX Error: Cannot determine size of graphic in fig1.jpg (no BoundingBox).\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/05/latex-error-cannot-determine-size-of-graphic-in-fig1-jpg-no-boundingbox/\";}i:6;a:4:{s:2:\"ID\";s:4:\"1016\";s:10:\"post_title\";s:129:\"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:155:\"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/\";}i:7;a:4:{s:2:\"ID\";s:4:\"1005\";s:10:\"post_title\";s:129:\"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:157:\"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/\";}i:8;a:4:{s:2:\"ID\";s:3:\"905\";s:10:\"post_title\";s:47:\"PromoCast
+    - Gestão de Promoções para Rádios\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:77:\"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/\";}i:9;a:4:{s:2:\"ID\";s:3:\"837\";s:10:\"post_title\";s:84:\"Ruby:
+    Utilizando Open-URI e HPricot para descobrir sorteios realizados no sorteie.me\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:119:\"http://www.redrails.com.br/2010/10/ruby-utilizando-open-uri-e-hpricot-para-descobrir-sorteios-realizados-no-sorteie-me/\";}}"
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Para quem tem seu wordpress hospedado em dominio próprio é facil, instala-se o wp-sintaxe e tudo fui.</p>
+<p>Já quando seu blog está no dominio do Wordpress, eles impedem a instalação de plugins por motivos de segurança. escrevi varios posts com os códigos dentro de tags &lt;pre&gt; para poder haver um destaque(ficou Horrível). busquei em varios outros blogs a solução mas nada, até que um dia dando uma olhada no meu <a href="http://www.google.com/reader" target="_blank">Reader</a> Achei o blog do <a href="http://cassiomarques.wordpress.com/" target="_blank">Cassio Marques</a> que estava no dominio do Wordpress e utilizava SintaxeHighLighter em seus códigos Ruby. então tive que perguntar, a resposta foi rapida e por incrível que pareca simples.</p>
+<p>basta inserir a seguinte tag em modo de edição HTML</p>
+<p style="padding-left:30px;">
+<pre>[source language="linguagem"]
+
+SEU CÓDIGO
+
+[/source]</pre>
+<p style="padding-left:30px;">
+<p>Esse código chama a função de um plugin chamado <a href="http://xarigami.com/resources/Xarigami_dpHighlight_V1.2.0" target="_blank"><strong>dpHighlight</strong></a> que transforma seu código em uma caixa com sintaxe colorida em diversas linguagens. Dei uma olhada no Plugin de acordo com eu ele colore as seguintes linguagens:</p>
+<p>Php - "php"<br />
+Xml  -  "xml"<br />
+C# - "csharp"<br />
+Delphi  -  "delphi"<br />
+JavaScript  -  "jscript"<br />
+Python  -  "python"<br />
+Sql  -  "sql"<br />
+Visualbasic  -  "vb"<br />
+Ruby  -  "ruby"<br />
+Css  -  "css"<br />
+C++ - "cpp"<br />
+Java - "java"</p>
+<h2>DEMO</h2>
+<p>PHP<br />
+[source language="php"]</p>
+<p>@a = "aa"</p>
+<p>[a,1,:d=&gt;'s']</p>
+<p>[/source]</p>
+<p>Ruby<br />
+[source language="ruby"]</p>
+<p>@a = "aa"</p>
+<p>[a,1,:d=&gt;'s']</p>
+<p>[/source]</p>
+<p>CSharp<br />
+[source language="csharp"]</p>
+<p>@a = "aa"</p>
+<p>[a,1,:d=&gt;'s']</p>
+<p>[/source]</p>
+<p>:)</p>

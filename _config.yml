@@ -1,0 +1,25 @@
+title: RedRails - Blog sobre tecnologia, Ruby on Rails, Tecnologia e muito mais
+email: contato@luizcarvalho.com
+description: > # this means to ignore newlines until "baseurl:"
+   RedRails - Blog sobre tecnologia, Ruby on Rails, Tecnologia e muito mais
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://redrails.com.br" # the base hostname & protocol for your site
+name: RedRails
+resume: Blog sobre Tecnologia e Inovação
+
+# Build settings
+markdown: kramdown
+
+gems:
+  - jekyll-assets
+
+assets:
+  compress:
+    css: sass
+
+  sources:
+    - css
+  autowrite: true
+
+sass:
+    sass_dir: _sass

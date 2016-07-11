@@ -1,0 +1,57 @@
+---
+layout: post
+title: Como hackear o Gmail para usar seu domínio personalizado gratuitamente
+date: 2015-08-14 08:53:49.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags:
+- Dicas
+meta:
+_edit_last: '1'
+_responsive_layout: default
+_wp_old_slug: utilizando-gmail-em-seu-dominio-personalizado-gratis
+author:
+login: admin
+email: maximusmano@gmail.com
+display_name: Luiz Carvalho
+first_name: Luiz
+last_name: Carvalho
+---
+<p>
+  Todos sabemos como Gmail é impressionante, é  rápido, conecta-se perfeitamente com o resto dos serviços do Google, como Drive, tem um app legal e é, no geral, um serviço de e-mail extremamente poderoso. No entanto, para usá-lo com um domínio personalizado, você precisa comprar <a href="https://www.google.com/work/apps/business/&amp;usg=ALkJrhgyOIVZ5PLSKuaf0hYSJKlUMS1ZxQ" target="_blank" rel="external">o Google Apps</a> que custa por usuário US $ 5 ou US $ 10/mês, o que para os usuários casuais é um pouco caro. No entanto, há um caminho GRÁTIS (uhuuullll) para usar sua conta do Gmail com um domínio personalizado: <a href="https://mailgun.com/" target="_blank" rel="external">Mailgun</a> .<img src="{{ site.baseurl }}/assets/Mailgun_Primary.png" alt="Logo Mailgun" />
+</p>
+<p><a href="https://mailgun.com/" target="_blank" rel="external">Mailgun</a> se define como um conjunto de "APIs poderosas que permitem que você envie, receba e rastreie e-mail sem esforço." Lendo esta descrição, você pode estar se perguntando como uma ferramenta de desenvolvedor poderia permitir que você usa <strong>o Gmail com domínios personalizados gratuitamente?.</strong> Basicamente, Mailgun tem dois componentes que permitem que você faça isso: um serviço de encaminhamento de e-mail e um servidor SMTP.</p>
+<h2 id="Setup">SETUP</h2>
+<p>Em primeiro lugar é necessário <a href="https://mailgun.com/signup" target="_blank" rel="external">se inscrever no Mailgun</a> usando seu e-mail Gmail. <strong>Não</strong> use seu e-mail com seu domínio personalizado, pois irá causar problemas mais tarde, quando você quiser verificar a sua conta. Depois de ter clicado no link de confirmação, faça login no site da Mailgun. Você deve ser apresentado com um painel. Agora à direita em "Custom Domains", clique em "Add Domain".</p>
+<p><img src="{{ site.baseurl }}/assets/add-domain.png" alt="Adicionar Domínio" /></p>
+<p>Siga as instruções para definir seus registros DNS com seu provedor do serviço.</p>
+<p>Uma vez feito isso, clique no link "Routes" na parte superior para configurar o encaminhamento de e-mail.</p>
+<h2 id="Forwarding">Encaminhando</h2>
+<p><img src="{{ site.baseurl }}/assets/routes.png" alt="Rotas" /></p>
+<p>Nesta página, você deve clicar em "Create New Route".</p>
+<p><img src="{{ site.baseurl }}/assets/create-new-route.png" alt="Criar Nova Rota" /></p>
+<p>Então, insira as seguintes informações:</p>
+<p><img src="{{ site.baseurl }}/assets/setup-routes.png" alt="Rotas de Instalação" /></p>
+<p>Substitua os e-mails dentro das aspas com os e-mails desejados.</p>
+<h2 id="Sending_with_SMTP">Enviando com SMTP</h2>
+<p>Em seguida, vamos configurar nossa configuração de SMTP para que possamos enviar e-mails a partir de um servidor real.</p>
+<p>Sob a aba "Domain", clique no seu nome de domínio.</p>
+<p><img src="{{ site.baseurl }}/assets/domains.png" alt="Domínios" /></p>
+<p>Nesta página, clique em "Gerenciar suas credenciais de SMTP", depois "New SMTP Credencial" na próxima página.</p>
+<p><img src="{{ site.baseurl }}/assets/smtp.png" alt="SMTP" /></p>
+<p>Digitar as credenciais de SMTP desejados.</p>
+<p>Em seguida, vá para <a href="https://mail.google.com/mail/u/0/" target="_blank" rel="external">a guia Contas nas Configurações do Gmail</a> e clique em "Adicionar outro endereço de e-mail que você possui". Uma vez que você abrir esta janela, insira o endereço de email que você deseja utilizar dentro do Gmail.</p>
+<p><img src="{{ site.baseurl }}/assets/add-email.png" alt="Adicionar E-mail" /></p>
+<p>Em seguida, defina as configurações de SMTP como a seguir.</p>
+<p><img src="{{ site.baseurl }}/assets/email-smtp-settings.png" alt="Configurações de e-mail SMTP" /></p>
+<ul>
+  <li>Servidor: smtp.mailgun.org</li>
+  <li>Porto: 587</li>
+  <li>Nome de usuário: O endereço de e-mail completo, por exemplo, "me@ian.pw"</li>
+  <li>Senha: Igual à que você definiu no Mailgun</li>
+</ul>
+<p>Após clicar em "Add Account", PRONTO!! Aproveite o seu serviço gratuito de e-mail para até 10.000 e-mails por mês! O.o</p>
+<p>Obrigado por ler o meu post! Se você gostou ou ele ajudou você, por favor considere gostando / twittar esta página, comentando, ou que me seguem no <a href="http://github.com/luizcarvalho" target="_blank">GitHub</a> ou <a href="http://www.twitter.com/LuizCarvalho" target="_blank">Twitter</a> !</p>

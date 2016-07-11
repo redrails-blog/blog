@@ -1,0 +1,82 @@
+---
+layout: post
+title: Android Visualizador Hierárquivo
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Android
+tags: []
+meta:
+  _edit_last: '1'
+  _jd_tweet_this: 'yes'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>The Android SDK comes with a number of useful tools to help you design, develop and test Android applications. One tool that comes in handy for designing, debugging, and profiling your layouts and Android application user interfaces is called the Hierarchy Viewer. The Hierarchy Viewer is available as a standalone executable and from within Eclipse using the ADT plug-in for Android development. In this tutorial, learn how to get up and running with this handy tool.</p>
+<p>&nbsp;</p>
+<p>The Hierarchy Viewer is a visual tool that can be used to inspect your application user interfaces in ways that allow you to identify and improve your layout designs.</p>
+<h2>Step 1: Getting Started</h2>
+<p>We’ve whipped up a very simple application with three screens that combine controls in different ways to illustrate how one might use the Hierarchy Viewer. Each screen uses LinearLayout and FrameLayout controls as well as TextView and ImageView controls. Three underlying drawable graphics are used: a cat, a bowl, and a fish. Figure 1 shows our simple Fishbowl app, with its three screens:</p>
+<div><img alt="Three screens of the Fishbowl App" src="{{ site.baseurl }}/assets/Figure1.png" /></div>
+<p>Screen #1 uses a vertical LinearLayout control with two “cells”: A TextView control that says “Safe” and a FrameLayout which contains two ImageView controls: a bowl and a fish.</p>
+<p>Screen #2 uses a vertical LinearLayout control with two “cells”: A TextView control that says “Unsafe” and another horizontally-oriented LinearLayout control. The inner LinearLayout has two cells: the FrameLayout which contains two ImageView controls: a bowl and a fish and a second cell with an ImageView of the cat.</p>
+<p>Screen #3 uses a vertical LinearLayout control with two “cells”: A TextView control that says “Yum” and a FrameLayout which contains two ImageView controls: a cat and a fish. (very similar to Screen #1 in terms of layout design)</p>
+<h2>Step 2: Launch Your App</h2>
+<p>Your application must be running in order for you to inspect it using the Hierarchy Viewer. For this example, I had an emulator running, so I simply launched the Fishbowl app.</p>
+<p>Very Important Note: You cannot have your debugger attached to the application while using Hierarchy Viewer. Make sure Eclipse isn’t trying to debug your application when using Hierarchy Viewer, or it won’t work.</p>
+<h2>Step 3: Launch the Hierarchy Viewer</h2>
+<p>The Hierarchy Viewer is now incorporated into the ADT plug-in for Eclipse as a perspective, but it can also be launched from the command-line like many of the other Android tools (it’s in the tools directory of your Android SDK installation). We personally prefer using the standalone app, and have done so for the screenshots provided in this tutorial.</p>
+<p>When you first launch the app version, it takes a moment to load up. The first screen you will see shows the device sources available to Hierarchy Viewer. I’ve got one emulator running, with my app running in the foreground. I can simply select my running activity: FishbowlActivity. Now I am ready to use the Hierarchy Viewer.</p>
+<p>Once you have selected your activity, as shown in Figure 2, you have two different features of the Hierarchy Viewer that you can use:</p>
+<div><img alt="Hierarchy Viewer attached to the Fishbowl App" src="{{ site.baseurl }}/assets/Figure2.png" /></div>
+<ul>
+<li>Load View Hierarchy (Inspect your layout controls)</li>
+<li>Inspect Screenshot (Enter pixel perfect mode)</li>
+</ul>
+<p>You can switch between the main screen, the inspect screenshot screen, and the view hierarchy screen using the three buttons in the bottom left-hand corner of the application.</p>
+<h2>Step 4: Inspecting Screenshots</h2>
+<p>First, let’s click on the Inspect Screenshot button. This enters pixel perfect screen mode, which allows you to magnify your screen and get a hyper-accurate look at what is being displayed, as shown in Figure 3:</p>
+<div><img alt="Fishbowl App in pixel perfect mode" src="{{ site.baseurl }}/assets/Figure3.png" /></div>
+<p>You can zoom in and out on specific areas of the screen, examine specific views, and so on. You can save off screenshots as PNG files. You can also use this mode to design your user interface using overlays (bitmap images of what your UI will look like).</p>
+<h2>Step 5: Loading the View Hierarchy</h2>
+<p>The rest of this tutorial will focus on the basics of using the Load View Hierarchy feature of the Hierarchy Viewer. You can click the middle button in the bottom left-hand corner of the screen, or return to the main screen and press the Load View Hierarchy button to enter this mode.</p>
+<div><img alt="Fishbowl App examining Screen #1" src="{{ site.baseurl }}/assets/Figure4.png" /></div>
+<p>The View Hierarchy mode has a number of different panes, as shown in Figure 4 above.</p>
+<ul>
+<li>Left-hand side: The Tree Hierarchy</li>
+<li>Right-hand top: The Loupe Pane</li>
+<li>Right-hand middle: The Properties Pane</li>
+<li>Right-hand bottom: The Wire-Frame Pane</li>
+</ul>
+<h2>Step 6: Understanding the Tree Hierarchy</h2>
+<p>The left-most pane provides maps the controls in your app layouts into a tree view. All controls within your current layout are shown, from left-to-right, in terms of how they are encapsulated.</p>
+<p>So, for example, if you start at the far right-hand side, you’ll see the lowest level child controls. Since we are inspecting Screen #1, this means we are looking at two ImageView controls: bowl and fish. Move left (up) a level, and you’ll see that these two controls are within the FrameLayout called @id/frameLayoutFishbowl. Move up another level, and you’ll see your application’s “root” LinearLayout control, which contains both a TextView (that displays the text “Safe”) and the FrameLayout @id/frameLayoutFishbowl.</p>
+<div></div>
+<p>Note:<br />
+When you create an application, by default your layouts are not at the root of the hierarchy. In fact, there are several layers of controls above your content that will usually display the system status bar (battery life, time of day, signal strength, etc.) as well as a title bar, and then your contents are part of a FrameLayout control called @id/content. When you load layout contents using the setContentView() method within your Activity class, you are specifying what to load within this high-level FrameLayout. This is important to know when you start using the Hierarchy Viewer, since it shows the layout controls as they dictate the entire screen, not just the portion of the screen your application normally runs in.</p>
+<h2>Step 7: Inspecting Individual Controls in the Tree Hierarchy</h2>
+<p>You can click on individual controls in the Tree Hierarchy. Several things will happen.</p>
+<p>First, a bubble will appear with some important information about that view. For example, if you click on the TextView control in Screen #1, you will then see what is shown in Figure 5. Note that the type (TextView), identifier (system generated in this case), and what is displayed in the View (some text) are easily identified. Many of the other fields, including the colored dots, help you determine view performance (beyond the scope of this basic tutorial).</p>
+<div><img alt="Screen #1: Inspecting a TextView control" src="{{ site.baseurl }}/assets/Figure5.png" /></div>
+<p>Similarly, you might look at an ImageView control of the fishbowl:</p>
+<div><img alt="Screen #1: Inspecting an ImageView control" src="{{ site.baseurl }}/assets/Figure6.png" /></div>
+<p>The specific view is also highlighted in the Loupe pane. When your tree gets too large to display in one screen, two things may be true:</p>
+<ol>
+<li>You’ll need to use the Loupe pane to navigate around and see different parts of the tree.</li>
+<li>You may be overloading your screen with too many controls. Simplify!</li>
+</ol>
+<p>Let’s say we highlighted the ImageView of the fish itself. You can also inspect the property details of that view in the Properties Pane and see where that view falls within the Wire-Frame view, as shown in Figure 7.</p>
+<div><img alt="Screen #1: Inspecting the Fish ImageView control" src="{{ site.baseurl }}/assets/Figure7.png" /></div>
+<h2>Step 8: Refreshing</h2>
+<p>When you update your UI, the Hierarchy Viewer doesn’t update its contents—not unless you force it to refresh. Once you do, you can look at another screen. For example, let’s look at a slightly more complex layout, like Screen #2 (Figures 8 &amp; 9):</p>
+<div><img alt="Screen #2: Inspecting FrameLayout Contents (top of application-level hierarchy)" src="{{ site.baseurl }}/assets/Figure8.png" /></div>
+<div><img alt="Screen #2: Inspecting Child ImageView Control (bottom of application-level hierarchy)" src="{{ site.baseurl }}/assets/Figure9.png" /></div>
+<h2>Conclusion</h2>
+<p>This concludes your introduction to the Hierarchy Viewer application. The Hierarchy Viewer is a powerful tool for visualizing and inspecting the components that make up your Android app user interfaces. It can be used to help streamline layout design, debug layout problems, and determine where your UI performance bottlenecks are. Remember, you can use this tool from within Eclipse (provided you’ve installed the ADT plug-in) or you can simply run it from the command-line.</p>
+<p>As always, we look forward to your feedback.</p>

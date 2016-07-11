@@ -1,0 +1,80 @@
+---
+layout: post
+title: Pegar Texto de botão dinamicamente pelo toque
+date: 2011-11-07 12:11:58.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+- Artigos
+- Desenvolvimento
+- Tutoriais
+tags:
+- Android
+- Projetos
+meta:
+  _aioseop_title: Pegar Texto de botão dinamicamente pelo toque e compartilhar
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"2";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:1;a:4:{s:2:"ID";s:4:"1309";s:10:"post_title";s:66:"Piadas
+    Curtas e Engraçadas para SMS - Droido: Piadas Para Android";s:7:"matches";s:1:"2";s:9:"permalink";s:98:"http://www.redrails.com.br/2011/11/piadas-curtas-e-engracadas-para-sms-droido-piadas-para-android/";}i:2;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:3;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:4;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:5;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:6;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:7;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}i:8;a:4:{s:2:"ID";s:4:"1463";s:10:"post_title";s:33:"Android
+    Picture Pack - MISC IN HD";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/12/android-picture-pack-misc-in-hd/";}i:9;a:4:{s:2:"ID";s:4:"1352";s:10:"post_title";s:48:"PROBLEMA
+    TIM BETA: Problema com Logradouro e CEP";s:7:"matches";s:1:"1";s:9:"permalink";s:74:"http://www.redrails.com.br/2011/11/tim-beta-problema-com-logradouro-e-cep/";}}'
+  _relation_threshold: '1'
+  _aioseop_description: Código simples, mostrando como criar botões dinamicamente
+    através de um array definido por arquivos XML nos resources do projeto Android.E
+    pegando o evento de onClick e compartilhando da maneira que quiser, facebook,
+    orkut, dropbox via sms, email etc...
+  _aioseop_keywords: Facebook, Google plus, Android, DropBox, Java, OnTouch, Stackoverflow,
+    Development, SMS,
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/11/touch.png"><img class="aligncenter size-full wp-image-1284" title="touch" src="{{ site.baseurl }}/assets/touch.png" alt="" width="500" height="320" /></a></p>
+<p>Código simples, mostrando como criar botões dinamicamente através de um array definido por arquivos XML nos resources do projeto Android.E pegando o evento de onClick e compartilhando da maneira que quiser, facebook, orkut, dropbox via sms, email etc...</p>
+<p><!--more--></p>
+<p>[source language="java"]</p>
+<p>public class DinamicButtonsActivity extends Activity implements OnClickListener {</p>
+<p>    @Override</p>
+<p>    public void onCreate(Bundle savedInstanceState) {</p>
+<p>        super.onCreate(savedInstanceState);</p>
+<p>        setContentView(R.layout.home);</p>
+<p>        Resources res = getResources();</p>
+<p>        String[] button_texts = res.getStringArray(R.array.button_texts);</p>
+<p>        LinearLayout layout = (LinearLayout) findViewById(R.id.ButtonsGroup);</p>
+<p>        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(</p>
+<p>                LinearLayout.LayoutParams.FILL_PARENT,</p>
+<p>                LinearLayout.LayoutParams.WRAP_CONTENT</p>
+<p>        );</p>
+<p>        for (int i = 1; i &lt; button_texts.length; i++) {</p>
+<p>            Button button = new Button(this);</p>
+<p>            button.setText(button_texts[i]);</p>
+<p>            button.setOnClickListener(this);</p>
+<p>            layout.addView(button, p);</p>
+<p>        }</p>
+<p>    }</p>
+<p>    @Override</p>
+<p>	public void onClick(View v) {</p>
+<p>		String text = (String) ((Button) v).getText();</p>
+<p>		String text = (String) ((Button) v).getText();</p>
+<p>		Intent i = new Intent(Intent.ACTION_SEND);</p>
+<p>		i.setType(&quot;text/plain&quot;);</p>
+<p>		i.putExtra(Intent.EXTRA_TEXT, text);</p>
+<p>		startActivity(Intent.createChooser(i, &quot;Compartilhe&quot;));</p>
+<p>	}</p>
+<p>}</p>
+<p>[/source]</p>
+<p>Agradecimentos ao pessoal da <a href="http://groups.google.com/group/androidbrasil-dev" target="_blank">AndroidBrasil-Dev</a> e da <a href="http://stackoverflow.com" target="_blank">StackOverFlow</a> pela ajuda.</p>

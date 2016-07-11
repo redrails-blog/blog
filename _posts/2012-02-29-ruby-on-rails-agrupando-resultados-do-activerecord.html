@@ -1,0 +1,61 @@
+---
+layout: post
+title: 'Ruby on Rails: Agrupando Resultados do ActiveRecord'
+date: 2012-02-29 16:03:03.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+- Dicas
+- Ruby
+tags:
+- ActiveRecord
+- Ruby
+- RubyOnRails
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/02/ruby-rails-active-record-group.jpg"><img class="aligncenter size-medium wp-image-1723" title="ruby-rails-active-record-group" src="{{ site.baseurl }}/assets/ruby-rails-active-record-group-300x300.jpg" alt="" width="250" height="250" /></a></p>
+<p>&nbsp;</p>
+<p>Esses dias tive um trabalho para fazer agrupamento de resultados de um find com Rails.</p>
+<div>Tenho dois Models: <strong>User</strong> e <strong>Group</strong></div>
+<div>onde <strong>User</strong> belongs_to <strong>Group</strong> e<strong> Group</strong> has_many<strong> Users</strong></div>
+<div></div>
+<div>Eu gostaria de Obter o seguinte resultado em um minha busca</div>
+<div><!--more--></div>
+<div>
+<p>[geshi]</p>
+<pre>{grupo1=&gt;[user1,user2,user8],grupo2=&gt;[user4,user7] ... grupoN=&gt;[userX,userY,... userW]}</pre>
+<p>[/geshi]</p>
+</div>
+<div></div>
+<div>partindo de grupo eu poderia facilmente obter essa organização</div>
+<div></div>
+<p>[geshi]</p>
+<pre>Group.all.each do group
+     group.users.each do |user|
+        #CODE
+     end
+end</pre>
+<p>[/geshi]</p>
+<div></div>
+<div></div>
+<div></div>
+<div>mas de modo que eu possa filtrar os usuários por data de criação por exemplo:</div>
+<div>Usuários Criados entre Data1 e Data2</div>
+<div></div>
+<p>[geshi]</p>
+<pre>{grupo1=&gt;[user1],grupo2=&gt;[] ... grupoN=&gt;[userX,userY,... userW]}</pre>
+<p>[/geshi]</p>
+<p>&nbsp;</p>
+<p>A resposta é mais simples do que parece</p>
+<p>[geshi]</p>
+<pre>User.all.group_by(&amp;:grupo)</pre>
+<p>[/geshi]</p>

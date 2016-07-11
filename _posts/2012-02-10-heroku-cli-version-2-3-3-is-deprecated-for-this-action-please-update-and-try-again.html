@@ -1,0 +1,44 @@
+---
+layout: post
+title: 'HEROKU: CLI version 2.3.3 is deprecated for this action, please update and
+  try again'
+date: 2012-02-10 16:12:09.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Dicas
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/02/heroki-cli-version-plugin.png"><img class="aligncenter size-full wp-image-1657" title="heroku-cli-version-plugin" src="{{ site.baseurl }}/assets/heroki-cli-version-plugin.png" alt="" width="293" height="162" /></a></p>
+<p>Problem:</p>
+<p>$heroku logs<br />
+! Logging is not enabled for this app.<br />
+! To enable logging: `heroku addons:add logging`</p>
+<p>$heroku addons:add logging<br />
+-----&gt; Adding logging to tweepromo... failed<br />
+!     CLI version 2.3.3 is deprecated for this action, please update and try again.</p>
+<p>&nbsp;</p>
+<p><strong>SOLVING...</strong></p>
+<blockquote><p>&nbsp;</p>
+<p># add heroku repository to apt<br />
+echo "deb http://toolbelt.heroku.com/ubuntu ./" &gt; /etc/apt/sources.list.d/heroku.list</p>
+<p># install heroku's release key for package verification</p>
+<p>&nbsp;</p>
+<p>wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -</p>
+<p># update your sources<br />
+apt-get update</p>
+<p># install the toolbelt<br />
+apt-get install heroku-toolbelt</p>
+<p>sudo gem update heroku</p></blockquote>

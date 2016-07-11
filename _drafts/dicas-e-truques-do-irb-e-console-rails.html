@@ -1,0 +1,33 @@
+---
+layout: post
+title: Dicas e Truques do IRB e Console Rails
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Dicas
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _aktt_hash_meta: ''
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>O Site <a href="http://www.rubyinside.com.br" target="_blank">RubyInside</a> publicou <a href="http://www.rubyinside.com.br/irb-vamos-estudar-dentro-da-shell-interativa-do-ruby-1476" target="_blank">um post</a> com alguns sites com dicas sobre o IRB e Console do Rails.</p>
+<p>Eu li alguns escolhi os que eu achei mais interressantes.</p>
+<p>Sempre que você utiliza um método no irb, ele mostra o restorno deste método, mas as vezes esse resultado não é utilizado por você e acaba se tornando um incomodo. por exemplo:</p>
+<p>[source lang="ruby"]</p>
+<p>usuario = Usuario.find(:all)</p>
+<p>#Retorna uma porrada de usuarios (caso você tenha né?)</p>
+<p>[/source]</p>
+<p>[source lang="ruby"]</p>
+<p>usuario = Usuario.find(:all);nil<br />
+#nil</p>
+<p>#Problema resolvido</p>
+<p>[/source]</p>

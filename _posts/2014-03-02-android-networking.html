@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'Android: Networking'
+date: 2014-03-02 14:56:49.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+tags: []
+meta:
+  _edit_last: '1'
+  _responsive_layout: default
+  _wp_old_slug: android-networking-parte-1
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Uma das características que definem os sistemas móveis modernos é que eles podem nos manter conectado e em rede, sem nos prender a um local. Nesta lição, vamos explorar as práticas que você precisa para conectar seus aplicativos na internet. Então, eu vou começar esta lição, discutindo redes em geral.</p>
+<p>Essa discussão se concentrará em conectar suas aplicações a internet usando Hypertext Transfer Protocol ou HTTP especificamente usando solicitações HTTP GET. Depois disso, vou apresentar várias classes que o Android oferece para apoiar este tipo de conectividade. E, finalmente, eu vou discutir como suas aplicações podem processar os dados recebidos em resposta a essas solicitações HTTP GET. Em particular, eu vou falar de dois formatos populares de dados. Um deles, o Javascript Object Notation Language, ou JSON.</p>
+<p>O outro é o Extensible Markup Language, ou XML. E eu vou falar sobre como você analisar, e processar essas respostas HTTP quando elas forem formatadas em um desses formatos. Assim, nossos dispositivos nós darão essa mobilidade.</p>
+<p>Dispositivos de hoje combinam poderosos processadores com conexões de rede Wi-Fi mais rápidas e redes móveis. Aplicações portáteis, portanto, muitas vezes querem fazer uso desses recursos de rede para acessar e fornecer dados e serviços. Agora, para ajudá-lo a fazer isso, Android inclui uma variedade de classes de suporte incluindo Socket e URL, no pacote Java.net, as classes HttpRequest e HttpResponse nos pacotes org.apache.</p>
+<p>E as classes URI, AndroidHttpClient e AudioStream, nos pacotes android.net. Nesta lição nós vamos olhar para várias dessas classes usando cada uma delas para implementar o mesmo aplicativo de exemplo. E este aplicativo interage com um serviço de internet para obter informações sobre os terremotos que ocorreram em uma região geográfica específica. E como você vai ver, que os dados são retornados em vários formatos.</p>
+<p>Mais tarde, na aula, eu vou mostrar-lhe como processar os dados para extrair apenas a informação que você deseja. Ah, e, e uma outra coisa. Como você verá em um segundo, esses dados incluem informação geográfica, eles estão realmente implorando para ser exibido em um mapa, e não em texto. Agora, nós não vamos fazer isso nesta lição, mas mantenha isso em mente, porque nós vamos voltar a isto, quando chegarmos à lição em mapas e localização.</p>
+<p>Portanto, a fim de fazer o trabalho do aplicativo, o código precisa criar uma solicitação HTTP, enviá-lo a um servidor, recuperar os resultados e, em seguida, exibi-los. Android fornece várias classes para te ajudar com isso. Três falaremos agora são a classe Socket, a classe HttpURLConnection e o AndroidHttpClient.</p>
+<p>Exemplo: Ao pressionar um botão, o aplicativo irá emitir uma solicitação HTTP GET para um servidor externo. E esse servidor irá responder com um texto complexo que contém os dados do terremoto solicitados.</p>
+<p>E então, este código continua obtendo fluxo de entrada do socket e passando-a para um método chamado readStream. O método readStream última instância lê os dados de resposta do InputStream do socket.</p>
+<p>E, em seguida, retorna a resposta como uma única seqüência. E essa string é passado para o método OnPostExecute que executa no thread principal e que exibe a resposta na exibição de texto. Se voltar para o aplicativo, você notará que o texto de resposta inclui não apenas os dados do terremoto, mas também os cabeçalhos de resposta HTTP. Agora normalmente, eu não gostaria de exibir esse texto aqui.</p>
+<p>Eu realmente só quero te mostrar os dados do terremoto. Assim, no caso, eu deveria ter analisado a resposta e tirou apenas os dados que eu queria. Além disso, você deve ter notado que eu não escrevi nada do código de tratamento de erro que você realmente precisa para fazer esta aplicação robusta. E estes pontos, capturar muito bem os trade-offs de usar soquetes.</p>
+<p>O nível muito baixo, você pode escrever o que quiser sobre o soquete, mas, em troca, você tem que lidar com todos os muitos detalhes de fazer as solicitações HTTP, todo o tratamento de erros, e todo o processamento das respostas HTTP. O próximo implementação veremos usa a classe HttpURLConnection.  A terceira classe é cliente HTTP Android. Esta classe é uma implementação do DefaultHttpClient do projeto Apache e permite que uma grande quantidade de personalização.</p>
+<p>Em particular, a classe de quebra de uma transacção HTTP para um objecto de pedido e resposta para um objecto. Assim você pode criar subclasses que personalizam o tratamento de solicitações e suas respostas.</p>
+<p>&nbsp;</p>
+<p>Serie: 5 - 8 - Networking - Part 1</p>

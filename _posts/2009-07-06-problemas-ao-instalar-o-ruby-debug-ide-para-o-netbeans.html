@@ -1,0 +1,56 @@
+---
+layout: post
+title: Problemas ao instalar o ruby-debug-ide para o Netbeans
+date: 2009-07-06 09:21:51.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Dicas
+- Linux
+tags:
+- debug
+- Rails
+- Ruby
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _aioseop_title: Problemas ao instalar o ruby-debug-ide para o Netbeans
+  _aioseop_description: Instalação do ruby-debug-ide no netbeans + link alternativo
+    para resolução do problema de instalação do ruby-debug com instalação o build-essencial
+    e o ruby1.8-dev.
+  _aioseop_keywords: " ruby-debug-ide, Ruby, Rails, netbeans, ruby-debug, build-essencial,
+    ruby18.-dev, debug, ubuntu"
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"3";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:1;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:2;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:3;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:4;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:5;a:4:{s:2:"ID";s:3:"404";s:10:"post_title";s:49:"Mini-Curso:
+    Desenvolvimento Ágil com RubyOnRails";s:7:"matches";s:1:"2";s:9:"permalink";s:83:"http://www.redrails.com.br/2009/04/mini-curso-desenvolvimento-agil-com-rubyonrails/";}i:6;a:4:{s:2:"ID";s:3:"384";s:10:"post_title";s:49:"Mudanças
+    nos Dias do Mini-Curso de Ruby On Rails";s:7:"matches";s:1:"2";s:9:"permalink";s:84:"http://www.redrails.com.br/2009/03/mudancas-nos-dias-do-mini-curso-de-ruby-on-rails/";}i:7;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"2";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:8;a:4:{s:2:"ID";s:3:"277";s:10:"post_title";s:47:"Problemas
+    ao instalar Fast-Debuger (ruby-debug)";s:7:"matches";s:1:"2";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/10/problemas-ao-instalar-fast-debuger-ruby-debug/";}i:9;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"2";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}}'
+  _relation_threshold: '2'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>A alguns meses atrás tive problema em instalar o ruby-debug, resolvido apenas instalando o build-essencial e o ruby1.8-dev. Melhor esplicado no <a href="http://www.redrails.com.br/2008/10/problemas-ao-instalar-fast-debuger-ruby-debug/">outro post</a></p>
+<p>Outro problema comum é na instalação do ruby-debug-ide também facilmente resolvível basta instalar a versão certa da gem, ou seja, a versão 0.3.x(0/1/2/3/4) que é a versão aceita no Netbeans 6.X até onde eu testei.</p>
+<p>Quando tentei instalar a gem pela linha de comando</p>
+<p>[source lang="ruby"]<br />
+sudo gem install ruby-debug-ide -v=0.3.4<br />
+[/source]<br />
+por exemplo, a gem não é encontrada então o negocio é baixar no braço e instalar.</p>
+<p>Você pode instalar do <a href="http://rubyforge.org/frs/?group_id=3085&amp;release_id=34709">repositório</a> ou diretamente no nosso site a versão usual mais recente (<a href="http://www.redrails.com.br/wp-content/uploads/2009/07/ruby-debug-ide-0.3.4.gem">Clicando aqui</a>).</p>
+<p>E executando<br />
+[source lang="ruby"]<br />
+sudo gem install ruby-debug-ide-0.3.4.gem<br />
+[/source]</p>

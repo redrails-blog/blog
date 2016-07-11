@@ -1,0 +1,123 @@
+---
+layout: post
+title: Desenho de Poligonos no Google Earth usando Ruby
+date: 2010-11-26 17:39:07.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Projetos
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _wp_old_slug: ''
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Considerando nosso<a href="http://www.redrails.com.br/2010/11/parte-1-calculando-coordenadas-finais-possuindo-um-ponto-inicial-a-distancia-e-o-azimute-angulo/" target="_blank"> último post</a>, conseguimos definir os pontos de intersecções entre as linhas que compõem o contorno, mas e agora de posse dessas informações como vamos desenhar isso no mapa?</p>
+<p>Essa técnica pode ser usada para desenhar em qualquer* linguagem ou componente do Google Earth, mas para melhor entendimento vamos pegar o desenho de polígonos utilizando Ruby.</p>
+<p>Primeiro vamos entender sobre os arquivos de entrada e saída:</p>
+<p>KML Estrutura XML composta pelas descrições de cada componente. <a href="http://code.google.com/apis/kml/documentation/">Saiba mais (documentação)</a>.</p>
+<p>KMZ é um arquivo comprimido (ZIP) contendo seu KML e possíveis imagens utilizadas. <a href="http://code.google.com/apis/kml/documentation/kmzarchives.html">Saiba mais (documentação)</a>.</p>
+<p>É extremamente recomendável que você leia a documentação sobre os dois arquivos.</p>
+<p>Sabendo esse mínimo sobre os dois arquivos, vamos escolher o KML por ser mais simples de manipular e de demonstrar o funcionamento.</p>
+<p>Não vamos explicar aqui todas as tags do KML para isso consulte a <a href="http://code.google.com/apis/kml/documentation/kmlreference.html">documentação</a>, citaremos apenas as principais tags que compõe nosso exemplo.</p>
+<p>Para melhor visualização nosso KML já foi dividido em métodos:</p>
+<p>O método abaixo define o cabeçalho de nosso KML (XML) e dá inicio ao documento com a tag &lt;Document&gt; [Atenção o KML é case-sensitive]</p>
+<p>Name: especifica o nome do grupo de componentes que vai ser criados para esse documento.<br />
+<!--more--></p>
+<p>[ruby]</p>
+<p>def kml_inicio</p>
+<p>    &quot;&lt;?xml version='1.0' encoding='UTF-8'?&gt;<br />
+        &lt;kml xmlns='http://www.opengis.net/kml/2.2'<br />
+             xmlns:gx='http://www.google.com/kml/ext/2.2'<br />
+             xmlns:kml='http://www.opengis.net/kml/2.2'<br />
+             xmlns:atom='http://www.w3.org/2005/Atom'&gt;<br />
+        &lt;Document&gt;<br />
+          &lt;name&gt;Contornos de Propagação para Radiodifusão&lt;/name&gt;<br />
+          &lt;open&gt;1&lt;/open&gt;&quot;</p>
+<p>end</p>
+<p>[/ruby]</p>
+<p>Esse segundo segmento é responsável pela definição de cores e largura dos contornos, foram definidas 4 cores para as quatro coordenadas que serão desenhadas. Sendo composta por 6 digitos hexadecimais, observem que ao ser inserida no KML elas recebem 2 outros caracteres, (00 e FF) que são responsáveis pelas definições de opacidade. O 00 garante que o preenchimento não vai ser visível enquanto a linha sim, tanto para modo normal, quando para o modo highlight ( mouse over ), Width é responsável pela largura do contorno.</p>
+<p>Após a definição dos 8 estilos (Style&gt;LineStyle)  ( 4 normais e 4 highlight) é criado mais 4 tags responsáveis (StyleMap) que agrupam os outros 8 estilos em pares, definindo assim os 2 estados para cada contorno.</p>
+<p>[ruby]</p>
+<p>def kml_estilos</p>
+<p>    template = &quot;&quot;<br />
+    cor={1=&gt;&quot;00ffff&quot;,2=&gt;&quot;FF6600&quot;,3=&gt;&quot;0000ff&quot;,4=&gt;&quot;33CCFF&quot;}<br />
+    tipos = [&quot;normal&quot;,&quot;highlight&quot;]<br />
+    (1..4).each do |numero|<br />
+      tipos.each do |tipo|<br />
+        template+=&quot;&lt;Style id='contorno#{numero}_#{tipo}'&gt;<br />
+            &lt;LineStyle&gt;<br />
+              &lt;color&gt;ff#{cor[numero]}&lt;/color&gt;<br />
+              &lt;width&gt;2&lt;/width&gt;<br />
+            &lt;/LineStyle&gt;<br />
+            &lt;PolyStyle&gt;<br />
+              &lt;color&gt;00#{cor[numero]}&lt;/color&gt;<br />
+            &lt;/PolyStyle&gt;<br />
+          &lt;/Style&gt;&quot;<br />
+      end</p>
+<p>      template+=&quot;&lt;StyleMap id='contorno#{numero}'&gt;<br />
+            &lt;Pair&gt;<br />
+              &lt;key&gt;normal&lt;/key&gt;<br />
+              &lt;styleUrl&gt;#contorno#{numero}_normal&lt;/styleUrl&gt;<br />
+            &lt;/Pair&gt;<br />
+            &lt;Pair&gt;<br />
+              &lt;key&gt;highlight&lt;/key&gt;<br />
+              &lt;styleUrl&gt;#contorno#{numero}_highlight&lt;/styleUrl&gt;<br />
+            &lt;/Pair&gt;<br />
+          &lt;/StyleMap&gt;&quot;<br />
+    end<br />
+    template</p>
+<p>end</p>
+<p>[/ruby]</p>
+<p>Após abrirmos as tags do documentos e definirmos os estilos de cores de cada contorno vamos então desenha-los. O método abaixo necessita que seja passado o numero do contorno ( ou seja vai ser chamado 4 vezes, uma para cada contorno) e as coordenadas referentes a cada um destes.</p>
+<p>Tags: name: o nome do contorno que irá aparecer no google Earth agrupado pelo primeiro name que definiu o documento.</p>
+<p>StyleUrl: O estilo que vai definir as propriedades do contorno.</p>
+<p>Polygon&gt;Coordinates: Requer os pares de Lon,lat ( atenção, os pares são invertidos exatamente assim) separados um par de outro por espaço.</p>
+<p>[ruby]</p>
+<p>def desenhar_poligonos(numero,coordenadas)<br />
+    &quot;	&lt;Placemark&gt;<br />
+    		&lt;name&gt;Contorno #{numero}&lt;/name&gt;<br />
+    		&lt;styleUrl&gt;#contorno#{numero}&lt;/styleUrl&gt;<br />
+    		&lt;Polygon&gt;<br />
+    			&lt;tessellate&gt;1&lt;/tessellate&gt;<br />
+    			&lt;outerBoundaryIs&gt;<br />
+    				&lt;LinearRing&gt;<br />
+    					&lt;coordinates&gt;<br />
+                  #{coordenadas}<br />
+              &lt;/coordinates&gt;<br />
+    				&lt;/LinearRing&gt;<br />
+    			&lt;/outerBoundaryIs&gt;<br />
+    		&lt;/Polygon&gt;<br />
+    	&lt;/Placemark&gt;&quot;<br />
+end</p>
+<p>[/ruby]</p>
+<p>E por fim, mas não menos importante, vamos fechar nosso arquivo:</p>
+<p>[ruby]</p>
+<p>def kml_fim</p>
+<p>    &quot;\n  &lt;/Document&gt;\n&lt;/kml&gt;&quot;</p>
+<p>end</p>
+<p>[/ruby]</p>
+<p>E para gerar nosso arquivo completo? Muito simples agora:</p>
+<p>[ruby]</p>
+<p>def kml_default_template(coordenadas)</p>
+<p>default_template = kml_inicio</p>
+<p>default_template+= kml_estilos</p>
+<p>(1..4).each do |numero|</p>
+<p>default_template+= desenhar_poligonos(numero, coordenadas[numero])</p>
+<p>end</p>
+<p>default_template+=kml_fim</p>
+<p>end</p>
+<p>[/ruby]</p>
+<p>E pronto. Save o resultado em um arquivo e nomeie como aqualquer_coisa.kml e dê dois cliques, se seu Google Earth estiver instalado normalmente você verá algo parecido com isso:</p>
+<p>[caption id="" align="aligncenter" width="653" caption="Polígono desenhado no google Earth via Código"]<img title="Polígono desenhado no google Earth via Código" src="{{ site.baseurl }}/assets/gerador_de_poligonos_2.jpeg" alt="Polígono desenhado no google Earth via Código" width="653" height="534" />[/caption]</p>

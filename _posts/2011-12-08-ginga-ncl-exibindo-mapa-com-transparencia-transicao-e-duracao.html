@@ -1,0 +1,77 @@
+---
+layout: post
+title: 'Ginga NCL: Exibindo Mapa com transparência, transição e duração'
+date: 2011-12-08 16:28:43.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+- TVD
+tags:
+- Desenvolvimento
+- Ginga
+- NCL
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:7:{i:0;a:4:{s:2:"ID";s:4:"1422";s:10:"post_title";s:50:"Ginga
+    NCL: Criando um menú basico com navegação";s:7:"matches";s:1:"3";s:9:"permalink";s:82:"http://www.redrails.com.br/2011/12/ginga-ncl-criando-um-menu-basico-com-navegacao/";}i:1;a:4:{s:2:"ID";s:4:"1408";s:10:"post_title";s:40:"Ginga
+    NCL: Hello World - Exibindo vídeo";s:7:"matches";s:1:"3";s:9:"permalink";s:72:"http://www.redrails.com.br/2011/12/ginga-ncl-hello-world-exibindo-video/";}i:2;a:4:{s:2:"ID";s:4:"1398";s:10:"post_title";s:55:"Ginga-NCL:
+    Como colocar logo de canal no canto superior";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2011/12/ginga-ncl-como-colocar-logo-de-canal-no-canto-superior/";}i:3;a:4:{s:2:"ID";s:4:"1392";s:10:"post_title";s:49:"Hello
+    World - Primeira Aplicação em NCL - Ginga";s:7:"matches";s:1:"3";s:9:"permalink";s:79:"http://www.redrails.com.br/2011/12/hello-world-primeira-aplicacao-em-ncl-ginga/";}i:4;a:4:{s:2:"ID";s:4:"1384";s:10:"post_title";s:48:"Como
+    rodar Aplicações NCL no Ginga com Eclipse";s:7:"matches";s:1:"3";s:9:"permalink";s:82:"http://www.redrails.com.br/2011/12/como-rodar-aplicacoes-ncl-no-ginga-com-eclipse/";}i:5;a:4:{s:2:"ID";s:4:"1238";s:10:"post_title";s:31:"Game
+    of thrones RPG for Android";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/10/game-of-thrones-rpg-for-android/";}i:6;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"1";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}}'
+  _relation_threshold: '1'
+  _aioseop_title: 'Ginga NCL: Exibindo Mapa com transparência, transição e duração'
+  _aioseop_description: Exemplo de Código em NCL com atributos de transparência
+  _wp_old_slug: ginga-ncl-hello-world-com-video
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/12/transparency.png"><img class="size-medium wp-image-1414 aligncenter" title="transparency" src="{{ site.baseurl }}/assets/transparency-e1323374217139-300x205.png" alt="" width="300" height="205" /></a></p>
+<p>Exemplo de Código em NCL que exibe um mapa posicionado utilizando atributos left e top, e alterando sua descrição para que dure 7 segundos e desapareçã com uma transição fade. Durante esse processo ficará com uma transparência de 70%.</p>
+<p><!--more--></p>
+<p>[code lang="xml"]</p>
+<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br />
+&lt;!--<br />
+Author: Luiz Arão Araújo Carvalho<br />
+Site: www.redrails.com.br<br />
+Data: 07/12/2011<br />
+Contato: luizcarvalho@redrails.com.br / @LuizCarvalho</p>
+<p>--&gt;<br />
+&lt;ncl id=&quot;main&quot; xmlns=&quot;http://www.ncl.org.br/NCL3.0/EDTVProfile&quot;&gt;<br />
+	&lt;head&gt;<br />
+		&lt;transitionBase&gt;<br />
+			&lt;transition id=&quot;transFade&quot; type=&quot;fade&quot;/&gt;<br />
+		&lt;/transitionBase&gt;<br />
+		&lt;regionBase&gt;<br />
+			&lt;region id=&quot;rgMainVideo&quot; width=&quot;100%&quot; height=&quot;100%&quot; zIndex=&quot;0&quot; /&gt;<br />
+			&lt;region id=&quot;rgLogo&quot; width=&quot;128&quot; height=&quot;38&quot; top=&quot;10px&quot; right=&quot;10px&quot; zIndex=&quot;0&quot; /&gt;<br />
+			&lt;region id=&quot;rgMapa&quot; width=&quot;212&quot; height=&quot;360&quot; top=&quot;10px&quot; left=&quot;10px&quot; zIndex=&quot;0&quot; /&gt;<br />
+		&lt;/regionBase&gt;</p>
+<p>		&lt;descriptorBase&gt;<br />
+			&lt;descriptor id=&quot;descMainVideo&quot; region=&quot;rgMainVideo&quot; /&gt;<br />
+			&lt;descriptor id=&quot;descLogo&quot; region=&quot;rgLogo&quot; /&gt;<br />
+			&lt;descriptor id=&quot;descMapa&quot; region=&quot;rgMapa&quot; explicitDur=&quot;7s&quot; transIn=&quot;fade&quot; transOut=&quot;fade&quot;  &gt;<br />
+				&lt;descriptorParam name=&quot;transparency&quot; value=&quot;70%&quot;/&gt;<br />
+			&lt;/descriptor&gt;</p>
+<p>		&lt;/descriptorBase&gt;</p>
+<p>	&lt;/head&gt;</p>
+<p>	&lt;body&gt;<br />
+		&lt;port id=&quot;pMVideo&quot; component=&quot;mMainvideo&quot; /&gt;<br />
+		&lt;port id=&quot;pLogo&quot; component=&quot;mLogo&quot; /&gt;<br />
+		&lt;port id=&quot;pMapa&quot; component=&quot;mMapa&quot; /&gt;</p>
+<p>		&lt;media id=&quot;mMainvideo&quot; src=&quot;media/video.mp4&quot; descriptor=&quot;descMainVideo&quot; /&gt;<br />
+		&lt;media id=&quot;mLogo&quot; src=&quot;media/espn.png&quot; descriptor=&quot;descLogo&quot; /&gt;<br />
+		&lt;media id=&quot;mMapa&quot; src=&quot;media/mapa.png&quot; descriptor=&quot;descMapa&quot;  /&gt;<br />
+	&lt;/body&gt;<br />
+&lt;/ncl&gt;</p>
+<p>[/code]<br />
+[download id="18"]</p>

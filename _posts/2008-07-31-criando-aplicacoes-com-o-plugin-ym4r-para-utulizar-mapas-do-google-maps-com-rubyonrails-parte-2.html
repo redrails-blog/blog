@@ -1,0 +1,82 @@
+---
+layout: post
+title: Criando Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com
+  RubyOnRails - Parte 2
+date: 2008-07-31 01:19:21.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- google
+- Maps
+- Rails
+- Ruby
+- Tutoriais
+meta:
+  _aioseop_title: 'Criando aplicação Rails com Mapas Utilizando YM4R '
+  _edit_last: '1'
+  _aioseop_description: Tutorial de um projeto Ruby On Rails que utiliza oplugin YM4R
+    GM para manipular Mapas do Google Maps para localização com Coordenadas  Geográficas
+  _aioseop_keywords: Coordenadas Geograficas, Ruby, Rails, YM4R, YM4R_GM, Google Maps,
+    GMaps
+  aktt_notify_twitter: 'no'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:2:"80";s:10:"post_title";s:99:"Criando
+    Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com RubyOnRails
+    - Parte 1";s:7:"matches";s:1:"5";s:9:"permalink";s:131:"http://www.redrails.com.br/2008/07/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-1/";}i:1;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:2;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:3;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:4;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"2";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:5;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:6;a:4:{s:2:"ID";s:3:"404";s:10:"post_title";s:49:"Mini-Curso:
+    Desenvolvimento Ágil com RubyOnRails";s:7:"matches";s:1:"2";s:9:"permalink";s:83:"http://www.redrails.com.br/2009/04/mini-curso-desenvolvimento-agil-com-rubyonrails/";}i:7;a:4:{s:2:"ID";s:3:"384";s:10:"post_title";s:49:"Mudanças
+    nos Dias do Mini-Curso de Ruby On Rails";s:7:"matches";s:1:"2";s:9:"permalink";s:84:"http://www.redrails.com.br/2009/03/mudancas-nos-dias-do-mini-curso-de-ruby-on-rails/";}i:8;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"2";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:9;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"2";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}}'
+  _relation_threshold: '2'
+  views: '7'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://maxonrails.wordpress.com/2008/07/31/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-1/">PARTE 1</a><br />
+Vamos ai Final de nosso Tutorial ^^</p>
+<p>Eu adicionei o seguinte código na Action Show, pra quando for visualizar as informações veja o mapa junto, dá pra fazer também no index ai você mostra todas as localidades e tals ou mesmo criar uma outra action apenas para mostrar o mapa, a gosto do freguês.</p>
+<p>@map = GMap.new("map_div_id")<br />
+@map.control_init(:large_map =&gt; true, :map_type =&gt; true) @map.center_zoom_init([@mapa.latitude,@mapa.longitude], 14)<br />
+marker = GMarker.new([@mapa.latitude,@mapa.longitude], :titile =&gt; "Onde eu estou?", :info_window =&gt; "Olá Palmas, Tocantins")</p>
+<p>@map.overlay_init(marker)<br />
+Aqui está o motor de nosso mapa vamos à explicação: @map = GMap.new("map_div_id") map_div_id é o id que vai ser gerado em seu HTML</p>
+<p>@map.control_init(:large_map =&gt; true, :map_type =&gt; true)<br />
+Definimos opções visíveis no mapa :large_map define a presença da ferramenta de zoom e deslocação. :map_type informa se será possivel escolher os tipos de mapa (Mapa, Satélite e Hibrido).</p>
+<p>@map.center_zoom_init([@mapa.latitude,@mapa.longitude], 14)<br />
+Definimos qual será a posição inicial do nosso mapa e o zoom default de nosso mapa. Onde @mapa.latitude e @mapa.longitude são as coordenadas que, eu em meu sistema, cadastrei.</p>
+<p>marker = GMarker.new([@mapa.latitude,@mapa.longitude],<br />
+define aposição de nosso marcador</p>
+<p>:title =&gt; "Onde eu estou?", :info_window =&gt; "Olá Palmas, Tocantins")<br />
+Definimos a legenda e o texto que irá aparecer no balão.</p>
+<p>@map.overlay_init(marker)<br />
+Ai, informamos que desejamos rendenrizar o marcador que criamos. Agora vamos a nossa view, no nosso caso o show de mapas, escolhido por nós(EU) para ser nossa interface para o mapa.</p>
+<p>/app/views/mapas/show.html.erb Adicione o seguinte código 600, :height =&gt; 400) %&gt; Onde você pode definir o tamanho do seu mapa com :width e :height.</p>
+<p><img src="{{ site.baseurl }}/assets/showhtml.jpg" alt="" /></p>
+<p>Ok, cadastramos nossa Localidade. <img src="{{ site.baseurl }}/assets/captura_da_tela-9.png" alt="" /></p>
+<p>E vamos mostrar nosso resultado.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-10.png" alt="" /></p>
+<p><strong> Colocando a Aplicação em produção</strong></p>
+<p>Após ser feita a transição para modo de produção seu mapa não apareceu mais?<br />
+Bom, como dito no inicio necessitamos de uma chave real do Google Maps, então vamos lá. Essa chave pode ser adquirida aqui. Aceite os termos e digite o endereço de sua aplicação</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-11.png" alt="" /></p>
+<p>E aperte o botão [Generate API Key] Bom essa é sua chave a copie para um lugar seguro. <img src="{{ site.baseurl }}/assets/captura_da_tela-12.png" alt="" /></p>
+<p>Ok, agora vamos até nosso arquivo config/gmaps_api_key.yml E Colocamos nossa chave lá. Do modo que está lá você informa o domínio e a chave para aquele domínio, para mim não deu certo, deu certo apenas quando coloquei a chave direto em production como esta em no exemplo abaixo:</p>
+<p><img src="{{ site.baseurl }}/assets/apykey.jpg" alt="" /></p>
+<p>Isso Funcionou apenas o modo de Produção, para o Desenvolviemtno deixe o codigo como esta.</p>
+<p>Pronto sua aplicação deve estar funcionando. Qualquer duvida:<br />
+Comente e Volte para ler sua resposta. Obrigado pela paciência e se acharem erros (com certeza acharão muitos) me avisem, por favor, para que possa corrigi-los.</p>
+<p><strong><a href="http://www.redrails.com.br/wp-content/uploads/2008/07/YM4R_exemplo.zip">Download do Projeto</a></strong></p>
+<p>Updated: 12 -09-2008</p>
+<p>Valeu ai Nofxx pela correção temporal em meus verbos :)</p>
+<p>Para complementar meu amigo Jackson Pires fez um <a href="http://jacksonpires.blogspot.com/2009/01/como-pegar-o-geocode-no-ym4r.html" target="_blank">post</a> sobre o assunto <a href="http://jacksonpires.blogspot.com/2009/01/como-pegar-o-geocode-no-ym4r.html" target="_blank">confira</a></p>

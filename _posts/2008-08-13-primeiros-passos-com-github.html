@@ -1,0 +1,55 @@
+---
+layout: post
+title: Primeiros Passos com GitHub
+date: 2008-08-13 23:55:42.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags:
+- Git
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:2:{i:0;a:4:{s:2:"ID";s:3:"228";s:10:"post_title";s:63:"Git:
+    Participando de um projeto OpenSource no GitHub - Comandos";s:7:"matches";s:1:"1";s:9:"permalink";s:96:"http://www.redrails.com.br/2008/10/git-participando-de-um-projeto-opensource-no-github-comandos/";}i:1;a:4:{s:2:"ID";s:3:"216";s:10:"post_title";s:36:"Erro
+    ao dar Push no repositório GIT";s:7:"matches";s:1:"1";s:9:"permalink";s:71:"http://www.redrails.com.br/2008/10/erro-ao-dar-push-no-repositorio-git/";}}'
+  _relation_threshold: '1'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Olá</p>
+<p>Depois de um tempinho sem postar (todos blogista fala isso) voltando com algo não tão novo.<br />
+quando você cria um repositório essas mensagens aparecem, bom é só seguir e vai estar tudo bom.</p>
+<p>Mas sou uma pessoa de memoria não tão boa, e para relembrar os comandos tinha que criar outro repositório para ver como se fazia, então vou postar aqui que fica mais facil pra mim, e vai facilitar para os sem memorias como eu.</p>
+<p>Go!</p>
+<h3>Global Setup:</h3>
+<p><span style="color:#ff0000;">git config --global user.email o_email_que_voce_cadastrou@xxx.com</span><br />
+<span style="color:#33cccc;"> EX: git config --global user.email maxonrails@gmail.com</span></p>
+<h3>Proximo Passo:</h3>
+<p><span style="color:#ff0000;"> mkdir [repositorio]<br />
+cd [repositorio]<br />
+git init<br />
+touch README<br />
+git add README<br />
+git commit -m 'first commit'<br />
+git remote add origin git@github.com:[Usuario]/[repositorio].git<br />
+git push origin master<br />
+</span></p>
+<p><span style="color:#33cccc;"> mkdir getna<br />
+cd getna<br />
+git init<br />
+touch README<br />
+git add README<br />
+git commit -m 'first commit'<br />
+git remote add origin git@github.com:Maxonrails/getna.git<br />
+git push origin master</span></p>
+<h3>Existindo o repositorio git...</h3>
+<p><span style="color:#33cccc;"> cd repositorio_git<br />
+git remote add origin git@github.com:Maxonrails/getna.git<br />
+git push origin master</span></p>

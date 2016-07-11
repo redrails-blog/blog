@@ -1,0 +1,90 @@
+---
+layout: post
+title: 'Ruby: Utilizando Open-URI e HPricot para descobrir sorteios realizados no
+  sorteie.me'
+date: 2010-10-28 11:53:52.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+tags:
+- Ruby
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _aioseop_disable: 'on'
+  _wp_old_slug: ''
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1016";s:10:"post_title";s:129:"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby";s:7:"matches";s:1:"1";s:9:"permalink";s:155:"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/";}i:1;a:4:{s:2:"ID";s:4:"1005";s:10:"post_title";s:129:"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]";s:7:"matches";s:1:"1";s:9:"permalink";s:157:"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/";}i:2;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"1";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:3;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"1";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:4;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:5;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"1";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:6;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"1";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:7;a:4:{s:2:"ID";s:3:"465";s:10:"post_title";s:38:"Utilizando
+    JQuery no Rails  com JRails";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2009/05/utilizando-jquery-no-rails-com-jrails/";}i:8;a:4:{s:2:"ID";s:3:"448";s:10:"post_title";s:35:"Flexões
+    de nomes com Ruby On Rails";s:7:"matches";s:1:"1";s:9:"permalink";s:70:"http://www.redrails.com.br/2009/05/flexoes-de-nomes-com-ruby-on-rails/";}i:9;a:4:{s:2:"ID";s:3:"404";s:10:"post_title";s:49:"Mini-Curso:
+    Desenvolvimento Ágil com RubyOnRails";s:7:"matches";s:1:"1";s:9:"permalink";s:83:"http://www.redrails.com.br/2009/04/mini-curso-desenvolvimento-agil-com-rubyonrails/";}}'
+  _relation_threshold: '1'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+excerpt: Com esse método podemos avançar e regredir em URL criadas pelo Sorteie.me
+  e assim descobrir outros sorteios na sequência transparecendo assim outros ersultados
+  que podem ser da mesma promoção.
+---
+<p>[ruby]<br />
+class VerificadorSorteieme<br />
+ require 'net/http'<br />
+ require 'uri'<br />
+ require 'rubygems'<br />
+ require 'hpricot'<br />
+ require 'pp'<br />
+ require 'string_pred'<br />
+ def initialize(url,de=10,ate=10)<br />
+ @url = url<br />
+ @de = de<br />
+ @ate = ate</p>
+<p> @resultado = {&quot;atual&quot;=&gt;[],&quot;anteriores&quot;=&gt;[],&quot;proximos&quot;=&gt;[]}<br />
+ @URL_BASE = &quot;http://sorteie.me/&quot;<br />
+ end</p>
+<p>#Com esse método podemos avançar e regredir em URL criadas pelo Sorteie.me e assim descobrir outros sorteios na sequência<br />
+#transparecendo assim outros ersultados que podem ser da mesma promoção.<br />
+#deve ser passado o final da URL (EX: para: http://sorteie.me/1j8W parametro: 1j8W)<br />
+#<br />
+ def request_sorteios #EX: 1j8W<br />
+ @resultado[&quot;atual&quot;] = catcher_html(@url)<br />
+ #pros_url_for<br />
+ ant_url_for<br />
+ @resultado<br />
+ end</p>
+<p> def pros_url_for<br />
+ nurl = @url.clone<br />
+ @ate.times do<br />
+ @resultado[&quot;proximos&quot;] &lt;&lt; catcher_html(nurl.next!)<br />
+ end<br />
+ end</p>
+<p> def ant_url_for<br />
+ purl = @url.clone<br />
+ @de.times do<br />
+ @resultado[&quot;anteriores&quot;] &lt;&lt; catcher_html(purl.pred!)<br />
+ end<br />
+ end</p>
+<p> def catcher_html(url)<br />
+ complete_url = &quot;#{@URL_BASE}#{url}&quot;<br />
+ html = Net::HTTP.get(URI.parse(complete_url))<br />
+ doc = Hpricot(html)<br />
+ {:vencedor=&gt;doc.search(&quot;//div[@id='box']/ol/li/a&quot;).inner_html,:mensagem=&gt; doc.search(&quot;//p[@class='note']&quot;).inner_html,:url=&gt;complete_url}<br />
+ end</p>
+<p>end<br />
+[/ruby]</p>
+<p>﻿</p>

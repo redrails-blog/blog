@@ -1,0 +1,53 @@
+---
+layout: post
+title: Instalando Visio no Ubuntu Usando Wine
+date: 2009-07-01 17:08:38.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Dicas
+- Linux
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  views: '3'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Bom não sou fã no MS Windows muito menos no MS Visio. Mas sempre se surge uma necessidade.Dessa vez foi instalar essa bomba... er... essa aplicação =P.</p>
+<p>Tive bastante trabalho pois havia Bugado todo meu Wine. Depois de ter que reinstalar ele consegui instalar o Visio normalmente.</p>
+<p>Mas na hora de rodar... mais um problema. o loadscreen aparecia mas com um erro. Depois de muito apanhar consegui com a seguinte configuração.</p>
+<p>Re-instalei a biblioteca <a href="http://www.dll-files.com/dllindex/dll-files.shtml?gdiplus" target="_blank">gdiplus</a> usando o<a href="http://wiki.winehq.org/winetricks" target="_blank"> winetricks</a></p>
+<p>[source lang="ruby"]</p>
+<p>#baixando winetricks<br />
+wget http://www.kegel.com/wine/winetricks</p>
+<p>#dando permissão de execução<br />
+sudo chmod +x winetricks</p>
+<p>#instalando bibliotecas<br />
+./winetricks  gdiplus</p>
+<p>[/source]</p>
+<p>Não sei se influênciou mas configurei meu wine para uma execução customizada do VISIO.EXE</p>
+<ul>
+<li>use a hotkey: alt+f2</li>
+<li>na janela de execução digite: winecfg</li>
+<li>Clique em Adicionar Aplicação</li>
+<li>Selecione o Executável do visio (Comumente: ~/.wine/drive_c/Arquivos de programas/Microsoft Office/Visio11/VISIO.EXE)</li>
+<li>Selecione a Aplicação no winecfg</li>
+</ul>
+<p><img class="alignnone size-full wp-image-564" title="conf_para_visio_exe" src="{{ site.baseurl }}/assets/conf_para_visio_exe.png" alt="conf_para_visio_exe" width="420" height="556" /></p>
+<ul>
+<li>Mude para a Aba Bibliotecas adicione as seguintes:</li>
+</ul>
+<p><img class="alignnone size-full wp-image-563" title="conf_lib_para_visio_exe" src="{{ site.baseurl }}/assets/conf_lib_para_visio_exe.png" alt="conf_lib_para_visio_exe" width="420" height="556" /></p>
+<ul>
+<li> Rode o Visio</li>
+</ul>
+<p><img class="aligncenter size-medium wp-image-565" title="Visio_final" src="{{ site.baseurl }}/assets/Visio_final-300x210.png" alt="Visio_final" width="300" height="210" /></p>
+<p>Bom pra mim funcionou. boa sorte!</p>

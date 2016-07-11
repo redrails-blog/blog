@@ -1,0 +1,46 @@
+---
+layout: post
+title: Qual a melhor forma de lidar com os Databases no Android
+date: 2012-05-12 18:31:52.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+tags:
+- Android Office Hour
+meta:
+  _edit_last: '1'
+  _aioseop_description: Pegar um novo e fechá-lo a cada comando SQL ou pegar um writeable
+    ao inicializar a aplicação e mantê-lo aberto fechando-o ao finalizar a aplicação?
+  _aioseop_title: Qual a melhor forma de lidar com os Databases no Android
+  _aioseop_keywords: Android,Sqlite,Database,Performance,Tempo,Melhores Práticas
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/05/android-db.jpg"><img class="alignleft size-medium wp-image-1767" title="android-db" src="{{ site.baseurl }}/assets/android-db-300x209.jpg" alt="" width="300" height="209" /></a></p>
+<p>Qual a melhor forma de lidar com os Databases do sqlite? Pegar um novo e fechá-lo a cada comando SQL ou pegar um writeable ao inicializar a aplicação e mantê-lo aberto fechando-o ao finalizar a aplicação?</p>
+<p>&nbsp;</p>
+<p>Primeiro, quando você está usando um banco de dados SQLite no Android , o que se recomenda fazer é, ao invés de tentar implementar o banco do zero, use um <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelp</a> , assim muita coisa vai ser feita automaticamente para o desenvolvedor.</p>
+<p>&nbsp;<br />
+Assim você conseguirá pegar o um objeto WritableDatabase, utilizando o <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">getWritableDatabase()</a>. A dica é a seguinte, você manter um banco de dados aberto gasta bastantes recursos, porém ficar abrindo e fechando o banco de dados vai gastar bastante tempo, então você acaba ficando no dilema performance X maior uso de memória.</p>
+<p>&nbsp;<br />
+Uma coisa que deve ser feita é unificar o acesso do banco de dados de seu aplicativo, ou seja, ao invés de em toda classe você ficar acessando o banco de dados, procure centralizar todo o acesso ao banco de dados em uma classe só e se possível dentro de um Service, se para sua aplicação fizer sentido.</p>
+<p>&nbsp;<br />
+Utilizando esse acesso centralizado, além de ficar mais fácil debugar, torna menos árdua a tarefa de determinar quando você fecha o banco de dados e quando você abre. Por exemplo, se seu aplicativo foi para o background e ele faz apenas iterações com o usuário , não faz sentido nenhum você ficar com banco de dados aberto, sendo assim quando seu aplicativo notar que vai para background o ideal é que ele feche todas as conexões com o banco de dados, assim ele ganhará o troféu cidadania do Android, porque ele irá liberar recursos para outros aplicativos.</p>
+<p>&nbsp;<br />
+Caso seu aplicativo utilize um Service que realize constantes consultas em tabelas, neste caso não vale a pena seu aplicativo ficar dando close toda hora. Em qualquer hipótese é importante lembrar que se você está utilizando o<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank"> SQLiteOpenHelper</a>, é aconselhável que sua aplicação não dê close nos bancos de dados que ele retorna, pois o <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a> que está gerenciando essa conexão, quando você recebe uma referência, ela é simplesmente emprestada, então não dê close nessa referência isso pode gerar um erro, pois o banco de dados será fechado duas vezes.</p>
+<p>&nbsp;<br />
+Outra dica importante, e que muitos desenvolvedores erram, é tentar abrir o DB da Main Thread de sua aplicação, mesmo que essa operação pareça simples e rápida, toda operação de IO deve ser considerada demorada e pesada, pois o SQLite pode, deliberadamente, estar organizando os indexes e tabelas, isso provavelmente levará alguns segundos.</p>
+<p>&nbsp;<br />
+Se sua aplicação estiver fazendo uma consulta exatamente durante o processo de reindexação, o usuário vai receber o erro dizendo que aplicação não está respondendo. Então se você vai fazer qualquer operação pesada ou potencialmente pesada o lugar certo para isso é fora da Main Thread</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<address style="text-align: right;">Texto Adaptado do video  de</address>
+<address style="text-align: right;">Bruno Oliveira - Google Developer Relations<br />
+durante a Android Developer Office Hours do Brasil</address>

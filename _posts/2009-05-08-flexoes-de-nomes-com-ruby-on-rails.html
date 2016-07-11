@@ -1,0 +1,178 @@
+---
+layout: post
+title: Flexões de nomes com Ruby On Rails
+date: 2009-05-08 23:22:43.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags:
+- Dicas
+- Ruby
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1369";s:10:"post_title";s:39:"Ubuntu:
+    problema com internet e teclado";s:7:"matches";s:1:"1";s:9:"permalink";s:74:"http://www.redrails.com.br/2011/12/ubuntu-problema-com-internet-e-teclado/";}i:1;a:4:{s:2:"ID";s:4:"1224";s:10:"post_title";s:33:"Como
+    ligar a internet no Android?";s:7:"matches";s:1:"1";s:9:"permalink";s:68:"http://www.redrails.com.br/2011/10/como-ligar-a-internet-no-android/";}i:2;a:4:{s:2:"ID";s:4:"1086";s:10:"post_title";s:50:"Como
+    instalar um aplicativo no emulador do Android";s:7:"matches";s:1:"1";s:9:"permalink";s:86:"http://www.redrails.com.br/2011/07/como-instalar-um-aplicativo-no-emulador-do-android/";}i:3;a:4:{s:2:"ID";s:4:"1016";s:10:"post_title";s:129:"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby";s:7:"matches";s:1:"1";s:9:"permalink";s:155:"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/";}i:4;a:4:{s:2:"ID";s:4:"1005";s:10:"post_title";s:129:"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]";s:7:"matches";s:1:"1";s:9:"permalink";s:157:"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/";}i:5;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"1";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:6;a:4:{s:2:"ID";s:3:"837";s:10:"post_title";s:84:"Ruby:
+    Utilizando Open-URI e HPricot para descobrir sorteios realizados no sorteie.me";s:7:"matches";s:1:"1";s:9:"permalink";s:119:"http://www.redrails.com.br/2010/10/ruby-utilizando-open-uri-e-hpricot-para-descobrir-sorteios-realizados-no-sorteie-me/";}i:7;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"1";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:8;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:9;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"1";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>As vezes temos necessidade (ou preferência ) em criar aplicações Ruby On Rails com palavras em nosso idioma, isso pode ocasionar alguns problemas ao tentar pluralizar ou singularizar essas palavras. Por exemplo:</p>
+<pre>
+<pre>[source language="ruby"]
+"permissao".pluralize
+= "permissaos" 	#E também
+"permissoes".singularize
+= "permisso"          [/source]</pre>
+<p>A Para resolver esse problema basta criar regras no arquivo inflections.rb de modo a pluralizar esse tipo de “irregularidade” de modo correto. Bom isso seria muito trabalhoso se já não tivessem feito um arquivo bem completinho que eu vou disponibilizar aqui pra vocês.</p>
+<pre>
+<pre>[source language="ruby"]
+Inflector.inflections do |inflect|
+inflect.clear
+
+#general rule: add "s" to the end of the word
+#casa - casas
+inflect.plural /^([a-zA-z]*)a$/i, '1as'
+#pe - pes
+inflect.plural /^([a-zA-z]*)e$/i, '1es'
+#no example
+inflect.plural /^([a-zA-z]*)i$/i, '1is'
+#carro - carros
+inflect.plural /^([a-zA-z]*)o$/i, '1os'
+#pneu - pneus
+inflect.plural /^([a-zA-z]*)u$/i, '1us'
+
+#if word ends in "r" or "z", add "es"
+#luz - luzes
+#flor - flores
+#arroz - arrozes
+inflect.plural /^([a-zA-z]*)r$/i, '1res'
+inflect.plural /^([a-zA-z]*)z$/i, '1zes'
+
+#if word ends in "al", "el", "ol", "ul": trade "l" with "is"
+#farol - farois
+#hospital - hospitais
+#telemovel - telemoveis
+#pincel - pinceis
+#anzol - anzois
+inflect.plural /^([a-zA-z]*)al$/i, '1ais'
+inflect.plural /^([a-zA-z]*)el$/i, '1eis'
+inflect.plural /^([a-zA-z]*)ol$/i, '1ois'
+inflect.plural /^([a-zA-z]*)ul$/i, '1uis'
+
+#if word ends in "il" and has tónic accent in last syllable, trade "il" with "is"
+#cantil - cantis
+inflect.plural /^([a-zA-z]*)il$/i, '1is'
+
+#TODO
+#if word ends in "il" and has tónic accent in penultimate syllable, trade "il" with "eis"
+#no example
+
+#if word ends in "m", trade "m" with "ns"
+#armazem - armazens
+#portagem - portagens
+inflect.plural /^([a-zA-z]*)m$/i, '1ns'
+
+#TODO
+#if word ends in "s" and has one silable, trade "s" with "es"
+#no example
+#inflect.plural /^([a-zA-z]*)e$/i, '1es'
+
+#TODO
+#if word ends in "x" stays the same
+#no example... professor X, maybe?
+#inflect.plural /^([a-zA-z]*)x$/i, '1xes'
+
+#if word ends in "ão", there are three ways of plural: ãos, ães, ões
+#NOTE: hard to detect, so I'll use the most common case
+#and then use irregular cases for the others.  if someone knows of
+#more cases please add to the list &amp;amp;amp;amp; mail me. thanks!
+#
+#cão - cães
+#colchão - colchões
+#portão - portões
+#pão - pães
+#alemão - alemães
+#chão - ?
+#pilhão - pilhões
+#canhão - canhões
+#bidão - bidões
+#mão - mãos
+inflect.plural /^([a-zA-z]*)ao$/i, '1oes'
+# inflect.irregular 'cao', 'caes'
+# inflect.irregular 'pao', 'paes'
+#inflect.irregular 'mao', 'maos'
+#inflect.irregular 'alemao', 'alemaes'
+
+############################
+#singularize rules         #
+############################
+
+#pes - pe
+#carros - carro
+#pneus - pneu
+inflect.singular /^([a-zA-z]*)as$/i, '1a'
+inflect.singular /^([a-zA-z]*)es$/i, '1e'
+inflect.singular /^([a-zA-z]*)is$/i, '1i'
+inflect.singular /^([a-zA-z]*)os$/i, '1o'
+inflect.singular /^([a-zA-z]*)us$/i, '1u'
+
+#luzes - luz
+#flores - flor
+#arrozes - arroz
+inflect.singular /^([a-zA-z]*)res$/i, '1r'
+inflect.singular /^([a-zA-z]*)zes$/i, '1z'
+
+#cantis - cantil
+inflect.singular /^([a-zA-z]*)is$/i, '1il'
+
+#farois - farol
+#hospitais - hospital
+#telemoveis - telemovel
+#pinceis - pincel
+#anzois - anzol
+inflect.singular /^([a-zA-z]*)ais$/i, '1al'
+inflect.singular /^([a-zA-z]*)eis$/i, '1el'
+inflect.singular /^([a-zA-z]*)ois$/i, '1ol'
+inflect.singular /^([a-zA-z]*)uis$/i, '1ul'
+
+#armazens - armazem
+#portagens - portagem
+inflect.singular /^([a-zA-z]*)ns$/i, '1m'
+
+#cães - cão
+#colchões - colchão
+#portões - portão
+#pães - pão
+#alemães - alemão
+inflect.singular /^([a-zA-z]*)oes$/i, '1ao'
+inflect.singular /^([a-zA-z]*)aes$/i, '1ao'
+inflect.singular /^([a-zA-z]*)aos$/i, '1ao'
+
+# inflect.plural /^(ox)$/i, '1en'
+# inflect.singular /^(ox)en/i, '1'
+# inflect.irregular 'person', 'people'
+# inflect.uncountable %w( fish sheep )
+
+inflect.irregular 'alias', 'aliases' #Melhor entendido se continuar com a regra do inglês
+inflect.irregular 'mailbox', 'mailboxes' #Melhor entendido se continuar com a regra do inglês
+end
+
+[/source]</pre>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'Dica Rápida: Como submeter um formulário para uma nova janela ou aba'
+date: 2010-05-11 19:06:01.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _aktt_hash_meta: ''
+  _edit_last: '1'
+  _aioseop_description: Como submeter um formulário para uma nova janela ou aba de
+    maneira simples para formulários com dois botões usando tags do submit button
+    e não do form
+  _aioseop_title: 'Como submeter um formulário para uma nova janela ou aba '
+  _aioseop_keywords: submit, new window, new tab, form, javascrip, html, dica, enviar,
+    submeter
+  views: '3'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+excerpt: Como submeter um formulário para uma nova janela ou aba de maneira simples
+  para formulários com dois botões usando tags do submit button e não do form
+---
+<p>Eu estava com um problema, tinha um formulário com 2 botões um devia enviar o formulário para a mesma página e outro devia abrir uma nova aba ou janela. Ou seja não dava para colocar o _blank na tag form, ví varias maneiras de fazer com javascript mas menhuma resolvia meu problema e ainda eram complicadas se comparadas a essa técnica.</p>
+<p>[source lang="html"]</p>
+<form name="formulario" type="post" action="sua_url_html">
+<p><input type="submit" value="Abrir em nova Aba" onclick="this.form.target='_blank';return true;" /></p>
+<p>[/source]</p>
+<p>Lindo isso ai ;)</p></form>

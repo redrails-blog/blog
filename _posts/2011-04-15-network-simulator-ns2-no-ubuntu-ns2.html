@@ -1,0 +1,52 @@
+---
+layout: post
+title: Network Simulator (NS2) no Ubuntu
+date: 2011-04-15 09:10:56.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Redes
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<h2>Instalação:</h2>
+<p>I) Devemos abrir o Synaptic para adicionar os novos repositórios.</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/04/synaptic.png"><img title="synaptic" src="{{ site.baseurl }}/assets/synaptic.png" alt="" width="637" height="440" /></a></p>
+<p>II) Para Adicionar um repositório siga os passos: <strong>Settings-&gt;Repositories</strong></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/04/preferences.png"><img title="preferences" src="{{ site.baseurl }}/assets/preferences.png" alt="" width="311" height="190" /></a><br />
+<!--more--><br />
+III) Na janela subsequente realize o seguinte procedimento.<br />
+1) Vá para a aba Other Softwares<br />
+2) Botão add<br />
+3) adicione (um de cada vez) os seguintes dados no campo APT Line</p>
+<blockquote><p>deb http://ppa.launchpad.net/wouterh/ppa/ubuntu lucid main<br />
+deb-src http://ppa.launchpad.net/wouterh/ppa/ubuntu lucid main</p></blockquote>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/04/add.png"><img class="aligncenter size-full wp-image-986" title="add" src="{{ site.baseurl }}/assets/add.png" alt="" width="842" height="540" /></a> <a href="http://www.redrails.com.br/wp-content/uploads/2011/04/preferences.png"></a></p>
+<p>IV) Agora vamos instalar os pacotes.</p>
+<p>1) Busque pelo Package <strong>ns </strong><br />
+2) Clique com botão diretor o quadro branco ao lado do nome<strong> ns </strong>na lista de pacotes.<br />
+3) Selecione a opção Mark for installation<br />
+(Repita os passos 1,2 e 3 mas busque pelo pacote <strong>nam</strong> )</p>
+<p>4) Clique em Apply<br />
+<a href="http://www.redrails.com.br/wp-content/uploads/2011/04/preferences.png"><br />
+</a> <a href="http://www.redrails.com.br/wp-content/uploads/2011/04/restart.jpg"><br />
+</a> <a href="http://www.redrails.com.br/wp-content/uploads/2011/04/search.png"><img class="aligncenter size-full wp-image-989" title="search" src="{{ site.baseurl }}/assets/search.png" alt="" width="399" height="294" /></a> <a href="http://www.redrails.com.br/wp-content/uploads/2011/04/synaptic.png"><br />
+</a></p>
+<p><em>Mais detalhes em : http://launchpad.net/~wouterh/+archive/ppa</em></p>
+<h2>Testando:</h2>
+<p>Para testar se tudo está funcionando bem faça o download do arquivo <a title="Exemplo de Uso do NS" href="http://perform.wpi.edu/NS/Example/ns-simple.tcl" target="_blank">ns-sample.tcl</a> e execute o seguinte comando no diretório onde o arquivo foi salvo.</p>
+<blockquote>
+<pre>ns ns-sample.tcl
+</pre>
+</blockquote>
+<p>Se tudo ocorreu bem um Nam será aberto ilustrando a animação referente ao nosso código TCL gerado pelo NS. Algo assim:</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/04/ns+nam_in_action.png"><img class="aligncenter size-full wp-image-982" title="Ns mais NAM em ação" src="{{ site.baseurl }}/assets/ns+nam_in_action.png" alt="" width="593" height="447" /></a></p>
+<p>Para mais informações e aprendizado no NS sugerimos que leia o <a title="Network Simulator para Iniciantes" href="http://www-sop.inria.fr/maestro/personnel/Eitan.Altman/COURS-NS/n3.pdf" target="_blank">NS para Iniciantes (Em inglês)</a></p>

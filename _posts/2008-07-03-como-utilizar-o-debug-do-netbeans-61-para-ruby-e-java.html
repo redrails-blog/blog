@@ -1,0 +1,83 @@
+---
+layout: post
+title: Como Utilizar o Debug do Netbeans 6.1 para Ruby e Java
+date: 2008-07-03 01:26:41.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- debug
+- howto
+- Java
+- NetBeans
+- programação
+- Ruby
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:2:"12";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 1";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-1/";}i:1;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"2";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:2;a:4:{s:2:"ID";s:3:"277";s:10:"post_title";s:47:"Problemas
+    ao instalar Fast-Debuger (ruby-debug)";s:7:"matches";s:1:"2";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/10/problemas-ao-instalar-fast-debuger-ruby-debug/";}i:3;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"2";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}i:4;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"2";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:5;a:4:{s:2:"ID";s:2:"72";s:10:"post_title";s:60:"Web
+    Service com NetBean Tutorial On-line - Parte 4 ( Final )";s:7:"matches";s:1:"2";s:9:"permalink";s:90:"http://www.redrails.com.br/2008/07/web-service-com-netbean-tutorial-on-line-parte-4-final/";}i:6;a:4:{s:2:"ID";s:2:"40";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 3";s:7:"matches";s:1:"2";s:9:"permalink";s:38:"http://www.redrails.com.br/2008/07/40/";}i:7;a:4:{s:2:"ID";s:2:"39";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 2";s:7:"matches";s:1:"2";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-2/";}i:8;a:4:{s:2:"ID";s:1:"9";s:10:"post_title";s:42:"Web
+    Services com Netbeans um simples HowTo";s:7:"matches";s:1:"2";s:9:"permalink";s:78:"http://www.redrails.com.br/2008/06/web-services-com-netbeans-um-simples-howto/";}i:9;a:4:{s:2:"ID";s:4:"1016";s:10:"post_title";s:129:"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby";s:7:"matches";s:1:"1";s:9:"permalink";s:155:"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Olá Meus Queridos Leitores.</p>
+<p>Hoje vou falar de uma coisa que para maioria é besteira, mas para mim não foi. Sempre programei bastante no NetBeans e nunca antes havia debugado meu codigo. eu não fazia a minima ideia de como funcionava nele, o unico compilador que eu havia feito isso foi no Turbo-C :P .</p>
+<p>Procurei no Google e nenhum site/forum/blog havia sanado minha duvida então com muita insistência acabei descobrindo como e vim compartilhar com vocês.</p>
+<p>Meu Exemplo é em Ruby, mas foi testado com java tambem e acho que é compatível com qualquer linguagem que suporte debug no NetBeans.</p>
+<p>Vamos lá Primeiro abrir nosso NetBeans e criar nosso codigo de exemplo.</p>
+<p><span style="text-decoration:underline;">File-&gt;New project-&gt;Ruby-&gt;Aplicativo Ruby</span></p>
+<p>E criamos o seguinte codigo:</p>
+<blockquote><p><span style="color:#0000ff;">#Projeto_1 : Vetores</span><br />
+vet1 = [<span style="color:#ff00ff;">0</span>,<span style="color:#ff00ff;">2</span>,<span style="color:#ff00ff;">4</span>,<span style="color:#ff00ff;">6</span>,<span style="color:#ff00ff;">8</span>]<br />
+vet2 = [<span style="color:#ff00ff;">1</span>,<span style="color:#ff00ff;">3</span>,<span style="color:#ff00ff;">5</span>,<span style="color:#ff00ff;">7</span>,<span style="color:#ff00ff;">9</span>]<br />
+vetF = []<br />
+k=<span style="color:#ff00ff;">0</span><br />
+<span style="color:#a52a2a;"><strong>for</strong></span> i <span style="color:#a52a2a;"><strong>in</strong></span> (<span style="color:#ff00ff;">0</span>...<span style="color:#ff00ff;">5</span>)<br />
+vetF[k] = vet1[i]<br />
+k=k+<span style="color:#ff00ff;">1</span><br />
+vetF[k] = vet2[i]<br />
+k=k+<span style="color:#ff00ff;">1</span><br />
+<span style="color:#a52a2a;"><strong>end</strong></span><br />
+puts <span style="color:#6a5acd;">"</span><span style="color:#ff00ff;">vetF </span><span style="color:#6a5acd;">#{</span>vetF<span style="color:#6a5acd;">}</span><span style="color:#6a5acd;">"</span></p></blockquote>
+<p>Vamos ver como nosso codigo está funcionando.<br />
+Esse Codigo faz a seguinte tarefa. ele intercala dois vetores (vet1 e vet2 ) em um terceiro (vetf), de modo que vet1 possui numeros pares e vet2 numeros impares e vamos uni-los em um realizando a sequência correta.</p>
+<p>Primiero vamos Instalar o Ruby(no meu caso ainda não tinha instalado) ou se for usar o java o netbeans jpa vem por padrão.</p>
+<p>vá em<span style="text-decoration:underline;"> Tools -&gt; Plugins</span> e procure o componente Ruby and Rails e instale-o</p>
+<p><img src="{{ site.baseurl }}/assets/nbdb_instalado_ruby-modificado.png" alt="" /></p>
+<p>Bom Após nosso Ruby Instalado vamos ao nosso Debug primeiro defina os Break-Points.<br />
+Esse BreakPoints são os locais onde nosso interpretador deve para para que possamos analisar nossas variáveis.<br />
+basta clica na a linha do lado de cada linha que você deseja parar.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-modificado.png" alt="" /></p>
+<p>Depois que definimos os Breaks-Points vamos então executar nosso programa em modo Debug<br />
+Aperte o botão de debug(ou apenas Ctrl+F5)<br />
+<img src="{{ site.baseurl }}/assets/deb2-modificado.png" alt="" /></p>
+<p>Bom e agora cad minhas variaveis, você pode vela-as apenas passando o mouse por cima delas mais eu prefiro usar os Watches(Observadores) Selecione uma variável, clique com o direito e NEW WATCHE, ou simplesmente Ctrl+Shift+F7 e nessa janelinhas em baixo vai aparecer suas variáveis com seus respectivos conteúdos (caso não aparece tecle Alt+Shift+2)</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-1-modificado.png" alt="" /></p>
+<p>Após você iniciar o Debug uma linha verde no meio das vermelhas(break Points) irá aparecer essa é a linha em que o compilador esta nesse exato momento.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-2-2-modificados.png" alt="" /></p>
+<p>Bom, mas iai... nosso codigo parou... hehe do lado do botão de executar o debug apareceu novos botões, entre eles o Continue(F5) clique nele. e o interpretador irá para a próxima linha.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-3-modificado.png" alt="" /></p>
+<p>Hum Olhe ai nossa variável como o seu conteúdo.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-4-modificado.png" alt="" /></p>
+<p>Após alguns passos (Steps)[F5] e a progressiva alteração do nosso Vetor Final (vetf) ele fica assim, e tudo assistido passo a passo por nós.</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-6-modificado.png" alt="" /></p>
+<p>Bom está ai. uma mão na roda quando você trabalha com grande estrutura de dados que te deixam loucos quando você não acha o bendito erro, como uma variável nula que você não sabe de onde vem pelo dabug você a encontra facilmente e acaba com ela.</p>
+<p>espero que esse post seja útil para alguém, se sim deixe comentario o feedback é nosso incentivo para cada vez melhorar mais e produzir mais. se encontrou alguma duvida coloque ai e vamos tentar sana-la e melhorar nosso Tutorial.</p>
+<p>Obrigado!</p>

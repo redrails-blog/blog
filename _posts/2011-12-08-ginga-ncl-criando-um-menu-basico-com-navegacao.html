@@ -1,0 +1,99 @@
+---
+layout: post
+title: 'Ginga NCL: Criando um menú basico com navegação'
+date: 2011-12-08 18:00:44.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+- TVD
+tags:
+- Desenvolvimento
+- Ginga
+- NCL
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:7:{i:0;a:4:{s:2:"ID";s:4:"1408";s:10:"post_title";s:40:"Ginga
+    NCL: Hello World - Exibindo vídeo";s:7:"matches";s:1:"3";s:9:"permalink";s:72:"http://www.redrails.com.br/2011/12/ginga-ncl-hello-world-exibindo-video/";}i:1;a:4:{s:2:"ID";s:4:"1401";s:10:"post_title";s:68:"Ginga
+    NCL: Exibindo Mapa com transparência, transição e duração";s:7:"matches";s:1:"3";s:9:"permalink";s:97:"http://www.redrails.com.br/2011/12/ginga-ncl-exibindo-mapa-com-transparencia-transicao-e-duracao/";}i:2;a:4:{s:2:"ID";s:4:"1398";s:10:"post_title";s:55:"Ginga-NCL:
+    Como colocar logo de canal no canto superior";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2011/12/ginga-ncl-como-colocar-logo-de-canal-no-canto-superior/";}i:3;a:4:{s:2:"ID";s:4:"1392";s:10:"post_title";s:49:"Hello
+    World - Primeira Aplicação em NCL - Ginga";s:7:"matches";s:1:"3";s:9:"permalink";s:79:"http://www.redrails.com.br/2011/12/hello-world-primeira-aplicacao-em-ncl-ginga/";}i:4;a:4:{s:2:"ID";s:4:"1384";s:10:"post_title";s:48:"Como
+    rodar Aplicações NCL no Ginga com Eclipse";s:7:"matches";s:1:"3";s:9:"permalink";s:82:"http://www.redrails.com.br/2011/12/como-rodar-aplicacoes-ncl-no-ginga-com-eclipse/";}i:5;a:4:{s:2:"ID";s:4:"1238";s:10:"post_title";s:31:"Game
+    of thrones RPG for Android";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/10/game-of-thrones-rpg-for-android/";}i:6;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"1";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}}'
+  _relation_threshold: '1'
+  _aioseop_keywords: Borda, onselect, selecinado, menu, imagens, ncl, lua, ginga
+  _wp_old_slug: ginga-ncl-hello-world-com-video
+  _dp_original: '1401'
+  _aioseop_description: " posicionamento de imagens, troca de imagens com foco, retirar
+    a borda, ainda realizar a navegação por entre os itens do menu utilizando teclas
+    de navegação"
+  _aioseop_title: 'Ginga NCL: Criando um menú basico com navegação'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/12/navegacao.png"><img class="aligncenter size-medium wp-image-1425" title="navegacao" src="{{ site.baseurl }}/assets/navegacao-300x197.png" alt="" width="300" height="197" /></a><br />
+Obviamente existe diversas outras maneiras de fazer um menu mais bem elaborado que este, mas esse é um exemplo bem simplificado do processo de criação de menus, posicionamento de imagens, troca de imagens quando houver foco, retirar a borda que destaca o item selecionado e ainda realizar a navegação por entre os itens do menu utilizando teclas de navegação, em nosso exemplos seta para cima e seta para baixo.</p>
+<p><!--more--></p>
+<blockquote><p>
+[source lang="xml"]</p>
+<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br />
+&lt;!--<br />
+Author: Luiz Arão Araújo Carvalho<br />
+Site: www.redrails.com.br<br />
+Data: 07/12/2011<br />
+Contato: luizcarvalho@redrails.com.br / @LuizCarvalho</p>
+<p>--&gt;<br />
+&lt;ncl id=&quot;main&quot; xmlns=&quot;http://www.ncl.org.br/NCL3.0/EDTVProfile&quot;&gt;<br />
+	&lt;head&gt;<br />
+		&lt;transitionBase&gt;<br />
+			&lt;transition id=&quot;transFade&quot; type=&quot;fade&quot;/&gt;<br />
+		&lt;/transitionBase&gt;<br />
+		&lt;regionBase&gt;<br />
+			&lt;region id=&quot;rgMainVideo&quot; width=&quot;100%&quot; height=&quot;100%&quot; zIndex=&quot;0&quot;/&gt;<br />
+			&lt;region id=&quot;rgLogo&quot; width=&quot;128&quot; height=&quot;38&quot; top=&quot;3%&quot; right=&quot;3%&quot; zIndex=&quot;0&quot;/&gt;<br />
+			&lt;region id=&quot;rgMenuGroup&quot; width=&quot;22%&quot; height=&quot;100%&quot; left=&quot;5%&quot; top=&quot;5%&quot;&gt;<br />
+				&lt;region id=&quot;rgItem1&quot; left=&quot;0&quot; top=&quot;0&quot; width=&quot;104&quot; height=&quot;102&quot;/&gt;<br />
+				&lt;region id=&quot;rgItem2&quot; left=&quot;0&quot; top=&quot;109&quot; width=&quot;104&quot; height=&quot;102&quot;/&gt;<br />
+				&lt;region id=&quot;rgItem3&quot; left=&quot;0&quot; top=&quot;218&quot; width=&quot;104&quot; height=&quot;102&quot;/&gt;<br />
+				&lt;region id=&quot;rgItem4&quot; left=&quot;0&quot; top=&quot;327&quot; width=&quot;104&quot; height=&quot;102&quot;/&gt;<br />
+			&lt;/region&gt;<br />
+		&lt;/regionBase&gt;<br />
+		&lt;descriptorBase&gt;<br />
+			&lt;descriptor id=&quot;descMainVideo&quot; region=&quot;rgMainVideo&quot;/&gt;<br />
+			&lt;descriptor id=&quot;descLogo&quot; region=&quot;rgLogo&quot;/&gt;<br />
+			&lt;descriptor id=&quot;descMenuI1&quot; region=&quot;rgItem1&quot; focusIndex=&quot;1&quot; moveDown=&quot;2&quot; moveUp=&quot;4&quot;<br />
+						focusSrc=&quot;media/menu/bt_0004_RED-PRESSED.png&quot; focusBorderWidth=&quot;0&quot;/&gt;</p>
+<p>			&lt;descriptor id=&quot;descMenuI2&quot; region=&quot;rgItem2&quot; focusIndex=&quot;2&quot; moveDown=&quot;3&quot; moveUp=&quot;1&quot;<br />
+						focusSrc=&quot;media/menu/bt_0005_BLUE-PRESSED.png&quot; focusBorderWidth=&quot;0&quot;/&gt;</p>
+<p>			&lt;descriptor id=&quot;descMenuI3&quot; region=&quot;rgItem3&quot; focusIndex=&quot;3&quot; moveDown=&quot;4&quot; moveUp=&quot;2&quot;<br />
+						focusSrc=&quot;media/menu/bt_0006_GREEN-PRESSED.png&quot; focusBorderWidth=&quot;0&quot;/&gt;</p>
+<p>			&lt;descriptor id=&quot;descMenuI4&quot; region=&quot;rgItem4&quot; focusIndex=&quot;4&quot; moveDown=&quot;1&quot; moveUp=&quot;3&quot;<br />
+						focusSrc=&quot;media/menu/bt_0007_YELLOW-PRESSED.png&quot; focusBorderWidth=&quot;0&quot;/&gt;<br />
+		&lt;/descriptorBase&gt;<br />
+	&lt;/head&gt;<br />
+	&lt;body&gt;<br />
+		&lt;port id=&quot;pMVideo&quot; component=&quot;mMainvideo&quot;/&gt;<br />
+		&lt;port id=&quot;pLogo&quot; component=&quot;mLogo&quot;/&gt;<br />
+		&lt;port id=&quot;pItem1&quot; component=&quot;mItem1&quot;/&gt;<br />
+		&lt;port id=&quot;pItem2&quot; component=&quot;mItem2&quot;/&gt;<br />
+		&lt;port id=&quot;pItem3&quot; component=&quot;mItem3&quot;/&gt;<br />
+		&lt;port id=&quot;pItem4&quot; component=&quot;mItem4&quot;/&gt;<br />
+		&lt;media id=&quot;mMainvideo&quot; src=&quot;media/video.mp4&quot; descriptor=&quot;descMainVideo&quot;/&gt;<br />
+		&lt;media id=&quot;mLogo&quot; src=&quot;media/espn.png&quot; descriptor=&quot;descLogo&quot;/&gt;<br />
+		&lt;media id=&quot;mItem1&quot; src=&quot;media/menu/bt_0000_RED.png&quot; descriptor=&quot;descMenuI1&quot;/&gt;<br />
+		&lt;media id=&quot;mItem2&quot; src=&quot;media/menu/bt_0001_BLUE.png&quot; descriptor=&quot;descMenuI2&quot;/&gt;<br />
+		&lt;media id=&quot;mItem3&quot; src=&quot;media/menu/bt_0002_GREEN.png&quot; descriptor=&quot;descMenuI3&quot;/&gt;<br />
+		&lt;media id=&quot;mItem4&quot; src=&quot;media/menu/bt_0003_YELLOW.png&quot; descriptor=&quot;descMenuI4&quot;/&gt;<br />
+	&lt;/body&gt;<br />
+&lt;/ncl&gt;</p>
+<p>[/source]
+</p></blockquote>
+<p>[download id="18"]<br />
+&nbsp;</p>

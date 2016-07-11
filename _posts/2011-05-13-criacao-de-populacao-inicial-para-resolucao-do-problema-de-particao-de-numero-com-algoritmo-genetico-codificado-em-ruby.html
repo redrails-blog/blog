@@ -1,0 +1,129 @@
+---
+layout: post
+title: Criação de população inicial para resolução do problema de partição de número
+  com Algoritmo Genético codificado em Ruby
+date: 2011-05-13 11:55:58.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Tutoriais
+tags:
+- AG
+- Algoritmos Genéticos
+- Codificação
+- Conversão Binária
+- GA
+- Partição NUmérica
+- População Inicial
+- Ruby
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1005";s:10:"post_title";s:129:"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]";s:7:"matches";s:1:"1";s:9:"permalink";s:157:"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/";}i:1;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"1";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:2;a:4:{s:2:"ID";s:3:"837";s:10:"post_title";s:84:"Ruby:
+    Utilizando Open-URI e HPricot para descobrir sorteios realizados no sorteie.me";s:7:"matches";s:1:"1";s:9:"permalink";s:119:"http://www.redrails.com.br/2010/10/ruby-utilizando-open-uri-e-hpricot-para-descobrir-sorteios-realizados-no-sorteie-me/";}i:3;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"1";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:4;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:5;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"1";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:6;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"1";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:7;a:4:{s:2:"ID";s:3:"465";s:10:"post_title";s:38:"Utilizando
+    JQuery no Rails  com JRails";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2009/05/utilizando-jquery-no-rails-com-jrails/";}i:8;a:4:{s:2:"ID";s:3:"448";s:10:"post_title";s:35:"Flexões
+    de nomes com Ruby On Rails";s:7:"matches";s:1:"1";s:9:"permalink";s:70:"http://www.redrails.com.br/2009/05/flexoes-de-nomes-com-ruby-on-rails/";}i:9;a:4:{s:2:"ID";s:3:"404";s:10:"post_title";s:49:"Mini-Curso:
+    Desenvolvimento Ágil com RubyOnRails";s:7:"matches";s:1:"1";s:9:"permalink";s:83:"http://www.redrails.com.br/2009/04/mini-curso-desenvolvimento-agil-com-rubyonrails/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>﻿﻿<a href="http://www.redrails.com.br/wp-content/uploads/2011/05/adn.jpg"><img class="aligncenter size-full wp-image-1019" title="adn" src="{{ site.baseurl }}/assets/adn.jpg" alt="" width="300" height="215" /></a></p>
+<p>O problema de partição de números consiste em: dado um conjunto de N números, o objetivo é subdividi-lo em dois subconjuntos (chamados de partições) de tal forma que, a diferença entre os valores das somas dos números dessas duas partições seja a menor possível. Por exemplo, considere o seguinte conjunto com quatro números (23, 20, 56, 48). As partições (20,56) e (23,48) consistem no particionamento ótimo para este conjunto e, seu valor é 5. Apesar da simplicidade do enunciado, este é um problema de otimização combinatória que pertence à classe NP-difícil. Observe que, para um conjunto com N números têm-se 2N possíveis maneiras de subdividi-lo em duas partições.</p>
+<p>&nbsp;</p>
+<p>Nosso problema consiste em dado uma seqüência [10,20,30,11,25,23,32,9,7,19,17,31,48,27,5,21,35,13,38,16,14,33,5] devemos criar um vetor de sinais (- ou +) para cada numero disposto, de modo a alcançarmos o menor valor (tendendo a 0) considerando o módulo do resultado das operações realizadas.</p>
+<p>&nbsp;</p>
+<p>EX: para o vetor [10,20,30,11] geramos um vetor [1,1,0,0] considerei para esse exemplo que um representa + e 0 representa -, sendo assim nosso vetor seria [+,+,-,-]. O que geraria +10+20-30-11, resultando no valor 11, considerando seu módulo.</p>
+<p>&nbsp;</p>
+<p>Entendido esse conceito vamos ao código.</p>
+<p>&nbsp;</p>
+<p>Criaremos uma classe chamada Individuo com dois atributos @code e @value que recebem respectivamente o código binário (que representa os sinais) e o valor da função objetivo (ou em nosso caso o resultado da sentença) daquele individuo em questão.</p>
+<p>&nbsp;</p>
+<p><!--more--></p>
+<p>[ruby]<br />
+class Individuo<br />
+   attr_reader :code,:value<br />
+ def initialize<br />
+   @code = ((0+rand(8_388_608)).to_s(base=2)).rjust(23,&quot;0&quot;)<br />
+   @value = to_value(@code)<br />
+ end</p>
+<p> def to_value(binary)<br />
+   a = [10,20,30,11,25,23,32,9,7,19,17,31,48,27,5,21,35,13,38,16,14,33,5]<br />
+   sign = {&quot;0&quot;=&gt;-1,&quot;1&quot;=&gt;1}<br />
+   value = index = 0<br />
+   binary.each_char do |c|<br />
+     value = value+a[index]*sign[c]<br />
+     index+=1<br />
+   end<br />
+   (value&lt;0 ? value*-1:value ) #MODULO<br />
+ end</p>
+<p>end<br />
+[/ruby]</p>
+<p>E pronto, agora podemos gerar quantos indivíduos quisermos sem o menor esforço. Vou dar um exemplo de criação de 100 individuos.</p>
+<p>[ruby]<br />
+  população = 100.times.collect{Individuo.new}<br />
+[/ruby]</p>
+<p>Não é tão difícil quanto parece. Podemos implementar uma segunda classe mais bonitinha para realizarmos nossos experimento abaixo um exemplo de implementação da classe Raca (Raça) que vai nos dar uma interface facilitadora para gerar nossa população.</p>
+<p>[ruby]<br />
+require 'individuo'<br />
+class Raca</p>
+<p> attr_reader :populacao,:quantidade,:populacao_ordenada<br />
+ attr_accessor :valor_total</p>
+<p> def initialize(quantidade)<br />
+   @quantidade = quantidade<br />
+   @populacao = criar_populacao(@quantidade)<br />
+ end</p>
+<p>#método que realiza a criação da população Inicial<br />
+ def criar_populacao(quantidade)<br />
+   quantidade.times.collect{Individuo.new}<br />
+ end</p>
+<p>#apenas ordena o vetor do melhor idividuo para o pior<br />
+ def selecao_natural<br />
+   @populacao.collect { |ind| [ind.value,ind.code] }.sort<br />
+ end</p>
+<p>#sobrescrevendo o to_s para uma visão melhor da população<br />
+ def to_s<br />
+   out =  &quot;Valor&quot;.ljust(10)+&quot;     Código Genético &quot;.ljust(25)+&quot;\n\n&quot;<br />
+   @populacao.each do |individuo|<br />
+     out &lt;&lt; &quot;#{individuo.value.to_s.ljust(10)} #{individuo.code.ljust(25)}\n&quot;<br />
+   end<br />
+   out<br />
+ end<br />
+end<br />
+#rodando código<br />
+anfibios = Raca.new(12)<br />
+puts anfibios<br />
+[/ruby]</p>
+<p>Esse código tem como resultado algo parecido com isso :</p>
+<blockquote>
+<pre>Valor          Código Genético   
+
+1          11100010001111000001100 
+73         00110110100011000001100 
+29         10001011010011010011100 
+237        01111011111110000111110 
+5          11101000000110001101100 
+99         01000010101001000011011 
+173        01111110011110101001101 
+35         11010011100010100010110 
+109        10100010101000110001111 
+23         10011001001101000110111 
+135        01000111111101101011010 
+119        10001100011001110010000</pre>
+</blockquote>
+<p>O Código está disponível aqui: [download id="6"]</p>

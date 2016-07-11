@@ -1,0 +1,72 @@
+---
+layout: post
+title: Web Service com NetBean Tutorial On-line - Parte 1
+date: 2008-06-29 20:01:27.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- howto
+- Java
+- NetBeans
+- Tutoriais
+- WebServices
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:9:{i:0;a:4:{s:2:"ID";s:2:"40";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 3";s:7:"matches";s:1:"4";s:9:"permalink";s:38:"http://www.redrails.com.br/2008/07/40/";}i:1;a:4:{s:2:"ID";s:2:"72";s:10:"post_title";s:60:"Web
+    Service com NetBean Tutorial On-line - Parte 4 ( Final )";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2008/07/web-service-com-netbean-tutorial-on-line-parte-4-final/";}i:2;a:4:{s:2:"ID";s:2:"49";s:10:"post_title";s:54:"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java";s:7:"matches";s:1:"3";s:9:"permalink";s:89:"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/";}i:3;a:4:{s:2:"ID";s:2:"39";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 2";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-2/";}i:4;a:4:{s:2:"ID";s:1:"9";s:10:"post_title";s:42:"Web
+    Services com Netbeans um simples HowTo";s:7:"matches";s:1:"3";s:9:"permalink";s:78:"http://www.redrails.com.br/2008/06/web-services-com-netbeans-um-simples-howto/";}i:5;a:4:{s:2:"ID";s:3:"615";s:10:"post_title";s:58:"J2ME:
+    Problemas ao Instalar Jar em Aparelhos Sony Ericsson";s:7:"matches";s:1:"1";s:9:"permalink";s:93:"http://www.redrails.com.br/2009/10/j2me-problemas-ao-instalar-jar-em-aparelhos-sony-ericsson/";}i:6;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"1";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}i:7;a:4:{s:2:"ID";s:3:"106";s:10:"post_title";s:99:"Criando
+    Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com RubyOnRails
+    - Parte 2";s:7:"matches";s:1:"1";s:9:"permalink";s:131:"http://www.redrails.com.br/2008/07/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-2/";}i:8;a:4:{s:2:"ID";s:2:"80";s:10:"post_title";s:99:"Criando
+    Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com RubyOnRails
+    - Parte 1";s:7:"matches";s:1:"1";s:9:"permalink";s:131:"http://www.redrails.com.br/2008/07/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-1/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Olá gente.<br />
+Bom alguns podem perguntar ué um post duplicado?<br />
+não exatamente resolvi largar de preguiça e fazer um tutorial online mesmo, bem mais pratico.<br />
+vamos lá.</p>
+<p>- Este Tutorial foi feito Utilizando as seguintes ferramentas<br />
+&gt; Servidor GlassFish v2<br />
+&gt; Versao do java EE 5<br />
+&gt; NetBeans 6.1</p>
+<p><strong>Projeto:</strong><br />
+<em>File -&gt; New Project-&gt; Web -&gt; Web Application</em><br />
+<img src="{{ site.baseurl }}/assets/001.png" alt="" /></p>
+<p>NEXT &gt;</p>
+<p>Nome de sua Aplicação: MyWebService</p>
+<p>NEXT &gt;</p>
+<p>2) Escolha o Servidor, no nosso caso GassFish V2. Depois a versão do Java EE, deixe 5.</p>
+<p><img src="{{ site.baseurl }}/assets/002.png" alt="" /><br />
+FINISH &gt; (já podemos finalizar nosso projeto.)</p>
+<p>Pronto nosso projeto WebService está pronto, vamos ao Servidor</p>
+<p><strong>Criar Servidor:</strong></p>
+<p><em>File -&gt; New File -&gt; Web Services -&gt; Web Service</em><br />
+<img src="{{ site.baseurl }}/assets/003.png" alt="" /><br />
+NEXT &gt;<br />
+<img src="{{ site.baseurl }}/assets/004.png" alt="" /><br />
+Coloque o nome do seu Web Service[MyWsServidor] e coloque o nome do pacote(Package)<br />
+[ wspkg](OS: não use como na imagem, use apenas letras minusculas) o resto deixe como está.</p>
+<p>FINISH ]</p>
+<p>OK, Nosso Servidor de Web Service Está Pronto. Vamos rodar o Servidor<br />
+<strong>Iniciar Servidor:</strong><br />
+Na Aba SERVICES (Ou CTRL+5) Vá à SERVERS -&gt; GlassFish, clique com o Direito e em START<br />
+<img src="{{ site.baseurl }}/assets/005.png" alt="" /></p>
+<p>Bom.<br />
+Até agora nada de nosso Web Service. no promimo post vamos colocar<br />
+as nossas operações.</p>
+<p><strong><a href="http://maxonrails.wordpress.com/2008/06/30/web-service-com-netbean-tutorial-on-line-parte-2/">Parte 2</a></strong></p>

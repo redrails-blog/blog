@@ -1,0 +1,41 @@
+---
+layout: post
+title: Rails migrations tasks
+date: 2014-03-04 10:12:46.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Ruby
+tags: []
+meta:
+  _edit_last: '1'
+  _responsive_layout: default
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Hoje vou passar uma lista de tarefas rake para manipulação de sua base de dados</p>
+<ul>
+<li><strong>db:create</strong> cria a base de dados do env atual</li>
+<li><strong>db:create:all</strong> cria databases de todos os envs</li>
+<li><strong>db:drop</strong> apaga a base de dados do env atual</li>
+<li><strong>db:drop:all</strong> apaga todas as base de dados de todos os envs</li>
+<li><strong>db:migrate</strong> executa as migrações que ainda não foram executadas ainda</li>
+<li><strong>db:migrate:up</strong> roda uma migration específica</li>
+<li><strong>db:migrate:down</strong> retrocede para uma migration específica</li>
+<li><strong>db:migrate:status</strong> exibe o estado da migração atual</li>
+<li><strong>db:migrate:rollback</strong> retrocede para a última migration</li>
+<li><strong>db:forward</strong> avança a versão atual do schema em um.</li>
+<li><strong>db:seed</strong> roda o arquivo db/seeds.rb</li>
+<li><strong>db:schema:load</strong> carrega o schema para a base de dados do env atual</li>
+<li><strong>db:schema:dump</strong> da um dumps no schema do env atual</li>
+<li><strong>db:setup</strong> roda o db:schema:load, db:seed</li>
+<li><strong>db:reset</strong> roda db:drop db:setup</li>
+<li><strong>db:migrate:redo</strong> roda (db:migrate:down db:migrate:up) or (db:migrate:rollback db:migrate:migrate) dependendo da migração</li>
+<li><strong>db:migrate:reset</strong> roda db:drop db:create db:migrate</li>
+<li><strong>db:migrate VERSION=0</strong> retrocede todos os migrations</li>
+</ul>

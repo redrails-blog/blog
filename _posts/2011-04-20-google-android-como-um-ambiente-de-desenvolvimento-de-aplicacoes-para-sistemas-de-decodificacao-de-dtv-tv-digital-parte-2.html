@@ -1,0 +1,76 @@
+---
+layout: post
+title: Google Android como um ambiente de desenvolvimento de aplicações para Sistemas
+  de Decodificação de DTV (TV Digital) [Parte 2]
+date: 2011-04-20 16:16:42.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Redes
+tags:
+- Android
+- directFB
+- DTV
+- Kernel
+- Portabilidade
+- Redes
+- Ruby
+- Soc
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:1;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:2;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:3;a:4:{s:2:"ID";s:4:"1500";s:10:"post_title";s:51:"Arquivos
+    de Vídeo e Áudio Suportados Pelo Android";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2012/01/arquivos-de-video-e-audio-suportados-pelo-android/";}i:4;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:5;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:6;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"1";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:7;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}i:8;a:4:{s:2:"ID";s:4:"1463";s:10:"post_title";s:33:"Android
+    Picture Pack - MISC IN HD";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/12/android-picture-pack-misc-in-hd/";}i:9;a:4:{s:2:"ID";s:4:"1352";s:10:"post_title";s:48:"PROBLEMA
+    TIM BETA: Problema com Logradouro e CEP";s:7:"matches";s:1:"1";s:9:"permalink";s:74:"http://www.redrails.com.br/2011/11/tim-beta-problema-com-logradouro-e-cep/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<h2><img src="{{ site.baseurl }}/assets/Android_TV.png" alt="" /></h2>
+<h2>III System Overview</h2>
+<p>Consideramos nesse artigo a presença de um dispositivo real de decodificação de DTV(Plataforma de desenvolvimento Micronas IDTV) no dispositivo Android, que é responsável pela integração entre o  SoC (system on chip) e os dispositivos periféricos. O SoC contém um processador dedicado para Linux de 240Mhz MIPS 24Kc, múltiplos processadores dedicados para decodificação de Áudio e Vídeo, unidade de processamento gráfico (GPU) , acelerador gráfico (GA), controlador USB e ainda Kernel Linux 2.6.21.7 com drivers competíveis (para todos os dispositivos no SoC), GNU gcc/glibc cross toolchain, biblioteca gráfica com suporte a DirectFB, etc.</p>
+<h2>IV Portando o Android</h2>
+<p>O processo necessário para portar o Android para uma plataforma big-endian (Arquitetura de ordenação numérica) pode ser dividida em três etapas. Primeiro a importância da utilização a Plataforma Micronas fornecido pelo Kernel do Linux versão 2.6.21.7 que é considerado velho comparando-se com os Kerneis atuais, mas que torna o processo de utilização pelos frameworks da plataforma de drivers do Kernel nessa versão mais fácil que em versões superiores e consequentemente os drivers do Kernel utilizados pelo Android precisam de um backport para o Kernel em questão. A segunda fase da portabilidade exige um processo de extensão do ambiente de desenvolvimento do Android para suportar a Plataforma big-endian MIPS; essas configurações de ambiente devem ser definidas no processo de compilação. A última fase da portabilidade da arquitetura de pilhas do Android consiste na integração de drivers de áudio e suporte ao DirectFB vídeo frame-buffer.</p>
+<p><!--more--></p>
+<ol>
+<li> Backport para Kernel do Linux<br />
+Alguns drivers precisaram ser adicionados na raiz do Kernel para dar suporte à plataforma Android, são eles:&nbsp;</p>
+<ul>
+<li>ASHMEM (Anonymous SHared MEMory, Memória compartilhada anônima) – É um gerenciador de memoria compartilhada similar ao POSIX SHM, mas com diferentes comportamentos; tem suporte à API baseada em arquivos simplificada.</li>
+<li>Binder for Android (Android) – um CORBA semelhante ao IPC (inter process comunication, ou processo de comunicação interno).</li>
+<li>Android event logger – Um drive responsável por receptar e catalogar as mensagens de depuração diretamente no Kernel.</li>
+</ul>
+<p>A raiz do Kernel 2.6.21.7 teve que ser modificada várias vezes para   conceder o suporte necessário à plataforma Android e todos os novos   drivers já mencionados anteriormente.</li>
+<li>Modificação do Ambiente de Desenvolvimento AndroidO Android é facilmente portável em plataformas little-endian MIPS, mas devido as diferentes plataformas endianes (nosso caso a big-endian) inúmeras modificações na Arquitetura do Android são necessárias.
+<ul>
+<li> O primeiro tipo de modificação a ser realizada é em relação aos binários nativos da plataforma, principalmente em bibliotecas open sources e programas escritos em C/C++ (o suporte endianes é normalmente mantido nos sistemas internos de compilação (na maior parta das vezes no “autoconf”)). O Sistema de criação de makefiles do Android também deve ser alterado para dar suporte as variáveis que faltavam no big-endian e defines.</li>
+<li> O Segundo tipo de alteração foi em relação ao código necessário para desenvolver ferramentas para um endian pouco utilizado. Bugs assim são raros e difíceis de encontrar, e geralmente resultam na falha ao compilar o Android e impossibilitam a plataforma de iniciar. Entre os programas que foram afetados estão o Android pre-linker Apriori, Soslim, gerenciador de recursos aapt (Android Asset Packaging Tools), etc.</li>
+<li>O terceiro e último tipo de modificação inclui um impulsionamento   extra no aprendizado em codificações de bibliotecas e programas endians . Como exemplo temos a Dalvk Virtual Machine(que apoia, abertamente, as plataformas endians). O uso de ponteiros para atribuições de tipos de dados variáveis funciona corretamente para a arquitetura little-endian, mas impossibilita que o código seja portado para plataformas big-endian. A culpa disso está na estrutura JValue que em todo o código da VM, utiliza muitos valores como containers de tipos. Problemas da mesma espécie foram encontrados na biblioteca do logger. Algumas outras poucas modificações foram realizadas correção de problemas com cores, na ordenação endian , no Skia engine e na superfície deflectora (Surface Flinger).</li>
+<li></li>
+</ul>
+</li>
+<li> Suporte ao DirectFB no Android DirectFB (Direct Frame Buffer) framework é uma biblioteca baseada no GNU/Linux/UNIX com baixo consumo de memória que permite aceleração gráfica, manipulação de dispositivos de entrada, etc. sobre o frame-buffer do Linux. Por ser open source, vários produtores de SoC DTV o utilizam para implementar seus drivers para frame-buffer IPs.O Android suporta o driver para frame-buffer padrão do Linux como camada principal de desenho. Como os principais fornecedores de SoC DTV implementam a aceleração de hardware com drivers de vídeo do DirectFB, o suporte para essa tecnologia é implementado em várias níveis dentro da Arquitetura de Pilha do Android, dando suporte ao processo de desenho da interface (UI) e para aceleração de gráficos via hardware.
+<ul>
+<li> Alocação Gráfica do DirectFB foi implementada para suportar alocação da memória do frame-buffer de vídeo primário, bem como todos os outros tipos de camadas com escala de cores diferentes.</li>
+<li>A biblioteca DirectFB copybit foi implementada para dar suporte a aceleração de hardware 2D blitter. Caso o driver fornecido do DirectFB suporte as operações 2D blittings (blit, stretch-blit, entre varias escalas de cores) a unidade central de processamento será poupada de processar as blit tasks.</li>
+</ul>
+<p>A única resistência em usar o DirectFB como frame-buffer da interface gráfica é por ele não suportar aceleração 3D. O constante emprenho no desenvolvimento da biblioteca DirectFB ao longo dos últimos dois anos (houve tentativas de implantar o OpenGL como mecanismo de aceleração 3D) indica que será possível a Aceleração de Hardware 3D, se a Aceleração de Hardware 3D IP estiver presente.</li>
+</ol>
+<p><code>Artigo: Google’s android as an application environment for DTV decoder system<br />
+Kuzmanovic, N. Maruna, T. Savic, M. Miljkovic, G. Isailovic, D.<br />
+Fac. of Tech. Sci., Univ. of Novi Sad, Novi Sad, Serbia </code></p>

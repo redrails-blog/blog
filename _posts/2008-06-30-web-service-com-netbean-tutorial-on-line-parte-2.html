@@ -1,0 +1,73 @@
+---
+layout: post
+title: Web Service com NetBean Tutorial On-line - Parte 2
+date: 2008-06-30 12:58:20.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- Java
+- NetBeans
+- WebServices
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:7:{i:0;a:4:{s:2:"ID";s:2:"72";s:10:"post_title";s:60:"Web
+    Service com NetBean Tutorial On-line - Parte 4 ( Final )";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2008/07/web-service-com-netbean-tutorial-on-line-parte-4-final/";}i:1;a:4:{s:2:"ID";s:2:"40";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 3";s:7:"matches";s:1:"3";s:9:"permalink";s:38:"http://www.redrails.com.br/2008/07/40/";}i:2;a:4:{s:2:"ID";s:2:"12";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 1";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-1/";}i:3;a:4:{s:2:"ID";s:1:"9";s:10:"post_title";s:42:"Web
+    Services com Netbeans um simples HowTo";s:7:"matches";s:1:"3";s:9:"permalink";s:78:"http://www.redrails.com.br/2008/06/web-services-com-netbeans-um-simples-howto/";}i:4;a:4:{s:2:"ID";s:2:"49";s:10:"post_title";s:54:"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java";s:7:"matches";s:1:"2";s:9:"permalink";s:89:"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/";}i:5;a:4:{s:2:"ID";s:3:"615";s:10:"post_title";s:58:"J2ME:
+    Problemas ao Instalar Jar em Aparelhos Sony Ericsson";s:7:"matches";s:1:"1";s:9:"permalink";s:93:"http://www.redrails.com.br/2009/10/j2me-problemas-ao-instalar-jar-em-aparelhos-sony-ericsson/";}i:6;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"1";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}}'
+  _relation_threshold: '1'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><strong><a href="http://maxonrails.wordpress.com/2008/06/29/web-service-com-netbean-tutorial-on-line-parte-1/">Parte 1</a></strong><br />
+Olá Gente,</p>
+<p>Voltando ao nosso Tutorial, vamos para o proximo passo: Adiconar uma operação ao nosso WebService</p>
+<p><strong>Adicionar Operação:</strong></p>
+<p>Clique no botão <em>ADD OPERATION</em></p>
+<p><img src="{{ site.baseurl }}/assets/image007.png" alt="" /></p>
+<p>Irá aparecer a janela abaixo, Vamos criar um simples Somador de números. Então Vamos lá.<br />
+Em Name Coloque o nome da sua Operação(metodo), no nosso caso soma em Retun Type o valor que a Operação irá retornar [int](Java.lang.Integer), logo abaixo os parâmetros que devem ser passados(x:int e y:int). pronto, aperto OK.</p>
+<p><img src="{{ site.baseurl }}/assets/image008.png" alt="" /></p>
+<p>Vai ficar assim</p>
+<p><img src="{{ site.baseurl }}/assets/image009.png" alt="" /></p>
+<p><strong>Editando Operação:</strong><br />
+Vamos Agora dizer o que nosso método deve fazer:<br />
+Temos dois modos de edição: Source(Código) e Design(Interface). Para alterarmos de modo utilize os dois botões referentes a ele[Source] e [Design](Mostrados na figura abaixo), ou as teclas de atalho [Ctrl+Alt+page Down] ou [Ctrl+Alt+page Up]. E encontre o metodo SOMA.</p>
+<p><img src="{{ site.baseurl }}/assets/006.png" alt="" /></p>
+<p>Ou ainda mais fácil e ágil na janela Navigator(Navegação) [CTRL+7] dê um duplo clique em soma.</p>
+<p><img src="{{ site.baseurl }}/assets/007.png" alt="" /></p>
+<p>Você irá ser Direcionado para este método:</p>
+<blockquote><p><code> <strong>@WebMethod</strong>(operationName = <span style="color:#ff0000;">"soma"</span>)<br />
+public Integer soma(<strong>@WebParam</strong>(name = <span style="color:#ff0000;">"x"</span>)<br />
+int <span style="color:#0000ff;">x</span>, @WebParam(name = <span style="color:#ff0000;">"y"</span>)<br />
+int <span style="color:#0000ff;">y</span>) {</code></p>
+<p>return <span style="color:#0000ff;">null</span>;<br />
+}</p></blockquote>
+<p>Bom a única coisa que queremos é somar o valor de x e y e retorna-los, então:</p>
+<blockquote><p><strong>@WebMethod</strong>(operationName = <span style="color:#ff0000;">"soma"</span>)<br />
+public Integer soma(<strong>@WebParam</strong>(name = <span style="color:#ff0000;">"x"</span>)<br />
+int <span style="color:#0000ff;">x</span>, @WebParam(name = <span style="color:#ff0000;">"y"</span>)<br />
+int <span style="color:#0000ff;">y</span>) {</p>
+<p>return <span style="color:#0000ff;">x</span>+<span style="color:#0000ff;">y</span>;<br />
+}</p></blockquote>
+<p>Bom com nossa Operação pronta vamos ver como está.</p>
+<p><strong>Iniciando e testando o Web Service:</strong></p>
+<p>Com a aba Project(Projetos) selecionada(Ctrl+1), clicamos com o direito no projeto e em UnDeploy and Deploy (Desimplantar e Implantar  ) nosso projeto.</p>
+<p><img src="{{ site.baseurl }}/assets/008.png" alt="" /></p>
+<p>Agora é Só Executar apertando na seta verde no topo da aplicação(Ou Simplesmente F6):</p>
+<p><img src="{{ site.baseurl }}/assets/009.png" alt="" /></p>
+<p>Se tudo Ocorreu certo Seu Navegador irá abrir automaticamente com a Mensagem “HELLO WORLD”, no endereço<span style="color:#0000ff;"> http://localhost:8080/MyWebService/</span></p>
+<p>Bom mais uma fase de nossa produção foi concluida.<br />
+Até A proxima!<br />
+<strong><a href="http://maxonrails.wordpress.com/2008/07/01/40/">Parte 3</a></strong></p>

@@ -1,0 +1,51 @@
+---
+layout: post
+title: "[ANDROID} Corrigindo problema de Caracteres Acentuados no GO SMS PRO"
+date: 2012-10-26 09:59:17.000000000 -02:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+- Artigos
+tags: []
+meta:
+  _edit_last: '1'
+  image_100_100: http://www.redrails.com.br/wp-content/uploads/2012/10/android_bug-300x282.jpg
+  ratings_users: '0'
+  ratings_score: '0'
+  ratings_average: '0'
+  views: '4'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/10/android_bug.jpg"><img title="android_bug" alt="" src="{{ site.baseurl }}/assets/android_bug-300x282.jpg" width="300" height="282" /></a></p>
+<p>Olá amigos e leitores do Blog RedRails, hoje um amigo me chamou a atenção para um problema que nunca tinha percebido. Quanto utilizamos caracteres acentuados no Go SMS Pro ele consome uma quantidade absurda de caracteres disponíveis, mas isso só ocorre em aplicativos de terceiros, pois no aplicativo padrão de SMS do Android podemos ver nas imagens abaixo que não ocorre!</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-09.27.11.png"><img title="2012-10-26 09.27.11" alt="" src="{{ site.baseurl }}/assets/2012-10-26-09.27.11.png" width="660" height="389" /></a></p>
+<p>Vamos entender o problema, o GO SMS Pro utiliza por padrão caracteres Unicodes em suas mensagens que consomem 16-bits por caractere, que consomem 90 caracteres adicionais por mensagem, deixando somente 70 caracteres disponíveis para que você utilize!</p>
+<p>Solução utilizar o modo "GSM Alphabet" que é o padrão de entrada "input mode" do aplicativo padrão de mensagens do Android.</p>
+<p>COMO?</p>
+<blockquote><p>UPDATE: Antes disso tudo você precisa setar uma fonte diferente da usada pelo GO SMS Pro, pois essa não suporta acentos ASCII, então faça o seguinte:</p>
+<p>MENU-&gt;SETTINGS-&gt;APPEARANCE SETTINGS -&gt;SCAN FONT PACKAGES</p>
+<p>ainda em APPEARANCE SETTINGS vá em CONVERSATINS CUSTOMIZATION -&gt; INCOMING FONT e escolha uma fonte que tenha [TELEFONE] no final.</p>
+<p>Agora sim siga o tutorial abaixo</p></blockquote>
+<p>&nbsp;</p>
+<p>Com o GO SMS PRO Aberto, MENU -&gt; Settings<a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-09.27.11.png"><br />
+</a> <a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-09.35.04.png"><img class="aligncenter size-full wp-image-1873" title="2012-10-26 09.35.04" alt="" src="{{ site.baseurl }}/assets/2012-10-26-09.35.04.png" width="338" height="600" /></a></p>
+<p>Escolha a Aba ADVANCED e Logo em Seguida SEND SETTINGS</p>
+<p>&nbsp;</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-10.31.35.png"><img class="aligncenter size-full wp-image-1881" title="2012-10-26 10.31.35" alt="" src="{{ site.baseurl }}/assets/2012-10-26-10.31.35.png" width="338" height="600" /></a></p>
+<p>&nbsp;</p>
+<p>Ative a Opção ENABLE LOCALE SUPPORT</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-10.31.47.png"><img class="aligncenter size-full wp-image-1880" title="2012-10-26 10.31.47" alt="" src="{{ site.baseurl }}/assets/2012-10-26-10.31.47.png" width="338" height="600" /></a></p>
+<p>E em seguida FRENCH SMS MODE, infelizmente a opção PORTUGUESE SMS MODE ainda não suporta o padrão ASCII =(, nessa última versão apenas  os modos Czech, Polish e French foram ajustados.</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2012/10/2012-10-26-10.31.55.png"><img class="aligncenter size-full wp-image-1879" title="2012-10-26 10.31.55" alt="" src="{{ site.baseurl }}/assets/2012-10-26-10.31.55.png" width="338" height="600" /></a></p>
+<p>&nbsp;</p>
+<div> Feito isso você terá que fechar a aplicação, ou pelo gerenciador de Tarefa do Android, ou outro TASK KILLER, ou mesmo desligando e ligando o aparelho!</div>
+<div></div>
+<div>Boa sorte :D</div>
+<div></div>

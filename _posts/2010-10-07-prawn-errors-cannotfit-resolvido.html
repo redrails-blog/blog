@@ -1,0 +1,61 @@
+---
+layout: post
+title: Prawn::Errors::CannotFit (Resolvido)
+date: 2010-10-07 10:01:02.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+tags:
+- dica
+- Gem
+- Rails
+- Ruby
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _wp_old_slug: prawnerrorscannotfit-resolvido
+  _aioseop_description: Como resolver o problema de emissão de Relatórios com Ruby
+    On Rails usando a Gem Prawn quando der o erro de quebra de linhas automáticas
+    no grid / tabela Prawn::Errors::CannotFit
+  _aioseop_keywords: Report, Relatório, grid, table, rails, Ruby, Error, Prawn,Como
+    resolver o problema de emissão de Relatórios com Ruby On Rails usando a Gem Prawn
+    quando der o erro de quebra de linhas automáticas no grid / Prawn::Errors::CannotFit,
+    CannotFit, GHost
+  _aioseop_title: Prawn::Errors::CannotFit (Resolvido)
+  _syntaxhighlighter_encoded: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:1;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:2;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"2";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:3;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}i:4;a:4:{s:2:"ID";s:3:"404";s:10:"post_title";s:49:"Mini-Curso:
+    Desenvolvimento Ágil com RubyOnRails";s:7:"matches";s:1:"2";s:9:"permalink";s:83:"http://www.redrails.com.br/2009/04/mini-curso-desenvolvimento-agil-com-rubyonrails/";}i:5;a:4:{s:2:"ID";s:3:"384";s:10:"post_title";s:49:"Mudanças
+    nos Dias do Mini-Curso de Ruby On Rails";s:7:"matches";s:1:"2";s:9:"permalink";s:84:"http://www.redrails.com.br/2009/03/mudancas-nos-dias-do-mini-curso-de-ruby-on-rails/";}i:6;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"2";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:7;a:4:{s:2:"ID";s:3:"277";s:10:"post_title";s:47:"Problemas
+    ao instalar Fast-Debuger (ruby-debug)";s:7:"matches";s:1:"2";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/10/problemas-ao-instalar-fast-debuger-ruby-debug/";}i:8;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"2";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}i:9;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"2";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}}'
+  _relation_threshold: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+excerpt: Como resolver o problema de emissão de Relatórios com Ruby On Rails usando
+  a Gem Prawn quando der o erro de quebra de linhas automáticas no grid / tabela Prawn::Errors::CannotFit
+---
+<p>Estou começando a desenvolver um módulo de relatórios em meu projeto Rails para impressão de memorando e o principal problema que encontrava é a quebra de linha automática nas tabelas ou grids, usava o RGhost do Shairon, mas infelizmente isso não era possível.</p>
+<p>Li algo sobre o Prawn e achei interessante, peguei um exemplo e bingo, ele fazia essa quebra de linha automática, então comecei a fazer outros testes como tamanho da string que cada célula suportaria, achei o que procurava mais problema rsrsr, não entendia o porquê , mas a partir de um certo número de caracteres ela lançado uma exceção que gerava esse erro (Prawn::Errors::CannotFit) descobrir que o problema era na coluna que era achatada e o Prawn não entendia até onde ele poderia renderizar o texto, algo do gênero isso me ajudou a encontrar uma solução "dizer" ao Prawn até onde ele deveria ir, ou seja fixar uma largura para as minhas colunas.</p>
+<p>Simples assim:</p>
+<p>[ruby]<br />
+pdf.table( itens_memo,<br />
+:headers =&gt;[&quot;Item&quot;, &quot;Quant&quot;,&quot;Compra&quot;,&quot;Serviço&quot;],<br />
+:font_size          =&gt;10,<br />
+:vertical_padding   =&gt;2,<br />
+:horizontal_padding =&gt; 5,<br />
+:column_widths =&gt;{ 0 =&gt; 40, 1 =&gt;40, 2 =&gt; 230, 3 =&gt;230},<br />
+:border_style=&gt;:grid<br />
+)<br />
+[/ruby]</p>

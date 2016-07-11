@@ -1,0 +1,49 @@
+---
+layout: post
+title: 'Getna : Uma Abordagem geral sobre o processo de desenvolvimento.'
+date: 2008-09-07 18:18:31.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+tags:
+- Gerador
+- Getna
+- MIT
+- Rails
+- Ruby
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"4";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:1;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"3";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:2;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"3";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:3;a:4:{s:2:"ID";s:3:"154";s:10:"post_title";s:49:"GEtna
+    - Ep. 3: Mapeando Tabelas do Banco de Dados";s:7:"matches";s:1:"3";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/08/getna-ep-3-mapeando-tabelas-do-banco-de-dados/";}i:4;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"3";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:5;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"3";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:6;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:7;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}i:8;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"2";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:9;a:4:{s:2:"ID";s:3:"503";s:10:"post_title";s:37:"Pacote
+    de Posts sobre Programação 1";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2009/06/pacote-de-posts-sobre-programacao-1/";}}'
+  _relation_threshold: '2'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Para a realização deste trabalho, a primeira medida a ser efetuada é a definição do escopo do gerador, ou seja, quais funcionalidades estarão realmente presentes. Para isso, serão analisadas algumas limitações existentes em várias linguagens, como processos repetitivos e cansativos, no desenvolvimento de uma aplicação, inclusive no próprio Rails.</p>
+<p>Iniciaremos o processo de desenvolvimento do gerador pela seleção do tipo, existindo várias possibilidades, como criação de um conjunto de scripts independentes que, ao ser executado por um comando, efetuaria a geração. Uma segunda opção cabível é a criação de uma Gem, um módulo que adiciona novas funcionalidades ao coração do Ruby, sendo expansível a qualquer outro módulo, ou framework nele existente, conseqüentemente, disponíveis às aplicações Rails. Outra possibilidade é criar um plugin (módulo de caráter expansível à uma aplicação Rails) que acoplado ao um projeto do framework pode ser utilizado em conjunto com a aplicação. Dentre as opções apresentadas, escolheremos a opção mais apropriada verificando questões como facilidade de instalação na aplicação, utilização e desenvolvimento.</p>
+<p>Como ferramenta de apoio à linguagem de programação usada para desenvolver o gerador de código, utilizaremos o Netbeans devido ao fato de que se possui uma certa experiência com essa IDE e também porque esta possui suporte total à linguagem e ao framework, tornando a programação mais simples e intuitiva.</p>
+<p>Uma das tarefas mais importantes será encontrar uma forma de mapeamento do banco de dados, pois dependendo da forma, utilizando um plugin, comandos SQL ou um recurso do próprio Rails, isto vai influenciar diretamente na qualidade final gerador. O uso comandos SQL manuais podem deixar o processo de geração mais lento e mais pesado, se utilizarmos plugin perderíamos a portabilidade e simplicidade do gerador, pois haveria dependência direta de um agente externo, que necessitaria sempre ser instalado junto com o gerador e na pior da hipótese esse plugin pode ser descontinuado fazendo assim com que nossa ferramenta se tornasse legada em uma possível atualização do Rails.</p>
+<p>A melhor saída seria utilizar componentes já disponibilizados pelo Ruby ou Pelo Rails, o ActiveRecord, um das Gems que compõem o framework e responsável pela manipulação da base de dados, pode ser a saída para realização dessa tarefa.</p>
+<p>Foram feitos estudos em relação à geração de código em outras linguagens e no Rails, foi dado, então, inicio a produção do gerador, uma preocupação nessa etapa foi deixar o código gerado limpo, funcional e re-aproveitável, a resposta estava na utilização de padrões do próprio Rails. Com essa definição deve, então, ser iniciada a criação de templates, arquivos que contem toda a lógica dos códigos a serem gerados.<br />
+A estruturação do desenvolvimento do gerador pode ser organizada em cinco partes fundamentais, que serão descritas a seguir. Primeira parte é o gerador, encontrado como arquivo getna_generator.rb pode ser considerado o motor de geração, todas as requisições e tratamentos passar pela sua administração. A segunda é a obtenção e tratamento de dados, a classe Getna (inclusa no arquivo getna.rb, da pasta lib/), contendo todos os módulos Ruby necessários para a manipulação de dados, inclusive o módulo Base, que faz o mapeamento da base e cuida dos relacionamentos.</p>
+<p>Na terceira parte encontramos os templates, arquivos modelos de cada arquivo que vai ser gerado, nessa parte que focamos a qualidade de código e a estruturação de cada arquivo. Os arquivos de testes para “cobrir” a aplicação contra erros se encontram na quarta parte de nossa aplicação.<br />
+A quinta e ultima parte leva os arquivos adicionais como licença, instalação, desinstalação, descrição e inicialização, arquivos necessários para criação de um projeto Rails, essa estrutura pode ser mais bem entendida na figura abaixo:</p>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-1.png" alt="" /><br />
+Estrutura do Gerador GEtna</p>
+<p>Será feito um estudo sobre licenças de código livre para formalizar o gerador como um projeto oficialmente livre e disponível para toda a comunidade. A licença MIT (Massachusetts Institute of Technology), por exemplo, tem grandes chances de ser escolhida.</p>

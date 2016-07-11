@@ -1,0 +1,492 @@
+---
+layout: post
+title: Deploy com Git, Capistrano, Nginx e Unicorn na Velocidade da Luz
+date: 2013-03-13 23:05:53.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Ruby
+tags: []
+meta:
+  image_100_100: http://www.redrails.com.br/wp-content/uploads/2013/03/rocket+git+capistrano+rails+unicorn+nginx-300x242.png
+  _edit_last: '1'
+  _wpt_failed: 'a:5:{s:6:"author";b:0;s:8:"sentence";s:179:"Post Edited: Deploy com
+    Git, Capistrano, Nginx e Unicorn na Velocidade da Luz http://www.redrails.com.br/2013/03/13/deploy-com-git-capistrano-nginx-e-unicorn-na-velocidade-da-luz/";s:5:"error";s:71:"This
+    tweet is identical to another Tweet recently sent to this account.";s:4:"code";i:403;s:9:"timestamp";i:1363399187;}'
+  _jd_tweet_this: 'yes'
+  _wp_jd_url: http://www.redrails.com.br/2013/03/13/deploy-com-git-capistrano-nginx-e-unicorn-na-velocidade-da-luz/
+  _wp_jd_target: http://www.redrails.com.br/2013/03/13/deploy-com-git-capistrano-nginx-e-unicorn-na-velocidade-da-luz/
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/rocket+git+capistrano+rails+unicorn+nginx.png"><img class="alignleft size-medium wp-image-1943" alt="rocket+git+capistrano+rails+unicorn+nginx" src="{{ site.baseurl }}/assets/rocket+git+capistrano+rails+unicorn+nginx-300x242.png" width="300" height="242" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Todos nós que já desenvolvemos aplicações WEB e tivemos que implantalas, lembramos dos dias que simplesmente carregamos os arquivos via FTP para o servidor e pronto, tudo estava feito, ou quase isso. Hoje em dia temos que clonar repositórios GIT, reiniciar servidores, definir permissões, criar links simbólicos para arquivos de configurações e outros, limpar cache... dentre outros procedimentos cansativos..</p>
+<h3>Doutor, o que está errado?</h3>
+<p>Na minha opinião existem dois problemas críticos com deploys de hoje:</p>
+<ul>
+<li>     Eles são lentos</li>
+<li>     Eles causam downtime.</li>
+</ul>
+<p>Ambos os temas foram discutidos por grandes empresas como Twitter e Github. Eles têm otimizado o seu processo de deploy para permitir implementações rápidas e contínuas (sem o downtime),  utilizando o Capistrano. Que possíbilita que com pouco trabalho, implantar soluções de deploy similares a do  Github e Twitter.</p>
+<h3>Então vamos lá</h3>
+<p>Este guia vai ajudar você a configurar o servidor com Rails 3 com rápido deoloy e zero-downtime. Eu vou estar usando Nginx + Unicorn como servidor para a aplicação, git + capistrano para o deploy.</p>
+<h3> Nossa Lista de Compras</h3>
+<p>Você vai precisar dos seguintes ingredientes:</p>
+<ul>
+<li>Um Ubuntu Server recente (Eu usei 12.04 Netty);</li>
+<li>Sua aplicação Rails 3;</li>
+<li>Um respositório remoto com Git, contendo sua aplicação.</li>
+</ul>
+<h3> Pressupostos</h3>
+<p>Eu estou fazendo algumas suposições sobre sua aplicação:</p>
+<ul>
+<li>     ruby 1.9.2</li>
+<li>     Aplicações Rails 3.1 usando Postgres chamado <em>my_site</em></li>
+<li>     Você quer usar o RVM e Bundle</li>
+</ul>
+<h3>Configurar o servidor</h3>
+<p>Existem algumas coisas que você precisa configurar antes de começar. Os comandos são executados como Root.</p>
+<p>Aqui está a lista completa de comando apt-get que eu usei.</p>
+<p>&nbsp;</p>
+<blockquote>
+<pre>apt-get update
+apt-get upgrade -y    
+apt-get install build-essential ruby-full libmagickcore-dev imagemagick libxml2-dev \
+  libxslt1-dev git-core postgresql postgresql-client postgresql-server-dev-9.1 nginx curl
+apt-get build-dep ruby1.9.1</pre>
+</blockquote>
+<p>obs: em <em>postgresql-server-dev-9.1</em> substitua pela versão corrente...</p>
+<p>Você irá precisar designar um usuário para rodar sua aplicação. Acredite em mim, você não irá querer fazer isso com o <em>Root</em>. Eu chamo o meu de <em>deployer</em></p>
+<blockquote>
+<pre>useradd -m -g staff -s /bin/bash deployer
+passwd deployer</pre>
+</blockquote>
+<p>Para permitir que o <em>deployer</em> execute comando como super-user, adicionar isso em<em> /etc/sudoers.</em></p>
+<blockquote><p> # /etc/sudoers</p>
+<p>%staff ALL=(ALL) ALL</p></blockquote>
+<h3> Ruby and RVM</h3>
+<p>Feito isso, você está pronto para instalar rvm. certifique-se de executar isso como root.</p>
+<blockquote>
+<pre>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+source /home/deployer/.rvm/scripts/rvm</pre>
+</blockquote>
+<p>Agora instale o Ruby, neste caso o ruby-1.9.2-p290, e o rubygem.</p>
+<blockquote>
+<pre>rvm install ruby-1.9.3
+wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.10.tgz
+tar zxvf rubygems-1.8.10.tgz
+cd rubygems-1.8.10
+ruby setup.rb</pre>
+</blockquote>
+<p>Criae um arquivo <em>~ /gemrc</em>, este estabelece alguns padrões necessários para o seu servidor de produção:</p>
+<blockquote>
+<pre># ~/.gemrc
+---
+:verbose: true
+:bulk_threshold: 1000
+install: --no-ri --no-rdoc --env-shebang
+:sources:
+- http://gemcutter.org
+- http://gems.rubyforge.org/
+- http://gems.github.com
+:benchmark: false
+:backtrace: false
+update: --no-ri --no-rdoc --env-shebang
+:update_sources: true</pre>
+</blockquote>
+<p>Agora crie o <code>~/.rvmrc</code></p>
+<blockquote><p> # ~/.rvmrc</p>
+<p>rvm_trust_rvmrcs_flag=1</p></blockquote>
+<p>Nota: fazer isso tanto para o usuário <em>root</em> quanto para o deployer para evitar confusão mais tarde.</p>
+<p>Porque você vai estar rodando sua aplicação em modo de produção otempo, adicione a seguinte linha ao arquivo /etc/environment, de modo que você não tem que repeti-lo com todos os comandos Rails que vocẽ vai usar:</p>
+<blockquote>
+<pre>RAILS_ENV=production</pre>
+</blockquote>
+<p>Eu não sei que todo mundo usa Postgres, mas eu uso. Primeiro, crie o banco e o login como o usuário postgres:</p>
+<blockquote>
+<pre>sudo -u postgres createdb my_site
+sudo -u postgres psql</pre>
+</blockquote>
+<p>Depois execute essas SQL</p>
+<div>
+<blockquote>
+<pre>CREATE USER my_site WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE my_site TO my_site;</pre>
+</blockquote>
+</div>
+<h2>Nginx</h2>
+<p>Nginx é um grande parte da engenharia Russa. Você precisará de algumas configurações:</p>
+<blockquote>
+<pre># /etc/nginx/sites-available/default
+upstream my_site {
+  # fail_timeout=0 means we always retry an upstream even if it failed
+  # to return a good HTTP response (in case the Unicorn master nukes a
+  # single worker for timing out).
+
+  # for UNIX domain socket setups:
+  server unix:/tmp/my_site.socket fail_timeout=0;
+}
+
+server {
+    # if you're running multiple servers, instead of "default" you should
+    # put your main domain name here
+    listen 80 default;
+
+    # you could put a list of other domain names this application answers
+    server_name my_site.example.com;
+
+    root /home/deployer/apps/my_site/current/public;
+    access_log /var/log/nginx/my_site_access.log;
+    rewrite_log on;
+
+    location / {
+        #all requests are sent to the UNIX socket
+        proxy_pass  http://my_site;
+        proxy_redirect     off;
+
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+        client_max_body_size       10m;
+        client_body_buffer_size    128k;
+
+        proxy_connect_timeout      90;
+        proxy_send_timeout         90;
+        proxy_read_timeout         90;
+
+        proxy_buffer_size          4k;
+        proxy_buffers              4 32k;
+        proxy_busy_buffers_size    64k;
+        proxy_temp_file_write_size 64k;
+    }
+
+    # if the request is for a static resource, nginx should serve it directly
+    # and add a far future expires header to it, making the browser
+    # cache the resource and navigate faster over the website
+    # this probably needs some work with Rails 3.1's asset pipe_line
+    location ~ ^/(images|javascripts|stylesheets|system)/  {
+      root /home/deployer/apps/my_site/current/public;
+      expires max;
+      break;
+    }
+}</pre>
+</blockquote>
+<p>E mais isso</p>
+<blockquote>
+<pre># /etc/nginx/nginx.conf 
+user deployer staff;
+
+# Change this depending on your hardware
+worker_processes 4;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+    multi_accept on;
+}
+
+http {
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay off;
+    # server_tokens off;
+
+    # server_names_hash_bucket_size 64;
+    # server_name_in_redirect off;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    gzip on;
+    gzip_disable "msie6";
+
+    # gzip_vary on;
+    gzip_proxied any;
+    gzip_min_length 500;
+    # gzip_comp_level 6;
+    # gzip_buffers 16 8k;
+    # gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+    ##
+    # Virtual Host Configs
+    ##
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}</pre>
+</blockquote>
+<p>Ok, agora o Nginx está funcionando. Você preicsa inicia-lo, ele deve dar um erro 500 ou um erro de proxy:</p>
+<blockquote>
+<pre>/etc/init.d/nginx start</pre>
+</blockquote>
+<h2>Unicorn</h2>
+<p>A parte seguinte envolve a criação de Capistrano e unicórnio para o seu projeto. É aqui que a verdadeira magia acontece.</p>
+<p>Você estará fazendo cap deploy 99% do tempo. Este comando precisa ser rápido. Para realizar isso, quero utilizar o poder do git. Em vez de ter O Capistrano fazendo  malabarismos em torno de um monte de diretórios, o que é dolorosamente lento, eu quero usar o git para mudar para a versão correta do meu aplicativo. Isso significa que vou ter apenas um diretório que é atualizado pelo git somente quando ele precisar.</p>
+<p>Vamos começar adicionando algumas <em>gem</em> para sua aplicação. Quando tive-lo feito executae <em>bundle install</em></p>
+<blockquote>
+<pre># Gemfile
+gem "unicorn"
+
+group :development do
+  gem "capistrano"
+end</pre>
+</blockquote>
+<p>Pŕoximo passo é adicionar um arquivo de configuração para o unicorn:<em> config/uniconr.rb</em></p>
+<blockquote><p>[geshi lang='ruby']</p>
+<p># config/unicorn.rb<br />
+# Set environment to development unless something else is specified<br />
+env = ENV["RAILS_ENV"] || "development"</p>
+<p># See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete<br />
+# documentation.<br />
+worker_processes 4</p>
+<p># listen on both a Unix domain socket and a TCP port,<br />
+# we use a shorter backlog for quicker failover when busy<br />
+listen "/tmp/my_site.socket", :backlog =&gt; 64</p>
+<p># Preload our app for more speed<br />
+preload_app true</p>
+<p># nuke workers after 30 seconds instead of 60 seconds (the default)<br />
+timeout 30</p>
+<p>pid "/tmp/unicorn.my_site.pid"</p>
+<p># Production specific settings<br />
+if env == "production"<br />
+# Help ensure your application will always spawn in the symlinked<br />
+# "current" directory that Capistrano sets up.<br />
+working_directory "/home/deployer/apps/my_site/current"</p>
+<p># feel free to point this anywhere accessible on the filesystem<br />
+user 'deployer', 'staff'<br />
+shared_path = "/home/deployer/apps/my_site/shared"</p>
+<p>stderr_path "#{shared_path}/log/unicorn.stderr.log"<br />
+stdout_path "#{shared_path}/log/unicorn.stdout.log"<br />
+end</p>
+<p>before_fork do |server, worker|<br />
+# the following is highly recomended for Rails + "preload_app true"<br />
+# as there's no need for the master process to hold a connection<br />
+if defined?(ActiveRecord::Base)<br />
+ActiveRecord::Base.connection.disconnect!<br />
+end</p>
+<p># Before forking, kill the master process that belongs to the .oldbin PID.<br />
+# This enables 0 downtime deploys.<br />
+old_pid = "/tmp/unicorn.my_site.pid.oldbin"<br />
+if File.exists?(old_pid) &amp;&amp; server.pid != old_pid<br />
+begin<br />
+Process.kill("QUIT", File.read(old_pid).to_i)<br />
+rescue Errno::ENOENT, Errno::ESRCH<br />
+# someone else did our job for us<br />
+end<br />
+end<br />
+end</p>
+<p>after_fork do |server, worker|<br />
+# the following is *required* for Rails + "preload_app true",<br />
+if defined?(ActiveRecord::Base)<br />
+ActiveRecord::Base.establish_connection<br />
+end</p>
+<p># if preload_app is true, then you may also want to check and<br />
+# restart any other shared sockets/descriptors such as Memcached,<br />
+# and Redis.  TokyoCabinet file handles are safe to reuse<br />
+# between any number of forked children (assuming your kernel<br />
+# correctly implements pread()/pwrite() system calls)<br />
+end</p>
+<p>[/geshi]</p></blockquote>
+<p>Ok, como você pode ver temos umas coisas bem legais aqui como reiniciar o servidor sem intervalos ( zero-downtime). Deixe-me contar mais algumas coisas sobre isso.</p>
+<p>Unicorn iniciar o processo principal e gera diversos workers ( nós configuramos 4). Quando voce envia o sinal USR2 ao Unicorn, então ele renomeia o servidor principal (antigo) e cria um novo processo, que assume o serviço do master. O antigo serviço ainda continua rodando.</p>
+<p>Agora, quando o novo serviço princial iniciar e segmentar esse trabalho, este checka o PID do novo e do antigo processo principal. Se eles forem diferentes, então o novo é iniciado e o para o antigo é enviado um sinal QUIT e shutdown gracefully.</p>
+<h2>Capistrano</h2>
+<p>Agora para o Capistrano, adicionando as seguintes linhas no <em>Gemfile</em>.</p>
+<blockquote><p># Gemfile<br />
+group :development do<br />
+gem "capistrano"<br />
+end</p></blockquote>
+<p>E geramos os arquivos necessários para o capoistrano</p>
+<blockquote>
+<pre>capify .</pre>
+</blockquote>
+<p>Abra seu config/deploy.rb e substitua pelos seguintes comandos</p>
+<p>Este script de deploy não é totalmente abrangente, mas possui um pulo do gato, quando deletamos a pasta atual, mantendo apenas a última versão do projeto, assim não acumulando espaço desnecessário.</p>
+<blockquote>
+<pre># config/deploy.rb 
+require "bundler/capistrano"
+
+set :scm,             :git
+set :repository,      "git@codeplane.com:you/my_site.git"
+set :branch,          "origin/master"
+set :migrate_target,  :current
+set :ssh_options,     { :forward_agent =&gt; true }
+set :rails_env,       "production"
+set :deploy_to,       "/home/deployer/apps/my_site"
+set :normalize_asset_timestamps, false
+
+set :user,            "deployer"
+set :group,           "staff"
+set :use_sudo,        false
+
+role :web,    "123.456.789.012"
+role :app,    "123.456.789.012"
+role :db,     "123.456.789.012", :primary =&gt; true
+
+set(:latest_release)  { fetch(:current_path) }
+set(:release_path)    { fetch(:current_path) }
+set(:current_release) { fetch(:current_path) }
+
+set(:current_revision)  { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
+set(:latest_revision)   { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
+set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
+
+default_environment["RAILS_ENV"] = 'production'
+
+# Use our ruby-1.9.2-p290@my_site gemset
+default_environment["PATH"]         = "--"
+default_environment["GEM_HOME"]     = "--"
+default_environment["GEM_PATH"]     = "--"
+default_environment["RUBY_VERSION"] = "ruby-1.9.2-p290"
+
+default_run_options[:shell] = 'bash'
+
+namespace :deploy do
+  desc "Deploy your application"
+  task :default do
+    update
+    restart
+  end
+
+  desc "Setup your git-based deployment app"
+  task :setup, :except =&gt; { :no_release =&gt; true } do
+    dirs = [deploy_to, shared_path]
+    dirs += shared_children.map { |d| File.join(shared_path, d) }
+    run "#{try_sudo} mkdir -p #{dirs.join(' ')} &amp;&amp; #{try_sudo} chmod g+w #{dirs.join(' ')}"
+    run "git clone #{repository} #{current_path}"
+  end
+
+  task :cold do
+    update
+    migrate
+  end
+
+  task :update do
+    transaction do
+      update_code
+    end
+  end
+
+  desc "Update the deployed code."
+  task :update_code, :except =&gt; { :no_release =&gt; true } do
+    run "cd #{current_path}; git fetch origin; git reset --hard #{branch}"
+    finalize_update
+  end
+
+  desc "Update the database (overwritten to avoid symlink)"
+  task :migrations do
+    transaction do
+      update_code
+    end
+    migrate
+    restart
+  end
+
+  task :finalize_update, :except =&gt; { :no_release =&gt; true } do
+    run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
+
+    # mkdir -p is making sure that the directories are there for some SCM's that don't
+    # save empty folders
+    run &lt;&lt;-CMD
+      rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &amp;&amp;
+      mkdir -p #{latest_release}/public &amp;&amp;
+      mkdir -p #{latest_release}/tmp &amp;&amp;
+      ln -s #{shared_path}/log #{latest_release}/log &amp;&amp;
+      ln -s #{shared_path}/system #{latest_release}/public/system &amp;&amp;
+      ln -s #{shared_path}/pids #{latest_release}/tmp/pids &amp;&amp;
+      ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
+    CMD
+
+    if fetch(:normalize_asset_timestamps, true)
+      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
+      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
+      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env =&gt; { "TZ" =&gt; "UTC" }
+    end
+  end
+
+  desc "Zero-downtime restart of Unicorn"
+  task :restart, :except =&gt; { :no_release =&gt; true } do
+    run "kill -s USR2 `cat /tmp/unicorn.my_site.pid`"
+  end
+
+  desc "Start unicorn"
+  task :start, :except =&gt; { :no_release =&gt; true } do
+    run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
+  end
+
+  desc "Stop unicorn"
+  task :stop, :except =&gt; { :no_release =&gt; true } do
+    run "kill -s QUIT `cat /tmp/unicorn.my_site.pid`"
+  end  
+
+  namespace :rollback do
+    desc "Moves the repo back to the previous version of HEAD"
+    task :repo, :except =&gt; { :no_release =&gt; true } do
+      set :branch, "HEAD@{1}"
+      deploy.default
+    end
+
+    desc "Rewrite reflog so HEAD@{1} will continue to point to at the next previous release."
+    task :cleanup, :except =&gt; { :no_release =&gt; true } do
+      run "cd #{current_path}; git reflog delete --rewrite HEAD@{1}; git reflog delete --rewrite HEAD@{1}"
+    end
+
+    desc "Rolls back to the previously deployed version."
+    task :default do
+      rollback.repo
+      rollback.cleanup
+    end
+  end
+end
+
+def run_rake(cmd)
+  run "cd #{current_path}; #{rake} #{cmd}"
+end</pre>
+</blockquote>
+<p>Agora, há uma coisa que você precisa fazer. Eu gosto de rodar minhas aplicações utilizando sua propria. Isso mantém tudo mais limpo e isolado. Entre como usuário deployer  e crie o seu gemset. preenchendo os PATH com GEM_HOME , ​​GEM_PATH.</p>
+<p>Não se esqueça de instalar o Bundle em seu GEM SET.</p>
+<h2>Database configuration</h2>
+<p>Eu sempre gostei de colocar o arquiv de configuração fora do GIT, Eu o coloco no diretório SHARED.</p>
+<blockquote><p># /home/deployer/apps/my_site/shared/database.yml<br />
+production:<br />
+adapter: postgresql<br />
+encoding: unicode<br />
+database: my_site_production<br />
+pool: 5<br />
+username: my_site<br />
+password: password</p></blockquote>
+<h2>First setup</h2>
+<p>Agora realize o setup de seu deploy, assim:</p>
+<blockquote>
+<pre>cap deploy:setup</pre>
+</blockquote>
+<p>Isto irá colnar seu repositório e o conectar com seu database.yml .Opcionalmente, você pode rodar suas migrations ou fazer o upload de suas SQL para iniciar rapidamente sua aplicação.</p>
+<h2>Deployments</h2>
+<p>Quando você tiver uma nova feature em um branch, realize esse procedimento para realizar o deploy disso:</p>
+<ol>
+<li>Merge <em><code>feature_branch</code></em> into <em><code>master</code></em></li>
+<li>Rode os testes para verificar se tudo está OK.</li>
+<li>Push <code>master</code></li>
+<li>Execute o  <em><code>cap deploy</code></em></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>asd</p>

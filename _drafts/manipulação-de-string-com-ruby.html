@@ -1,0 +1,59 @@
+---
+layout: post
+title: Manipulação de String com Ruby
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Dicas
+tags:
+- Ruby
+- String
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Bom vira e mexe temos que realizar algum tipo de manipulação de String. Não vou postar as melhores práticas em relação a esse contexo, apenas algumas soluções que encontrei por ai em foruns,grupos e blogs. espero que seja de grande valia para você!</p>
+<p>Primeiramente vou passar um pouco do básico de String.</p>
+<p>Uma String detém e manipula uma seqüência arbitrária de bytes,<br />
+normalmente representando caracteres.</p>
+<p>EX:<br />
+[source lang="ruby"]<br />
+str = String.new("ascatezuma")<br />
+str = "ascatezuma"<br />
+"ascatezuma"<br />
+[/source]</p>
+<p>Devido a questões nomeclatura, os usuários devem estar cientes de<br />
+alguns dos métodos podem modificar o conteúdo de uma String.<br />
+Normalmente,métodos terminados em "!" (Exclamação),  podem modificar<br />
+seu receptor, enquanto que aqueles sem o "!" , normalmente retorna<br />
+uma nova String.</p>
+<p>EX:</p>
+<p>[source lang="ruby"]<br />
+a = "askatezuma"<br />
+b = "buchada"</p>
+<p>b = a.reverse<br />
+puts a #=> "askatezuma"<br />
+puts b #=> "amuzetaksa"</p>
+<p>puts a.reverse! #=> "amuzetaksa"<br />
+[/source]</p>
+<p>Isso é muito útil imagine que você deve pegar uma string, essa string e<br />
+todos seus caractéres devem estar em caixa alta (upcase) normamente eu faria<br />
+assim:<br />
+[source lang="ruby"]<br />
+a = "askatezuma"</p>
+<p>a = a.upcase<br />
+=> "ASKATEZUMA"<br />
+[/source]<br />
+Podemos observar que repitimos o "a" duas vezes, o Ruby nos ajuda a deixar isso um pouco mais DRY (sem repetições) assim:</p>
+<p>[source lang="ruby"]<br />
+a.upcase!<br />
+=> "ASKATEZUMA"<br />
+[/source]</p>

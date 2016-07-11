@@ -1,0 +1,68 @@
+---
+layout: post
+title: Problemas ao instalar Fast-Debuger (ruby-debug)
+date: 2008-10-27 14:04:20.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+tags:
+- debug
+- dica
+- Ruby
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: "a:10:{i:0;a:4:{s:2:\"ID\";s:3:\"778\";s:10:\"post_title\";s:36:\"Prawn::Errors::CannotFit
+    (Resolvido)\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:68:\"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/\";}i:1;a:4:{s:2:\"ID\";s:3:\"573\";s:10:\"post_title\";s:54:\"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:90:\"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/\";}i:2;a:4:{s:2:\"ID\";s:3:\"264\";s:10:\"post_title\";s:41:\"Colocando
+    Códigos Coloridos no Wordpress\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:76:\"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/\";}i:3;a:4:{s:2:\"ID\";s:3:\"145\";s:10:\"post_title\";s:31:\"GEtna
+    - Ep. 2: Primeiros Passos\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:63:\"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/\";}i:4;a:4:{s:2:\"ID\";s:2:\"49\";s:10:\"post_title\";s:54:\"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:89:\"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/\";}i:5;a:4:{s:2:\"ID\";s:4:\"1602\";s:10:\"post_title\";s:67:\"How
+    to Make amazing and creative photo cover for facebook timeline \";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:102:\"http://www.redrails.com.br/2012/02/how-to-make-amazing-and-creative-photo-cover-for-facebook-timeline/\";}i:6;a:4:{s:2:\"ID\";s:4:\"1262\";s:10:\"post_title\";s:76:\"Instalar
+    aplicativos do cartão de mémoria (sdcard) para a memória interna\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/10/instalar-aplicativos-do-cartao-de-memoria-sdcard-para-a-memoria-interna/\";}i:7;a:4:{s:2:\"ID\";s:4:\"1029\";s:10:\"post_title\";s:78:\"\t!
+    LaTeX Error: Cannot determine size of graphic in fig1.jpg (no BoundingBox).\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/05/latex-error-cannot-determine-size-of-graphic-in-fig1-jpg-no-boundingbox/\";}i:8;a:4:{s:2:\"ID\";s:4:\"1016\";s:10:\"post_title\";s:129:\"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:155:\"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/\";}i:9;a:4:{s:2:\"ID\";s:4:\"1005\";s:10:\"post_title\";s:129:\"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:157:\"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/\";}}"
+  _relation_threshold: '1'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Sempre tiver bastante problemas com essa GEM, mas por besteira minha mesmo, alguem pode cair nessa besteira também por isso vou compartilhar =)</p>
+<p>Não me recordo do primeiro erro, mas bastou instalar o build-essencial (no Ubuntu) para tudo funcionar, para seu S.O. é instalar o pacote de compilação padrão.</p>
+<p>Mesmo assim gerou esse segundo erro.</p>
+<p>[source language='cpp']<br />
+maxprox@maxprox-desktop:~$ sudo gem install ruby-debug-0.10.0.gem<br />
+Building native extensions.  This could take a while...<br />
+ERROR:  Error installing ruby-debug-0.10.0.gem:<br />
+ERROR: Failed to build gem native extension.</p>
+<p>/usr/bin/ruby1.8 extconf.rb install ruby-debug-0.10.0.gem<br />
+extconf.rb:1:in `require': no such file to load -- mkmf (LoadError)<br />
+from extconf.rb:1</p>
+<p>Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/ruby-debug-base-0.10.0 for inspection.<br />
+Results logged to /usr/lib/ruby/gems/1.8/gems/ruby-debug-base-0.10.0/ext/gem_make.out</p>
+<p>[/source]</p>
+<p>Então Bastou instalar o <strong>ruby1.8-dev</strong>, no Ubunto necessita apenas de ir no synaptic e pedir para instalar.</p>
+<p>pronto. problema resolvido.</p>
+<p>[source language='cpp']<br />
+maxprox@maxprox-desktop:~/Área de Trabalho$ sudo gem install ruby-debug-0.10.2.gem<br />
+Building native extensions.  This could take a while...<br />
+Building native extensions.  This could take a while...<br />
+Successfully installed linecache-0.43<br />
+Successfully installed ruby-debug-base-0.10.2<br />
+Successfully installed ruby-debug-0.10.2<br />
+3 gems installed<br />
+Installing ri documentation for linecache-0.43...<br />
+Installing ri documentation for ruby-debug-base-0.10.2...<br />
+Installing ri documentation for ruby-debug-0.10.2...<br />
+Installing RDoc documentation for linecache-0.43...<br />
+Installing RDoc documentation for ruby-debug-base-0.10.2...<br />
+Installing RDoc documentation for ruby-debug-0.10.2...<br />
+[/source]</p>

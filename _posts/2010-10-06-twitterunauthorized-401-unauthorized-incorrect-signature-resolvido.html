@@ -1,0 +1,51 @@
+---
+layout: post
+title: 'Twitter::Unauthorized: (401): Unauthorized - Incorrect signature (RESOLVIDO)'
+date: 2010-10-06 17:09:10.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _aktt_hash_meta: ''
+  _edit_last: '1'
+  _wp_old_slug: ''
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Estava em um projeto usando a gem <strong>twitter-0.9.12</strong>, entre outras versões da mesma, e sempre com mesmo problema:</p>
+<blockquote>
+<pre>(401): Unauthorized - Incorrect signature</pre>
+<p><code>RAILS_ROOT: /home/userdev/projetos/7midias</code></p>
+<div id="traces"><a href="http://127.0.0.1:3000/sorteios/sucess?oauth_token=1udSZoZmAQbBg7z8PVnwRT55nTQ7iXpLDHG5tQ4X8#"></a></p>
+<pre><code>(..)/gems/twitter-0.9.12/lib/twitter.rb:106:in `raise_errors' 
+gems/twitter-0.9.12/lib/twitter.rb:89:in `make_friendly'
+/gems/twitter-0.9.12/lib/twitter/request.rb:42:in `perform'
+/gems/twitter-0.9.12/lib/twitter/request.rb:10:in `post'
+/gems/twitter-0.9.12/lib/twitter/base.rb:383:in `perform_post'
+/gems/twitter-0.9.12/lib/twitter/base.rb:39:in `update'
+/app/models/twitteiro.rb:55:in `criar_sorteio'
+/app/controllers/sorteios_controller.rb:99:in `sucess'</code></pre>
+<div id="Full-Trace">
+<pre><code>(...)
+</code></pre>
+</div>
+</div>
+<h2>Request</h2>
+<p><strong>Parameters</strong>:</p>
+<pre>{"oauth_token"=&gt;"1udSZoZmAQbBg7z8PVnwRT55nTQ7iXpLDHG5tQ4X8"}</pre>
+</blockquote>
+<p>Estava muito inttrigado pois já havia feito outras aplicações e nunca tinha visto esse problema, verifiquei todo meu código, inclusive das gems que estava utilizando e nada apontava uma solução.</p>
+<p>Até que tive uma brilhante ideia que comprovou meu descuido comparei um de minhas apps que não tinha esse problema com essa nova app, resultado eu havia esquecido de marcar o bendito checkbox que permitia a utilização das informações do twitter para autenticação em minha aplicação, ou seja</p>
+<p>SOLUÇÃO:</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/10/oauth.jpg"><img class="aligncenter size-full wp-image-774" title="Twitter App" src="{{ site.baseurl }}/assets/oauth.jpg" alt="resolvendo problema de autenticação do twitter" width="440" height="230" /></a></p>
+<p><img src="{{ site.baseurl }}/assets/oauth.jpg" alt="" /></p>

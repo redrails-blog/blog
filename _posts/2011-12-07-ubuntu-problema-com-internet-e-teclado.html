@@ -1,0 +1,48 @@
+---
+layout: post
+title: 'Ubuntu: problema com internet e teclado'
+date: 2011-12-07 13:28:19.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+- Linux
+tags:
+- Dicas
+- Linux
+- Ubuntu
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: "a:10:{i:0;a:4:{s:2:\"ID\";s:4:\"1384\";s:10:\"post_title\";s:48:\"Como
+    rodar Aplicações NCL no Ginga com Eclipse\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:82:\"http://www.redrails.com.br/2011/12/como-rodar-aplicacoes-ncl-no-ginga-com-eclipse/\";}i:1;a:4:{s:2:\"ID\";s:4:\"1224\";s:10:\"post_title\";s:33:\"Como
+    ligar a internet no Android?\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:68:\"http://www.redrails.com.br/2011/10/como-ligar-a-internet-no-android/\";}i:2;a:4:{s:2:\"ID\";s:4:\"1086\";s:10:\"post_title\";s:50:\"Como
+    instalar um aplicativo no emulador do Android\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:86:\"http://www.redrails.com.br/2011/07/como-instalar-um-aplicativo-no-emulador-do-android/\";}i:3;a:4:{s:2:\"ID\";s:4:\"1029\";s:10:\"post_title\";s:78:\"\t!
+    LaTeX Error: Cannot determine size of graphic in fig1.jpg (no BoundingBox).\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/05/latex-error-cannot-determine-size-of-graphic-in-fig1-jpg-no-boundingbox/\";}i:4;a:4:{s:2:\"ID\";s:3:\"570\";s:10:\"post_title\";s:66:\"Dica
+    Rápida: Copiando arquivo de um computador para outro por SSH\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:100:\"http://www.redrails.com.br/2009/07/dica-rapida-copiando-arquivo-de-um-computador-para-outro-por-ssh/\";}i:5;a:4:{s:2:\"ID\";s:3:\"508\";s:10:\"post_title\";s:56:\"Configurando
+    Xorg.conf no Ubuntu para Placa Intel DG31PR\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:92:\"http://www.redrails.com.br/2009/06/configurando-xorg-conf-no-ubuntu-para-placa-intel-dg31pr/\";}i:6;a:4:{s:2:\"ID\";s:3:\"486\";s:10:\"post_title\";s:30:\"Instalando
+    TweetDeck no Ubuntu\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:66:\"http://www.redrails.com.br/2009/05/instalando-tweetdeck-no-ubuntu/\";}i:7;a:4:{s:2:\"ID\";s:3:\"448\";s:10:\"post_title\";s:35:\"Flexões
+    de nomes com Ruby On Rails\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:70:\"http://www.redrails.com.br/2009/05/flexoes-de-nomes-com-ruby-on-rails/\";}i:8;a:4:{s:2:\"ID\";s:3:\"319\";s:10:\"post_title\";s:41:\"Pacote
+    de Icones Para Aplicativos e Sites\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:77:\"http://www.redrails.com.br/2009/01/pacote-de-icones-para-aplicativos-e-sites/\";}i:9;a:4:{s:2:\"ID\";s:3:\"271\";s:10:\"post_title\";s:27:\"Ubuntu
+    8.10 (Intrepid Ibex)\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:60:\"http://www.redrails.com.br/2008/10/ubuntu-810-intrepid-ibex/\";}}"
+  _relation_threshold: '1'
+  _syntaxhighlighter_encoded: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br"><img class="aligncenter size-full wp-image-1371" title="ubuntu1110broken" src="{{ site.baseurl }}/assets/ubuntu1110broken.jpg" alt="" width="346" height="247" /></a><br />
+Esses dias tive um problema com Ubuntu, após realizar instalaçãoes de alguns softwares e e fuçar bastante ,ao reiniciar algumas teclas como i,o,l,p,k,ç,~ e outras dessa região simplesmente não funcionavam tentei modificar o keyboard layout, linguagem e nada funcionou.</p>
+<p>Além desse problema com teclado, não conseguia ter acesso a internet, usei de um tudo DNS, IP estático, wi-fi, cabo, 3G, nada simplesmente nada parecia dar jeito nesse problema... ao perceber que na tela de login todas as teclas funcionávam perfeitamente, deduzi que o problema só poderia estar nas configurações pessoais do meu usuário... para resolver meu problema realizei o seguinte procedimento para resetar as confgurações padrão do meu Ubuntu, mas sem perde-las.</p>
+<blockquote><pre>
+[code lang="php"]
+cd ~
+mkdir backup
+mv -rf ./.*
+[/code]
+</pre>
+</blockquote>
+<p>Pronto reinicie sua máquina e verifique se funcionou se sim, você pode restaurar as configurações que julga não prejudiciais e importantes na pasta backup</p>

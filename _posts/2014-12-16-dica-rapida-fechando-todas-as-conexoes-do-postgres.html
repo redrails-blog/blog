@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'Dica rápida: Fechando todas as conexões do Postgres'
+date: 2014-12-16 14:53:27.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+- Dicas
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+  _responsive_layout: default
+  _wp_old_slug: dica-rapida-fechando-todas-as-coneccoes-do-postgres
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<blockquote>Para o PostgreSQL 9.1 ou inferior:</p>
+<pre class="lang-sql prettyprint prettyprinted"><code><span class="kwd">SELECT</span><span class="pln"> pg_terminate_backend</span><span class="pun">(</span><span class="pln">pg_stat_activity</span><span class="pun">.</span><span class="pln">procpid</span><span class="pun">)</span>
+<span class="kwd">FROM</span><span class="pln"> pg_stat_activity
+</span><span class="kwd">WHERE</span><span class="pln"> pg_stat_activity</span><span class="pun">.</span><span class="pln">datname </span><span class="pun">=</span> <span class="str">'NOME_DO_BANCO'</span>
+  <span class="kwd">AND</span><span class="pln"> procpid </span><span class="pun">&lt;&gt;</span><span class="pln"> pg_backend_pid</span><span class="pun">();</span></code></pre>
+</blockquote>
+<p>PostgreSQL 9.2 ou superior:</p>
+<blockquote>
+<pre class="lang-sql prettyprint prettyprinted"><code><span class="kwd">SELECT</span><span class="pln"> pg_terminate_backend</span><span class="pun">(</span><span class="pln">pg_stat_activity</span><span class="pun">.</span><span class="pln">pid</span><span class="pun">)</span>
+<span class="kwd">FROM</span><span class="pln"> pg_stat_activity
+</span><span class="kwd">WHERE</span><span class="pln"> pg_stat_activity</span><span class="pun">.</span><span class="pln">datname </span><span class="pun">=</span> <span class="str">'NOME_DO_BANCO'</span>
+  <span class="kwd">AND</span><span class="pln"> pid </span><span class="pun">&lt;&gt;</span><span class="pln"> pg_backend_pid</span><span class="pun">();</span></code></pre>
+</blockquote>

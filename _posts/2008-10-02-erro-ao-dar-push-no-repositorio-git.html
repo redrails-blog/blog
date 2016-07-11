@@ -1,0 +1,177 @@
+---
+layout: post
+title: Erro ao dar Push no repositório GIT
+date: 2008-10-02 00:37:40.000000000 -03:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- Getna
+- Git
+- Ruby
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:1;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"2";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:2;a:4:{s:2:"ID";s:3:"228";s:10:"post_title";s:63:"Git:
+    Participando de um projeto OpenSource no GitHub - Comandos";s:7:"matches";s:1:"2";s:9:"permalink";s:96:"http://www.redrails.com.br/2008/10/git-participando-de-um-projeto-opensource-no-github-comandos/";}i:3;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"2";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:4;a:4:{s:2:"ID";s:3:"171";s:10:"post_title";s:64:"Getna
+    : Uma Abordagem geral sobre o processo de desenvolvimento.";s:7:"matches";s:1:"2";s:9:"permalink";s:97:"http://www.redrails.com.br/2008/09/getna-uma-abordagem-geral-sobre-o-processo-de-desenvolvimento/";}i:5;a:4:{s:2:"ID";s:3:"154";s:10:"post_title";s:49:"GEtna
+    - Ep. 3: Mapeando Tabelas do Banco de Dados";s:7:"matches";s:1:"2";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/08/getna-ep-3-mapeando-tabelas-do-banco-de-dados/";}i:6;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"2";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:7;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"2";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:8;a:4:{s:2:"ID";s:4:"1016";s:10:"post_title";s:129:"Criação
+    de população inicial para resolução do problema de partição de número com Algoritmo
+    Genético codificado em Ruby";s:7:"matches";s:1:"1";s:9:"permalink";s:155:"http://www.redrails.com.br/2011/05/criacao-de-populacao-inicial-para-resolucao-do-problema-de-particao-de-numero-com-algoritmo-genetico-codificado-em-ruby/";}i:9;a:4:{s:2:"ID";s:4:"1005";s:10:"post_title";s:129:"Google
+    Android como um ambiente de desenvolvimento de aplicações para Sistemas de Decodificação
+    de DTV (TV Digital) [Parte 2]";s:7:"matches";s:1:"1";s:9:"permalink";s:157:"http://www.redrails.com.br/2011/04/google-android-como-um-ambiente-de-desenvolvimento-de-aplicacoes-para-sistemas-de-decodificacao-de-dtv-tv-digital-parte-2/";}}'
+  _relation_threshold: '1'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Aqui vai um resumo de como eu resolvi esse problema :)</p>
+<p>Eu sou novato tanto em GIT quanto em qualquer outro software de versionamento. nubei de mais XD</p>
+<p>IMPORTANTE:</p>
+<p>isso não é um tutorial, ou seja não siga os passos dele para obter um bom resultado, mas partes desse evento podem ser uma solução para seu problema. erros de português tem aqui aos montes... waaalleee!!</p>
+<p>Bom quando fui dar o simples e corriqueiro <strong><em>git push</em></strong> no <strong><a href="http://www.maxonrails.wordpress.com/tag/getna" target="_blank">getna</a></strong> me veio o seguinte erro:</p>
+<pre>git push
+To git@github.com:user/repo.git
+! [rejected] branchname -&gt; branchname (non-fast forward)
+error: failed to push some refs to 'git@github.com:user/repo.git'</pre>
+<p>Após realizar uma pesquisa, logo veio a<a href="http://edspencer.net/2008/04/when-git-tells-you-it-failed-to-push.html" target="_blank"> solução</a>, como eu havia feito alterações no código em meu trabalho com uma versão mais antiga(a que estava no GIT) do que eu tinha em minha casa(esqueci de "pushar" o código) então necessitava dar um comando para pegar o código que estava no git</p>
+<pre>git pull</pre>
+<p>simples não?</p>
+<p>Como retorno obtivemos</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git pull
+remote: Counting objects: 28, done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 17 (delta 7), reused 0 (delta 0)
+Unpacking objects: 100% (17/17), done.
+From git@github.com:LuizCarvalho/getna
+   31ef4ca..3df45aa  master     -&gt; origin/master
+ * [new branch]      trunk      -&gt; origin/trunk
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.master.merge' in
+your configuration file does not tell me either.  Please
+name which branch you want to merge on the command line and
+try again (e.g. 'git pull  ').
+See git-pull(1) for details on the refspec.
+
+If you often merge with the same branch, you may want to
+configure the following variables in your configuration
+file:
+
+    branch.master.remote =
+    branch.master.merge =
+    remote..url =
+    remote..fetch =
+
+See git-config(1) for details.</pre>
+<p>Bom... melhorou mais ainda não funcionou...</p>
+<p>eu tinha uma certeza que devia fazer um merge... mas num sabia como fazer isso, dei um:</p>
+<pre>git checkout master</pre>
+<p>apareceu algumas coisas, ai achei que agora iria funcionar, é hora do merge:</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git merge trunk
+trunk - not something we can merge</pre>
+<p>é acho que não funcionou... :(, no <a href="http://www.akitaonrails.com/2008/4/3/micro-tutorial-de-git" target="_blank">tutorial do Akita</a> pareceu tão facil, nao entendi essa de não poder mesclar....</p>
+<p>bom pensei um pouco eu tenho a seguinte situação</p>
+<p>tenho:</p>
+<p>getna V1(master) - github<br />
+getna V2(master) - em casa<br />
+getna V3(trunk) - github</p>
+<p>hum, acho que eu baguncei de mais... acho que o que eu estou tentando é unir V2 e V3. mas e V1...</p>
+<p>hum... esperem... isso pode funcionar vo fazer um teste.</p>
+<pre>git branch -a
+* master
+  origin/master
+  origin/trunk</pre>
+<p>Opa. hum eu tentei dar um merge no master(V2)... que é o branch que eu estou no momento... e esse origin/master... acho que ele é o master que esta no github(V1)...vamos ver... o que é um peido pra que já esta cagado não é mesmo? :D</p>
+<pre>git merge origin/master
+
+generators/getna/doc/rdoc-style.css: needs update
+generators/getna/templates_1/controller.rb: needs update
+generators/getna/templates_1/functional_test.rb: needs update
+generators/getna/templates_1/helper.rb: needs update
+generators/getna/templates_1/layout.html.erb: needs update
+generators/getna/templates_1/style.css: needs update
+(...)
+Auto-merged generators/getna/USAGE
+CONFLICT (content): Merge conflict in generators/getna/USAGE
+Automatic merge failed; fix conflicts and then commit the result.</pre>
+<p>OHHHHH!!! que isso? acho q agora sim *.*</p>
+<p>Mas esperem, que negocio é esse de merge failed... vix... acho que não foi... hum vo tentar de novo eu gostei desse merge XD</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git merge origin/master
+You are in the middle of a conflicted merge.</pre>
+<p>Ein? que isso ai agora? porque dessa vez não funcionou? :(, vo ver esse arquivo USAGE ai</p>
+<pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:generators/getna/USAGE
+== Getna
+
+=======
+script/generator getna xxx
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/master:generators/getna/USAGE</pre>
+<p>Que isso meu deus do céu??? O.o. De onde veio esse código doido?</p>
+<p>Hum... esse é a tal das tags de conlfito.... vo resolver essa budega.. vo tirar a parte que eu n quero mais.</p>
+<pre>== Getna
+
+script/generator getna xxx</pre>
+<p>Aew. eu quero assim  =)</p>
+<p>e agora... to com medo de c*gar de novo o código.... to nem ai XD</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git merge origin/master</pre>
+<pre>You are in the middle of a conflicted merge.</pre>
+<p>Ué. mas eu resolvi essa carniça ai agorinha... O.o</p>
+<p>deixa eu ver aqui.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git status
+generators/getna/USAGE: needs merge
+# On branch master
+# Changed but not updated:
+#   (use "git add/rm &lt;file&gt;..." to update what will be committed)
+#
+#    unmerged:   generators/getna/USAGE
+#    modified:   generators/getna/USAGE</pre>
+<p>AAHHH, tô ligado... acho que vou ter q adicionar de novo pra funcionar.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git add .</pre>
+<p>hum... acho que agora eu uso o tal do rebase... pra refazer todas as mudanças nos dois desde o incio. =) vamos ver o que dá.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git rebase --continue
+You must edit all merge conflicts and then
+mark them as resolved using git add</pre>
+<p>O.o, mas que p*rra... vo adicionar só  o arquivo agora.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git add generators/getna/USAGE</pre>
+<p>Hum... deixa eu verificar o status de novo.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#    modified:   generators/getna/USAGE
+#</pre>
+<p>Opa, animei de novo. agora parece tudo ok. vamos de novo:</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git rebase --continue
+You must edit all merge conflicts and then
+mark them as resolved using git add</pre>
+<p>VSF!!! Q RAIOSSS!!!</p>
+<p>vo desistir... ¬¬... sabe de uma coisa vo commitar assim mesmo, sei que não vai funcionar mas nasci pelado, careca e banguela... agora o que vier é lucro.</p>
+<pre>maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git commit -m "resolvendo conflitos"
+Created commit 8284ddb: resolvendo conflitos
+maxprox@maxprox-desktop:~/NetBeansProjects/GEtna/vendor/plugins/getna$ git push
+Counting objects: 32, done.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (19/19), 4.49 KiB, done.
+Total 19 (delta 7), reused 0 (delta 0)
+To git@github.com:LuizCarvalho/getna.git
+   3df45aa..8284ddb  master -&gt; master</pre>
+<p>UAHuaHuHuHAuhAUAHUahUAhuHau</p>
+<p>Yuhuuuuuuuu!!! YEAAHH!!!!</p>
+<p>AMÉMMM!!!</p>
+<p>XUPA QUE EH DE UVAAA!!</p>
+<p>CREU CREU CREEUU!!</p>
+<p>=) que louco! funcionou!</p>
+<p>heheh</p>
+<h1>Viva AO GIT!</h1>
+<p>__________________-<br />
+__________________<br />
+_______________</p>

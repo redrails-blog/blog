@@ -1,0 +1,55 @@
+---
+layout: post
+title: Google Android como um ambiente de desenvolvimento de aplicações para Sistemas
+  de Decodificação de DTV (TV Digital) [Parte 1]
+date: 2011-04-18 14:48:37.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Redes
+tags:
+- Android
+- D
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:1;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:2;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:3;a:4:{s:2:"ID";s:4:"1500";s:10:"post_title";s:51:"Arquivos
+    de Vídeo e Áudio Suportados Pelo Android";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2012/01/arquivos-de-video-e-audio-suportados-pelo-android/";}i:4;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:5;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:6;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"1";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:7;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}i:8;a:4:{s:2:"ID";s:4:"1463";s:10:"post_title";s:33:"Android
+    Picture Pack - MISC IN HD";s:7:"matches";s:1:"1";s:9:"permalink";s:67:"http://www.redrails.com.br/2011/12/android-picture-pack-misc-in-hd/";}i:9;a:4:{s:2:"ID";s:4:"1352";s:10:"post_title";s:48:"PROBLEMA
+    TIM BETA: Problema com Logradouro e CEP";s:7:"matches";s:1:"1";s:9:"permalink";s:74:"http://www.redrails.com.br/2011/11/tim-beta-problema-com-logradouro-e-cep/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>[caption id="attachment_1001" align="aligncenter" width="552" caption="Google Android e TV Digital"]<a href="http://www.redrails.com.br/wp-content/uploads/2011/04/Android_TV.png"><img class="size-full wp-image-1001" title="Android_TV" src="{{ site.baseurl }}/assets/Android_TV.png" alt="Android TV" width="552" height="569" /></a>[/caption]</p>
+<p>Hoje em dia, DTV's (TV Digitais) e set-top boxs[equipamento que se conecta a um televisor e a uma fonte externa de sinal] (ainda mais em dispositivos multimídia) são controlados por softwares proprietários (Aplicações e sistemas operacionais), geralmente escritos para apenas um tipo específico ou grupo de modelos semelhantes de dispositivos. A Reutilização de código entre diferentes modelos desses dispositivos é muito rara e o desenvolvimento acaba exigindo muito tempo e esforço no ciclo de desenvolvimento para cada plataforma.</p>
+<p>A diferença entre os Hand-Helds e os dispositivos tecnológicos multimídia utilizados em casa está diminuindo gradativamente e seus respectivos hardwares (poder de processamento da CPU, RAM disponível, tamanho da memória flash e a presença de outros dispositivos como Redes, Wi-FI, Bluetooth, Aceleração de gráficos via Hardware, etc.) estão se tornando mais semelhantes. Ao longo do tempo o principal objetivo desses dispositivos não é alterado, embora características novas e mais avançadas sejam incorporadas constantemente(Gravação de Vídeo, Internet, TV, Internet e etc..)<br />
+<!--more--><br />
+Android é o primeiro sistema operacional para dispositivos móveis totalmente aberto e livre, foi desenvolvido pela Open Handset Alliance (Grupo com mais de 30 empresas lideradas pela Google).  O Android está se tornando muito popular no mercado dos aplicativos móveis por duas razões principais. Primeiro que seu código conte é totalmente gratuito e não há taxas de royality para a Java VM, assim cada fabricante pode modifica-lo de acordo com suas necessidades. Segundo é que essa nova plataforma está em fase de expansão, valorizando muito desenvolvedores que atuam nessa área.</p>
+<p>Este artigo apresenta uma abordagem sobre a utilização do Google Android como um ambiente para desenvolvimento de aplicações para dispositivos móveis embutidos, principalmente TV Digital e sistemas decodificador como set-top box. A utilização da portabilidade e a possibilidade de modificação do Android, por sua disponibilidade (por ser código aberto) e por utilizar camada de abstração de Hardware do Kernel do Linux fundamenta sua utilização no projeto. A Arquitetura e pilha utilizado pelo Android e o Kernel do Linux concedem aos desenvolvedores acesso aos recursos de multimídia e telefônicos, conectividade por rede, interface gráfica dentre outros.</p>
+<h2>II Arquitetura do Android</h2>
+<p>[caption id="attachment_999" align="aligncenter" width="466" caption="Arquitetura em Pilhas do Android"]<a href="http://www.redrails.com.br/wp-content/uploads/2011/04/image001.png"><img class="size-full wp-image-999" title="image001" src="{{ site.baseurl }}/assets/image001.png" alt="Android Stack Software " width="466" height="371" /></a>[/caption]</p>
+<p>O Android depende de serviços do sistema central do Kernel do Linux, como recursos de segurança, gerenciamento de memória, gerenciamento de processos, pilha de rede e sistema de drivers. O Kernel atua, também, como uma camada de abstração entre o hardware e todo o resto do sistema.</p>
+<p>As Bibliotecas nativas do Android são escritas em C/C++ e utilizadas por vários componentes do sistema operacional. Os recursos são disponibilizados para os desenvolvedores através do Android Application Framework. Podemos destacar algumas das principais bibliotecas e recursos presentes na plataforma como: System C Library(Implementação da C system library(libc), derivada da BSD, e modificada para sistemas embutidos para dispositivos baseados em Linux), Bibliotecas de Mídias (baseada em PureVideo OpenCORE; bibliotecas de reprodução e gravação dos mais populares formatos de áudio e vídeo, assim como arquivos de imagens), bibliotecas do Webkit (Motor de navegação moderno e muito conhecido que alimenta o browser do Android), Bibliotecas do OpenGL ES 3D (utilizam aceleração de hardware 3D, e se disponível, uma otimizada implementação de software de “rasterização” 3D), FreeType(renderização de fontes tanto vetoriais quanto oriundas de bitmaps), SQLite (um poderoso e leve banco de dados relacional disponível para todas as aplicações), além de outros tantos recursos possíveis.</p>
+<p>O Android run-time inclui um conjunto de bibliotecas que disponibiliza uma considerável parte dos recursos existentes na linguagem de programação Java. Cada instância de uma aplicação Android roda em processos separadamente, utilizando-se da Dalvik VM (Máquina Virtual baseada em registros, executa classes compiladas em Java, transformando-as em Executáveis Dalvik(.dex) formato otimizados para dispositivos embarcados, com baixo consumo de memória). A Dalvik VM usa o Kernel do Linux para funcionalidades subjacentes, tais como segmentação de memória em baixo nível.</p>
+<p>Ao conceder pleno acesso à API, os desenvolvedores estão livres para aproveitar dos recursos do Framework Android, como: hardwares, informações sobre localização, serviços em segundo plano, definir alarmes, adicionar notificações e ainda reutilizar e substituir componentes existentes. Resumindo, o Android fornece uma plataforma de desenvolvimento aberta, oferecendo condições para que se possa desenvolver aplicações modernas e poderosas.</p>
+<p>A camada de aplicação é posicionada no topo da pilha do sistema, essa camada acomoda a maioria das aplicações integradas (programa de SMS, cliente de e-mail, calendário, mapas, navegador web, telefone, etc.) bem como aplicações desenvolvidas por terceiros baixadas da internet ou instaladas via Cartão de Memoria (SDcard).</p>
+<p>&nbsp;</p>
+<blockquote><p>
+Tradução do Artigo: <a href=" http://ieeexplore.ieee.org/Xplore/login.jsp?url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F5510864%2F5522687%2F05522728.pdf%3Farnumber%3D5522728&amp;authDecision=-203">Google's android as an application environment for DTV decoder system </a><br />
+Kuzmanovic, N.  Maruna, T.  Savic, M.  Miljkovic, G.  Isailovic, D.<br />
+Fac. of Tech. Sci., Univ. of Novi Sad, Novi Sad, Serbia  </p></blockquote>

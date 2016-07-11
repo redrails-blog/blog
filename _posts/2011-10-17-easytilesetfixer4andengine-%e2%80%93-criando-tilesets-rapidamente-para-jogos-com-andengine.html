@@ -1,0 +1,52 @@
+---
+layout: post
+title: EasyTileSetFixer4AndEngine – Criando tilesets rapidamente para Jogos com AndEngine
+date: 2011-10-17 17:16:09.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Desenvolvimento
+- Design
+tags:
+- Andengine
+- Android
+- Tools
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"2";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:1;a:4:{s:2:"ID";s:4:"1205";s:10:"post_title";s:63:"EasyTilesetFixer4AndEngine
+    - Make Easily tilesets for AndEngine";s:7:"matches";s:1:"2";s:9:"permalink";s:97:"http://www.redrails.com.br/2011/10/easytilesetfixer4andengine-make-easily-tilesets-for-andengine/";}i:2;a:4:{s:2:"ID";s:4:"1197";s:10:"post_title";s:49:"Super
+    Pacote com 50 Tilesets em HD para AndEngine";s:7:"matches";s:1:"2";s:9:"permalink";s:85:"http://www.redrails.com.br/2011/10/super-pacote-com-50-tilesets-em-hd-para-andengine/";}i:3;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:4;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:5;a:4:{s:2:"ID";s:4:"1500";s:10:"post_title";s:51:"Arquivos
+    de Vídeo e Áudio Suportados Pelo Android";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2012/01/arquivos-de-video-e-audio-suportados-pelo-android/";}i:6;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:7;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:8;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"1";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:9;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/10/EasyTileSetFixer4AndEngine.jpg"><img class="aligncenter" title="EasyTileSetFixer4AndEngine" src="{{ site.baseurl }}/assets/EasyTileSetFixer4AndEngine.jpg" alt="" width="500" height="336" /></a></p>
+<p>Olá amigo do blog hoje vim apresentar uma ferramenta que anda me ajudando muito no desenvolvimento de jogos com Android, na questão de criação de tilesets para ser utilizados pelo AndEngine, o Nicolas (criador do AndEngine) desenvolveu uma que comigo estava me dando um pouco de dor de cabeça, então resolvi pegar o código disponibilizado por ele e criar uma mais simples para esse propósito.</p>
+<p><!--more--><br />
+O EasyTilesetFixer4AndEngine cria em poucos comandos um tileset , primeiro devemos preparar o tileset, transformado ele do padrão 32px para 34px, para isso utilize uma ferramenta de sua escolha, neste caso utilizei o photoshop para redimensionar o tamanho da imagem em 6,25% (referente a 2px a mais ) utilizando a técnica de interpolação Nearest Neighbor que mantem os pixeis sem que haja suavização em suas bordas.<br />
+<a href="http://www.redrails.com.br/wp-content/uploads/2011/10/photoshop_size_tileset.jpg"><img class="aligncenter" title="photoshop_size_tileset" src="{{ site.baseurl }}/assets/photoshop_size_tileset.jpg" alt="" width="373" height="355" /></a><br />
+Baixe o  [download id="12"]<br />
+Descompacte-o e utilize o comando</p>
+<blockquote><p>java -jar fixer4ae.jar</p></blockquote>
+<p>para rodar o aplicativo, ele por padrão lê um arquivo chamado input.png no mesmo diretório, e cria um arquivo fixed.png com as especificações necessárias para utilizar sem problemas com o AndEngine.<br />
+Mais opções leia o <a href="https://github.com/LuizCarvalho/EasyTilesetFixer4AndEngine" target="_blank">readme </a>do projeto, algumas funções podem ser adicionadas então sempre bom dar uma lida.</p>
+<p>E pra você que não quer ter essa trabalheira toda, baixe um super pack com 50 tilesets já compatíveis com o AndEngine <a href="http://www.redrails.com.br/2011/10/super-pacote-com-50-tilesets-em-hd-para-andengine/">nesse post</a><br />
+Até a próxima.</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/10/EasyTileSetFixer4AndEngine.jpg"><br />
+</a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/10/photoshop_size_tileset.jpg"><br />
+</a></p>

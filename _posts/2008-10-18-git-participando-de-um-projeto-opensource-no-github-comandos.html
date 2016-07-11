@@ -1,0 +1,86 @@
+---
+layout: post
+title: 'Git: Participando de um projeto OpenSource no GitHub - Comandos'
+date: 2008-10-18 12:27:50.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+- Tutoriais
+tags:
+- Getna
+- Git
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"216";s:10:"post_title";s:36:"Erro
+    ao dar Push no repositório GIT";s:7:"matches";s:1:"2";s:9:"permalink";s:71:"http://www.redrails.com.br/2008/10/erro-ao-dar-push-no-repositorio-git/";}i:1;a:4:{s:2:"ID";s:3:"943";s:10:"post_title";s:65:"Object-Relational
+    Mapping(ORM) - Mapeamento de Objeto-Relacional ";s:7:"matches";s:1:"1";s:9:"permalink";s:96:"http://www.redrails.com.br/2011/04/object-relational-mappingorm-mapeamento-de-objeto-relacional/";}i:2;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"1";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}i:3;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:4;a:4:{s:2:"ID";s:3:"289";s:10:"post_title";s:28:"GEtna
+    0.6.0 (Betha) Liberado";s:7:"matches";s:1:"1";s:9:"permalink";s:60:"http://www.redrails.com.br/2008/11/getna-060-betha-liberado/";}i:5;a:4:{s:2:"ID";s:3:"287";s:10:"post_title";s:20:"GEtna:
+    fase de Teste";s:7:"matches";s:1:"1";s:9:"permalink";s:55:"http://www.redrails.com.br/2008/11/getna-fase-de-teste/";}i:6;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"1";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:7;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"1";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:8;a:4:{s:2:"ID";s:3:"178";s:10:"post_title";s:15:"GEtna:
+    FeedBack";s:7:"matches";s:1:"1";s:9:"permalink";s:50:"http://www.redrails.com.br/2008/09/getna-feedback/";}i:9;a:4:{s:2:"ID";s:3:"171";s:10:"post_title";s:64:"Getna
+    : Uma Abordagem geral sobre o processo de desenvolvimento.";s:7:"matches";s:1:"1";s:9:"permalink";s:97:"http://www.redrails.com.br/2008/09/getna-uma-abordagem-geral-sobre-o-processo-de-desenvolvimento/";}}'
+  _relation_threshold: '1'
+  views: '20'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Então, Coloquei esse titulo porque não achei outro que descrevesse o que estou postando, então vamos a esplicação.</p>
+<p>Estou trabalhando no <strong><a href="http://maxonrails.wordpress.com/tag/getna/" target="_blank">GEtna</a></strong> (Lê se Guetna[GET+na] e não Jetna :) ) em casa e no trabalho as vezes faço umas modificações e as sempre esqueço de dar push de minha casa ou no trabalho, quando tento dar push de algum dos dois dá a maior zica, encontrei a <strong><a href="http://maxonrails.wordpress.com/2008/10/02/erro-ao-dar-push-no-repositorio-git/" target="_blank">solução</a></strong> para o meu problema, mas ai estou com outro bem chato que me acompanha desde que começei com git, a terrivel e enjoada mensagem:</p>
+<blockquote><p><code>fatal: protocol error: expected sha/ref, got '<br />
+*********'</code></p>
+<p>You can't push to git://github.com/user/repo.git<br />
+Use git@github.com:user/repo.git</p>
+<p>*********'</p></blockquote>
+<p>Como eu tenho ódio disso ai, então fui as pesquisas, demorei bastante até entrar em um <a href="http://gist.github.com/nfelsen" target="_blank">gist</a> que me levou até um <a href="http://blog.insoshi.com/2008/10/14/setting-up-your-git-repositories-for-open-source-projects-at-github/" target="_blank">post</a> do blog do <a href="http://portal.insoshi.com/" target="_blank"><span>Nathaniel Felsen</span></a>, e ai consegui resolver meus problemas. ok vamos lá.</p>
+<p>Ao tentar dar um:</p>
+<blockquote><p><code>$ git push</code></p></blockquote>
+<p>Eu me deparei com o erro acima a solução encontrada é seguir os passos a seguir, usei o<a href="http://github.com/LuizCarvalho/getna" target="_blank"> GEtna </a>como exemplo:</p>
+<h2>O Caminho Certo (the Right Way)</h2>
+<p>Já vou adiantando os passos necessários para que você resolva seu problema são P6 e P8.</p>
+<p><span> Esses comandos foram feitos no respositorio de local para um branch chamado <strong>working</strong><tt>:</tt></span></p>
+<pre style="padding-left:30px;">P1-$ git clone git://github.com/LuizCarvalho/getna.git
+P2-$ cd getna
+P3-$ git branch --track master origin/master
+P4-$ git branch working master
+P5-$ git checkout working
+P6-$ git remote add working git@github.com:LuizCarvalho/getna.git
+P7-$ git fetch working
+P8-$ git push working working:refs/heads/working
+P9-$ git config branch.working.remote working
+P10-$ git config branch.working.merge refs/heads/working</pre>
+<h3>Esplicando cada comando mais detalhadamente</h3>
+<p>Primeiro passo: Clonar o repositório</p>
+<pre style="padding-left:30px;">$ git clone git://github.com/LuizCarvalho/getna.git</pre>
+<p>Segundo passo: Entre dentro do diretório (Não tente atravessar o monitor, use o comando <em>cd</em> O.o)</p>
+<pre style="padding-left:30px;">$ cd getna</pre>
+<p>Passo três: esse eu não entendi, mas coloquei XD, como não testei não sei dizer pra que serve, mas se está no maneira certa de fazer eu não podia tirar  :), na versão original ao invés de <em>maste</em>r está <em>edge</em>, como não tenho nenhum branch <em>edge</em> coloquei meu <em>master</em> mesmo.</p>
+<pre style="padding-left:30px;">$ git branch --track master origin/master</pre>
+<p>Passo quatro:  Criando a branch <em>Working</em> a partir do meu <em>master</em>, assim eu faço meus merges (*.*) depois com mais calma</p>
+<pre style="padding-left:30px;">$ git branch working master</pre>
+<p>Passo cinco: Mudando de Branch (da atual para working)</p>
+<pre style="padding-left:30px;">$ git checkout working</pre>
+<p>Passo Seis: Adicionando Referências remotas ao meu repositório</p>
+<pre style="padding-left:30px;">$ git remote add working git@github.com:LuizCarvalho/getna.git</pre>
+<p>Passo Sete: Buscando e sincronizando o repositório local com o remoto</p>
+<pre style="padding-left:30px;">$ git fetch working</pre>
+<p>Passo 7,5: Na verdade não existe esse passo lá, mas eu achei que deveria ter algo assim O.o pra ter um caminho completo, pois se você realizou modificações no projeto você necessita <em>comitar</em> antes de enviar então:</p>
+<pre style="padding-left:30px;">$ git commit -a -m "Descrição das Alterações"</pre>
+<p>Passo Oito: Dando Push no repositório. Opa, agora é a hora de dar errado, depois de tanto trabalho o truque estava no passo 6,7 e 8, essa seqüência é a seqüência que deve ser realizada para não se obter aquele erro indesejável. :).</p>
+<pre style="padding-left:30px;">$ git push working working:refs/heads/working</pre>
+<p>Passo Nove e Dez: SImplificando o trabalho. Agora que nosso novo branch está no repositório remoto, iremos simplificar nosso trabalho, configurando nosso push para sempre "empurrar" o código de nosso gerador sempre para esse repositório.</p>
+<pre style="padding-left:30px;">$ git config branch.working.remote working$ git config branch.working.merge refs/heads/working</pre>
+<p>Com isso necessita-se apenas de um comando para enviar nossas alterações:</p>
+<pre style="padding-left:30px;">$ git push</pre>
+<p>Bem melhor não? para buscar no repositório basta um</p>
+<pre style="padding-left:30px;">$ git pull</pre>
+<p>Espero que isso ajude, pois pra mim isso foi muuito útil.</p>
+<p>até a proxima.</p>

@@ -1,0 +1,51 @@
+---
+layout: post
+title: Como colocar icone em um Window/Frame com Java (Método Simples)
+date: 2011-09-23 12:00:59.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+- Desenvolvimento
+- Projetos
+tags: []
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Olá amigos,</p>
+<p>Desenvolvendo um pequeno aplicativo aqui que logo mais posto no blog me deparei com um problema que acabou de dando um pouco de dor de cabeça. Para livra-los desse incômodo trago aqui uma solução bem simples.</p>
+<p>No Netbeans quando cria-se uma Aplicação Desktop existe no projeto um esquema bem legal de resources, vou-lhes mostrar como utiliza-lo.<br />
+<script type="text/javascript"><br />
+	bb_bid = "1611534";<br />
+	bb_lang = "pt-BR";<br />
+	bb_keywords = "";<br />
+	bb_name = "custom";<br />
+	bb_limit = "9";<br />
+	bb_format = "bbo";<br />
+</script><br />
+<script type="text/javascript" src="http://static.boo-box.com/javascripts/embed.js"></script><br />
+Bom meu problema é simples queria coloca um ícone na janela da aplicação e que por consequência fica também na barra de tarefas, assim: </p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/09/Java_Icon.png"><img src="{{ site.baseurl }}/assets/Java_Icon.png" alt="" title="Java_Icon" width="417" height="316" class="aligncenter size-full wp-image-1130" /></a><br />
+<!--more--><br />
+Ok conseguia coloca o ícone utilizando várias técnicas achadas por ai, mas um problema surgia ao tentar distribuir (dist) o jar. A solução já estava ali só era necessário utiliza-la. Vamos lá:<br />
+Primeiro coloque seu ícone (em nosso ex icon.png )na pasta resources (PROJETO/src/PACOTE/resources)<br />
+<a href="http://www.redrails.com.br/wp-content/uploads/2011/09/resource_folder.png"><img src="{{ site.baseurl }}/assets/resource_folder.png" alt="" title="resource_folder" width="509" height="369" class="aligncenter size-full wp-image-1132" /></a></p>
+<p>Feito isso encontre o arquivo de propriedades seu JFrame principal (no meu caso AndroidIconMakerView.properties)</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2011/09/prop.png"><img src="{{ site.baseurl }}/assets/prop.png" alt="" title="prop" width="350" height="300" class="aligncenter size-full wp-image-1131" /></a></p>
+<p>Adicione a linha de propriedades<br />
+[source lang="bash"]<br />
+windowIcon.icon=icon.png<br />
+[/source]</p>
+<p>Feito isso sobra a "difícil" parte da codificação, assim:</p>
+<p>[source lang="java"]<br />
+        getFrame().setIconImage(resourceMap.getImageIcon(&quot;windowIcon.icon&quot;).getImage());<br />
+[/source]</p>
+<p>Gostaram?</p>

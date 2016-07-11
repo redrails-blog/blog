@@ -1,0 +1,58 @@
+---
+layout: post
+title: Como instalar um aplicativo no emulador do Android
+date: 2011-07-04 21:41:06.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Android
+- Desenvolvimento
+- Dicas
+- Linux
+tags:
+- Android
+- Aplicativos
+- Dicas
+meta:
+  _edit_last: '1'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:4:"1262";s:10:"post_title";s:76:"Instalar
+    aplicativos do cartão de mémoria (sdcard) para a memória interna";s:7:"matches";s:1:"2";s:9:"permalink";s:107:"http://www.redrails.com.br/2011/10/instalar-aplicativos-do-cartao-de-memoria-sdcard-para-a-memoria-interna/";}i:1;a:4:{s:2:"ID";s:4:"1224";s:10:"post_title";s:33:"Como
+    ligar a internet no Android?";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2011/10/como-ligar-a-internet-no-android/";}i:2;a:4:{s:2:"ID";s:4:"1681";s:10:"post_title";s:40:"
+    Android Frameworks,Libs and Tools List ";s:7:"matches";s:1:"1";s:9:"permalink";s:73:"http://www.redrails.com.br/2012/02/android-frameworkslibs-and-tools-list/";}i:3;a:4:{s:2:"ID";s:4:"1675";s:10:"post_title";s:51:"Android
+    2.3.7 (GingerBread) Cyanogenmod no Galaxy 5";s:7:"matches";s:1:"1";s:9:"permalink";s:84:"http://www.redrails.com.br/2012/02/ndroid-2-3-7-gingerbread-cyanogenmod-no-galaxy-5/";}i:4;a:4:{s:2:"ID";s:4:"1508";s:10:"post_title";s:47:"Como
+    baixar Vídeos do youtube para seu Android";s:7:"matches";s:1:"1";s:9:"permalink";s:82:"http://www.redrails.com.br/2012/01/como-baixar-videos-do-youtube-para-seu-android/";}i:5;a:4:{s:2:"ID";s:4:"1500";s:10:"post_title";s:51:"Arquivos
+    de Vídeo e Áudio Suportados Pelo Android";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2012/01/arquivos-de-video-e-audio-suportados-pelo-android/";}i:6;a:4:{s:2:"ID";s:4:"1493";s:10:"post_title";s:22:"Android:
+    Seja um Lider";s:7:"matches";s:1:"1";s:9:"permalink";s:57:"http://www.redrails.com.br/2012/01/android-seja-um-lider/";}i:7;a:4:{s:2:"ID";s:4:"1490";s:10:"post_title";s:68:"Lenovo
+    lança TV com Android Ice Cream Sandwich no CES Unveiled 2012";s:7:"matches";s:1:"1";s:9:"permalink";s:103:"http://www.redrails.com.br/2012/01/lenovo-lanca-tv-com-android-ice-cream-sandwich-no-ces-unveiled-2012/";}i:8;a:4:{s:2:"ID";s:4:"1481";s:10:"post_title";s:42:"Droido
+    - Torpedos SMS Grátis para Android";s:7:"matches";s:1:"1";s:9:"permalink";s:75:"http://www.redrails.com.br/2011/12/droido-torpedos-sms-gratis-para-android/";}i:9;a:4:{s:2:"ID";s:4:"1464";s:10:"post_title";s:115:"DESENVOLVIMENTO
+    EM ANDROID: UMA VISÃO VOLTADA PARA APLICAÇÕES DE CONTROLE E MONITORAMENTO DE REDE
+    - CONNEPI 2011";s:7:"matches";s:1:"1";s:9:"permalink";s:145:"http://www.redrails.com.br/2011/12/desenvolvimento-em-android-uma-visao-voltada-para-aplicacoes-de-controle-e-monitoramento-de-rede-connepi-2011/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><img src="{{ site.baseurl }}/assets/install_android1.png" alt="Android apps" /><br />
+Outra dica muito fácil de ser realizada e que nos economiza muito tempo, como instalar rapidamente um .apk no emulador do Android em seu PC. Para realizar o procedimento caso já tenha adicionado as executáveis do Android eu seu bashrc ( como explicado em nosso post anterior [RECOMENDADO] ) basta se dirigir até o diretório de seu aplicativo e executar o seguinte comando:</p>
+<p><code>adb install nome_do_aplicativo.apk<br />
+</code><br />
+ex:<br />
+<code>adb install Dropbox.apk </code></p>
+<p>UPDATE:<br />
+Quando você possui mais de um emulador ou possui um emulador e o seu dispositivo conectado pela USB você deve informar em qual dispositivo deseja instalar sua apk isso pode ser feito utilizando o parametro -s da seguinte forma:</p>
+<p><code>$adb -s </code><br />
+Ah mas como eu saberei o identificador de meu dispositivo? fácil utilize o <strong>adb devices</strong> olhe o exemplo:<br />
+<code><br />
+$ adb devices<br />
+List of devices attached<br />
+I5500d577a700 device<br />
+emulator-5554 device<br />
+</code></p>
+<p><strong>I5500d577a700</strong> e <strong>emulator-5554</strong> são respectivamente os emuladores de meu Galaxy 5 e do Emulador que criei, caso eu queira instalar o apk em meu emulador faria</p>
+<p><code>adb -s emulator-5554 install Dropbox.apk </code></p>
+<p>Nosso exemplo já é uma outra dica, utilizar o Dropbox pode lhe economizar um tempão em transferências de arquivos para seu emulador.</p>
+<p>Bom até o próximo post.</p>

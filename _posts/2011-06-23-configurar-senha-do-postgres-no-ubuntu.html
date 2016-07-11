@@ -1,0 +1,43 @@
+---
+layout: post
+title: Configurar Senha do Postgres no Ubuntu
+date: 2011-06-23 18:09:14.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Dicas
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+  _aioseop_title: Configurar Senha do Postgres no Ubuntu da maneira mais fácil possível
+  _aioseop_description: Configurar, resetar ou alterar a senha do postgres no ubuntu
+    de maneira fácil e rápida com apenas alguns comandos
+  _responsive_layout: default
+  _aioseop_keywords: postgres, postgresql, pgadmin, ubuntu, password, user, senha,
+    faltal, usuario
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Quando você instala o postgresql 8.6 no Ubuntu ele acaba não pedindo a senha inicial quando você tenta logar ocorre um erro<br />
+<code><br />
+An error has occurred:</code></p>
+<p>Error connecting to the server: FATAL: password authentication failed for user "postgres"<br />
+FATAL: password authentication failed for user "postgres"</p>
+<p>Para resolver isso é bastante simples, vamos configurar nosso postgres com uma nova senha</p>
+<p>&nbsp;</p>
+<p>Logue no postgresql usando a conta root:<br />
+<code>sudo -u postgres psql template1<br />
+Depois quando estiver no psql digite o seguinte comando SQL:<br />
+<code>ALTER USER postgres WITH PASSWORD 'nova_senha';<br />
+onde 'nova_senha' é a sua nova senha.</p>
+<p>por exemplo<br />
+<code>ALTER USER postgres WITH PASSWORD 'postgres';</code><br />
+Saia do console do postgresql digitando \q</p>
+<p>Prontinho postgres está pronto para ser utilizado.</p>
+<p>Via: <a href="http://public-void-main.blogspot.com/2008/03/alterar-senha-do-postgresql-no-ubuntu.html">Public static void main()</a></code></code></p>

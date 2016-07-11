@@ -1,0 +1,61 @@
+---
+layout: post
+title: Web Service com NetBean Tutorial On-line - Parte 4 ( Final )
+date: 2008-07-18 02:29:57.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- download
+- Java
+- NetBeans
+- WebServices
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:2:"40";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 3";s:7:"matches";s:1:"3";s:9:"permalink";s:38:"http://www.redrails.com.br/2008/07/40/";}i:1;a:4:{s:2:"ID";s:2:"39";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 2";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-2/";}i:2;a:4:{s:2:"ID";s:2:"12";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 1";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-1/";}i:3;a:4:{s:2:"ID";s:1:"9";s:10:"post_title";s:42:"Web
+    Services com Netbeans um simples HowTo";s:7:"matches";s:1:"3";s:9:"permalink";s:78:"http://www.redrails.com.br/2008/06/web-services-com-netbeans-um-simples-howto/";}i:4;a:4:{s:2:"ID";s:2:"49";s:10:"post_title";s:54:"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java";s:7:"matches";s:1:"2";s:9:"permalink";s:89:"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/";}i:5;a:4:{s:2:"ID";s:4:"1322";s:10:"post_title";s:51:"Download
+    MOTODev sem fazer cadastro - Links Diretos";s:7:"matches";s:1:"1";s:9:"permalink";s:85:"http://www.redrails.com.br/2011/11/download-motodev-sem-fazer-cadastro-links-diretos/";}i:6;a:4:{s:2:"ID";s:4:"1294";s:10:"post_title";s:74:"Baixar
+    e Instalar todas as API ''s do Android em modo OFF LINE (Standalone)";s:7:"matches";s:1:"1";s:9:"permalink";s:107:"http://www.redrails.com.br/2011/11/baixar-e-instalar-todas-as-api-s-do-android-em-modo-off-line-standalone/";}i:7;a:4:{s:2:"ID";s:3:"615";s:10:"post_title";s:58:"J2ME:
+    Problemas ao Instalar Jar em Aparelhos Sony Ericsson";s:7:"matches";s:1:"1";s:9:"permalink";s:93:"http://www.redrails.com.br/2009/10/j2me-problemas-ao-instalar-jar-em-aparelhos-sony-ericsson/";}i:8;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"1";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:9;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"1";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}}'
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Olá Leitores<br />
+Desculpem pela demora na ultima parte, mas em fim vamos ao trabalho</p>
+<p>Após Criar o Cliente vamos criar o Servlet</p>
+<p><span style="text-decoration:underline;">File -&gt; New File -&gt; Web -&gt; Servlet</span></p>
+<p><img src="{{ site.baseurl }}/assets/017.png" alt="" /></p>
+<p>NEXT &gt;</p>
+<p>Dê um nome ao seu Servlet [MyWsServlet] e Escolha o pacote que irá conte-la[wspkg] finalize</p>
+<p><img src="{{ site.baseurl }}/assets/018.png" alt="" /></p>
+<p>Agora Vamos colocar nossa operação no Servlet.<br />
+Destro do código do arquivo:  MyWsServlet , Procure pelo Metodo “protected void processRequest” e descomente o Código que está dentro dele, ou adicione outro código HTML dentro da função <strong>out.Println. </strong></p>
+<p><img src="{{ site.baseurl }}/assets/image023.png" alt="" /></p>
+<p>Após Feito isso clique com o direito logo abaixo do código vá ate a opção:<br />
+<span style="text-decoration:underline;">Web Service Client Resources-&gt;Call Web Service Operation</span></p>
+<p><img src="{{ site.baseurl }}/assets/image024.png" alt="" /></p>
+<p>Feito Isso navegue a ate a Operação desejada, no nosso caso, a nossa única, <strong>Soma</strong></p>
+<p><img src="{{ site.baseurl }}/assets/image025.png" alt="" /></p>
+<p>E Aperte [OK]</p>
+<p>Nesse momento um código irá aparecer baixo de seu HTML, agora você irá coloca-lo entre as tags &lt;"body"&gt;;&lt;"/body"&gt; . assim:</p>
+<p><img src="{{ site.baseurl }}/assets/image026.png" alt="" /></p>
+<p>Seu Código está pronto para Execução Tecle CTRL+F6, irá aparecer uma mensagem requerendo o Servlet Execution URI, pressione [OK] .</p>
+<p><img src="{{ site.baseurl }}/assets/image027.png" alt="" /></p>
+<p>Pronto!</p>
+<p>Bem gente chegamos ao fim de mais um de nossos tutoriais (Finalmente neh? XD)<br />
+o codigo desse tutorial eu perdi em algum lugar depois eu procuro, mas não vou deixar vocês na mão vou dar o codigo do meu trabalho final, ficou uma porcaria mas eu gostei :)</p>
+<p>Abraços e comentem!</p>

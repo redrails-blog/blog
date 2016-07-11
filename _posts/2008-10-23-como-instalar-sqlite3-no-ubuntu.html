@@ -1,0 +1,83 @@
+---
+layout: post
+title: Como Instalar Sqlite3 no Ubuntu
+date: 2008-10-23 13:37:51.000000000 -03:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- Gem
+- Sqlite3
+- Tutorial
+- Ubuntu
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: "a:10:{i:0;a:4:{s:2:\"ID\";s:3:\"486\";s:10:\"post_title\";s:30:\"Instalando
+    TweetDeck no Ubuntu\";s:7:\"matches\";s:1:\"2\";s:9:\"permalink\";s:66:\"http://www.redrails.com.br/2009/05/instalando-tweetdeck-no-ubuntu/\";}i:1;a:4:{s:2:\"ID\";s:4:\"1369\";s:10:\"post_title\";s:39:\"Ubuntu:
+    problema com internet e teclado\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:74:\"http://www.redrails.com.br/2011/12/ubuntu-problema-com-internet-e-teclado/\";}i:2;a:4:{s:2:\"ID\";s:4:\"1029\";s:10:\"post_title\";s:78:\"\t!
+    LaTeX Error: Cannot determine size of graphic in fig1.jpg (no BoundingBox).\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:107:\"http://www.redrails.com.br/2011/05/latex-error-cannot-determine-size-of-graphic-in-fig1-jpg-no-boundingbox/\";}i:3;a:4:{s:2:\"ID\";s:3:\"778\";s:10:\"post_title\";s:36:\"Prawn::Errors::CannotFit
+    (Resolvido)\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:68:\"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/\";}i:4;a:4:{s:2:\"ID\";s:3:\"689\";s:10:\"post_title\";s:56:\"VIDEO:
+    Como Desafiar seus amigos no Joga Craque do Orkut\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:91:\"http://www.redrails.com.br/2009/12/video-como-desafiar-seus-amigos-no-joga-craque-do-orkut/\";}i:5;a:4:{s:2:\"ID\";s:3:\"670\";s:10:\"post_title\";s:61:\"Super
+    Dica: Como Desafiar seus amigos no Joga Craque do Orkut\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:96:\"http://www.redrails.com.br/2009/12/super-dica-como-desafiar-seus-amigos-no-joga-craque-do-orkut/\";}i:6;a:4:{s:2:\"ID\";s:3:\"508\";s:10:\"post_title\";s:56:\"Configurando
+    Xorg.conf no Ubuntu para Placa Intel DG31PR\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:92:\"http://www.redrails.com.br/2009/06/configurando-xorg-conf-no-ubuntu-para-placa-intel-dg31pr/\";}i:7;a:4:{s:2:\"ID\";s:3:\"465\";s:10:\"post_title\";s:38:\"Utilizando
+    JQuery no Rails  com JRails\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:73:\"http://www.redrails.com.br/2009/05/utilizando-jquery-no-rails-com-jrails/\";}i:8;a:4:{s:2:\"ID\";s:3:\"289\";s:10:\"post_title\";s:28:\"GEtna
+    0.6.0 (Betha) Liberado\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:60:\"http://www.redrails.com.br/2008/11/getna-060-betha-liberado/\";}i:9;a:4:{s:2:\"ID\";s:3:\"271\";s:10:\"post_title\";s:27:\"Ubuntu
+    8.10 (Intrepid Ibex)\";s:7:\"matches\";s:1:\"1\";s:9:\"permalink\";s:60:\"http://www.redrails.com.br/2008/10/ubuntu-810-intrepid-ibex/\";}}"
+  _relation_threshold: '1'
+  views: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Fala Galera</p>
+<p>Para testar o<strong> <a href="http://maxonrails.wordpress.com/tag/getna/" target="_blank">Getna</a></strong> em diversos bancos de dados, como já tenho mysql e postgres, então resolvi instalar o Sqlite3 no meu Ubuntu. vamos lá.</p>
+<p>[source language="ruby"]<br />
+userdev@dev-02:~/Área de Trabalho$ sudo gem install sqlite3-ruby<br />
+Building native extensions.  This could take a while...<br />
+ERROR:  Error installing sqlite3-ruby:<br />
+        ERROR: Failed to build gem native extension.</p>
+<p>/usr/bin/ruby1.8 extconf.rb install sqlite3-ruby<br />
+checking for fdatasync() in -lrt... yes<br />
+checking for sqlite3.h... no</p>
+<p>make<br />
+make: *** Sem regra para processar o alvo `ruby.h', necessário por `sqlite3_api_wrap.o'.  Pare.</p>
+<p>Gem files will remain installed in /var/lib/gems/1.8/gems/sqlite3-ruby-1.2.4 for inspection.<br />
+Results logged to /var/lib/gems/1.8/gems/sqlite3-ruby-1.2.4/ext/sqlite3_api/gem_make.out</p>
+<p>[/source]</p>
+<p>para Corrigir esse erro basta instalarmos a biblioteca libsqlite3-dev</p>
+<p>[source language="ruby"]<br />
+userdev@dev-02:~/Área de Trabalho$ sudo apt-get install libsqlite3-dev<br />
+[sudo] password for userdev:<br />
+Lendo lista de pacotes... Pronto<br />
+Construindo árvore de dependências<br />
+Lendo estado da informação... Pronto<br />
+Os seguintes pacotes foram instalados automaticamente e não são mais necessários:<br />
+  gnome-splashscreen-manager<br />
+Use 'apt-get autoremove' para removê-los.<br />
+Pacotes sugeridos:<br />
+  sqlite3-doc<br />
+Os NOVOS pacotes a seguir serão instalados:<br />
+  libsqlite3-dev<br />
+0 pacotes atualizados, 1 pacotes novos instalados, 0 a serem removidos e 1 não atualizados.<br />
+É preciso fazer o download de 0B/265kB de arquivos.<br />
+Após esta operação, 737kB adicionais de espaço em disco serão utilizados.<br />
+Selecionando pacote previamente não selecionado libsqlite3-dev.<br />
+(Lendo banco de dados ... 194821 arquivos e diretórios atualmente instalados.)<br />
+Descompactando libsqlite3-dev (de .../libsqlite3-dev_3.4.2-2_i386.deb) ...<br />
+Instalando libsqlite3-dev (3.4.2-2) ...<br />
+[/source]</p>
+<p>e agora sim podemos instalar nossa gem sem problemas</p>
+<p>[source language="ruby"]<br />
+userdev@dev-02:~/Área de Trabalho$ sudo gem install sqlite3-ruby<br />
+Building native extensions.  This could take a while...<br />
+Successfully installed sqlite3-ruby-1.2.4<br />
+1 gem installed<br />
+Installing ri documentation for sqlite3-ruby-1.2.4...<br />
+Installing RDoc documentation for sqlite3-ruby-1.2.4...<br />
+[/source]</p>
+<p>:)<br />
+Até a Próxima.</p>

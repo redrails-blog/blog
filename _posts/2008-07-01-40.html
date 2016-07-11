@@ -1,0 +1,63 @@
+---
+layout: post
+title: Web Service com NetBean Tutorial On-line - Parte 3
+date: 2008-07-01 01:27:25.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Tutoriais
+tags:
+- Java
+- NetBeans
+- Tutoriais
+- WebServices
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:9:{i:0;a:4:{s:2:"ID";s:2:"12";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 1";s:7:"matches";s:1:"4";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-1/";}i:1;a:4:{s:2:"ID";s:2:"72";s:10:"post_title";s:60:"Web
+    Service com NetBean Tutorial On-line - Parte 4 ( Final )";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2008/07/web-service-com-netbean-tutorial-on-line-parte-4-final/";}i:2;a:4:{s:2:"ID";s:2:"39";s:10:"post_title";s:50:"Web
+    Service com NetBean Tutorial On-line - Parte 2";s:7:"matches";s:1:"3";s:9:"permalink";s:84:"http://www.redrails.com.br/2008/06/web-service-com-netbean-tutorial-on-line-parte-2/";}i:3;a:4:{s:2:"ID";s:1:"9";s:10:"post_title";s:42:"Web
+    Services com Netbeans um simples HowTo";s:7:"matches";s:1:"3";s:9:"permalink";s:78:"http://www.redrails.com.br/2008/06/web-services-com-netbeans-um-simples-howto/";}i:4;a:4:{s:2:"ID";s:2:"49";s:10:"post_title";s:54:"Como
+    Utilizar o Debug do Netbeans 6.1 para Ruby e Java";s:7:"matches";s:1:"2";s:9:"permalink";s:89:"http://www.redrails.com.br/2008/07/como-utilizar-o-debug-do-netbeans-61-para-ruby-e-java/";}i:5;a:4:{s:2:"ID";s:3:"615";s:10:"post_title";s:58:"J2ME:
+    Problemas ao Instalar Jar em Aparelhos Sony Ericsson";s:7:"matches";s:1:"1";s:9:"permalink";s:93:"http://www.redrails.com.br/2009/10/j2me-problemas-ao-instalar-jar-em-aparelhos-sony-ericsson/";}i:6;a:4:{s:2:"ID";s:3:"264";s:10:"post_title";s:41:"Colocando
+    Códigos Coloridos no Wordpress";s:7:"matches";s:1:"1";s:9:"permalink";s:76:"http://www.redrails.com.br/2008/10/colocando-codigos-coloridos-no-wordpress/";}i:7;a:4:{s:2:"ID";s:3:"106";s:10:"post_title";s:99:"Criando
+    Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com RubyOnRails
+    - Parte 2";s:7:"matches";s:1:"1";s:9:"permalink";s:131:"http://www.redrails.com.br/2008/07/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-2/";}i:8;a:4:{s:2:"ID";s:2:"80";s:10:"post_title";s:99:"Criando
+    Aplicações com o plugin YM4R para utilizar Mapas do Google Maps com RubyOnRails
+    - Parte 1";s:7:"matches";s:1:"1";s:9:"permalink";s:131:"http://www.redrails.com.br/2008/07/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-1/";}}'
+  _relation_threshold: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Ola galera vamos ao penultimo capitulo de nosso tutorial.</p>
+<p><strong>Testando a Operação no Web Service:</strong></p>
+<p>Bom, mas cadê minha soma?? Calma, isso era somente para testar o nosso Servidor, vamos agora testar nossa operação implementada:</p>
+<p>Bom então vamos lá, volte ao NetBeans e para a Aba de projetos(Projects), vá até a pasta Web Services clique com o Direito em Seu Arquivo Servidor [MyWsServidor] e vá ate Test Web Service.</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/010.png" alt="" /></p>
+<p>As vezes aparece essa mensagem mas o navegador abre, então ignorem :P</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/011.png" alt="" /></p>
+<p>Opa. Agora sim, Nossa Operação está ai, vamos testa-la. Vamos colocar 2, 3 e Apertar em Soma.</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/012.png" alt="" /></p>
+<p>E  Está ai nosso Resultado. 2+3 retorna um Interio  “ 5”.</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/013.png" alt="" /></p>
+<p><strong>Distribuindo seu Web Service:</strong></p>
+<p>Voltando a Pagina Anterior temos na primeira linha depois do titulo:</p>
+<p>“This form will allow you to test your web service implementation (WSDL File)”<br />
+Nesse WSDL File  Esta o Link de Distribuição, o Cliente que irá consumir seu Web Service deve utiliza-lo. Clique com o direito e copiar link(no FireFox).</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/014.png" alt="" /></p>
+<p><strong>Consumindo Web Service:</strong></p>
+<p>Agora Vamos criar o cliente que irá utilizar o seu Web Service para fazer suas somas (XD).</p>
+<p><em>File-&gt; New File -&gt; Web Service -&gt; Web Service Client</em></p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/015.png" alt="" /></p>
+<p>NEXT &gt;</p>
+<p>Aqui você deve Selecionar a Opção WSDL URL e colar a Url que você pegou lá do <span style="color:#0000ff;">WSDL </span>File no seu Servidor, em nosso caso:  <span style="color:#0000ff;"><span style="text-decoration:underline;">http://localhost:8080/MyWebService/MyWsServidorService?WSDL</span></span><br />
+FINISH ]</p>
+<p style="text-align:center;"><img class="aligncenter" src="{{ site.baseurl }}/assets/016.png" alt="" /></p>
+<p>Mais uma parte de nosso Tutorial emcerrada.<br />
+em breve a ultima parte desse turorial.<br />
+ate breve.</p>

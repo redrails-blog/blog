@@ -1,0 +1,56 @@
+---
+layout: post
+title: 'GEtna - Ep. 2: Primeiros Passos'
+date: 2008-08-06 22:14:32.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+tags:
+- debug
+- Getna
+- Monografia
+- Rails
+- Ruby
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"4";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:1;a:4:{s:2:"ID";s:3:"154";s:10:"post_title";s:49:"GEtna
+    - Ep. 3: Mapeando Tabelas do Banco de Dados";s:7:"matches";s:1:"4";s:9:"permalink";s:81:"http://www.redrails.com.br/2008/08/getna-ep-3-mapeando-tabelas-do-banco-de-dados/";}i:2;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"4";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:3;a:4:{s:2:"ID";s:3:"573";s:10:"post_title";s:54:"Problemas
+    ao instalar o ruby-debug-ide para o Netbeans";s:7:"matches";s:1:"3";s:9:"permalink";s:90:"http://www.redrails.com.br/2009/07/problemas-ao-instalar-o-ruby-debug-ide-para-o-netbeans/";}i:4;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"3";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:5;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"3";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:6;a:4:{s:2:"ID";s:3:"171";s:10:"post_title";s:64:"Getna
+    : Uma Abordagem geral sobre o processo de desenvolvimento.";s:7:"matches";s:1:"3";s:9:"permalink";s:97:"http://www.redrails.com.br/2008/09/getna-uma-abordagem-geral-sobre-o-processo-de-desenvolvimento/";}i:7;a:4:{s:2:"ID";s:3:"943";s:10:"post_title";s:65:"Object-Relational
+    Mapping(ORM) - Mapeamento de Objeto-Relacional ";s:7:"matches";s:1:"2";s:9:"permalink";s:96:"http://www.redrails.com.br/2011/04/object-relational-mappingorm-mapeamento-de-objeto-relacional/";}i:8;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"2";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}i:9;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}}'
+  _relation_threshold: '2'
+  views: '3'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Iniciar meu Projeto... e agora por onde devo começar?</p>
+<p>Primeiro a definição do projeto, ué é um gerador... então vamos criar um gerador. uma googlada básica e "<a href="http://blog.areacriacoes.com.br/2008/4/13/generatos-em-rails" target="_blank">Gerador em Rails</a>", bom nesse tutorial já me sanaram outra duvida, Plugin ou Gem como no tutorial ensina a fazer um plugin, advinha  o que eu fiz?</p>
+<p>Criamos o Projeto Rails</p>
+<p>rails projetogetna</p>
+<p>e fizemos exatamente o que está no tutorial, bom funcionou até um certo ponto o ultimo arquivo, deu pau lá nas migrates, mas acho que deve ser por causa da versão do Rails.</p>
+<p>Comecei a "programar" depois de algumas horas tentando entender o funcionamento e brincando com <a href="http://rails-doc.org/rails/Rails/Generator/NamedBase" target="_blank">Rails::Generator::NamedBase</a>, como um bom iniciante vindo de uma metodologia totalmente diferente, tentei Debugar o codigo com o <span style="text-decoration:underline;"><em>ruby</em>-<em>debug</em>-base</span> fui até o bom e velho Grupo <a href="http://groups.google.com/group/rails-br?hl=pt-BR" target="_blank">rails-br</a> onde, dentre todas as comunidades que eu passei, encontro a galera mais prestativa dessas comunidades de Programação. onde <a href="http://blog.impactmedia.com.br" target="_blank">Davis Zanetti</a>, <a href="http://www.mouseoverstudio.com/blog/" target="_blank">Diego Carrion</a>,<a href="http://tinogomes.wordpress.com" target="_blank">Tino Gomes</a> e<a href="http://cassiomarques.wordpress.com/" target="_blank"> Cássio Marques</a> Deram uma Força, e mandaram (Pra varias Escrever teste), bom eu ainda to meio engatinhando nessa parada de testes, mas pow, to no Rails. e estou começando uma longa jornada ate a dominação desse metodo.</p>
+<p>Como ainda não sou Hábil com isso achei uma solução, no mínimo, "Gambiarral" fazer saidas do sistema tirei a ideia do post do <a href="http://www.mouseoverstudio.com/blog/" target="_blank">Diego Carrion:</a></p>
+<blockquote><p><span class="fixed_width" style="font-family:Courier,Monospaced;">"Para não precissar debugar acho que o melhor é ter bons logs, ai caso<br />
+aconteça um erro, voce pega os dados do log e cria um novo teste :D" </span></p></blockquote>
+<p>A maneira que eu fiz foi gerar saidas do sistema com os conteúdos das variaveis usando o</p>
+<blockquote><p><span style="font-family:monospace;"><span style="color:#008b8b;">$stdout</span>.print</span></p></blockquote>
+<p>O Codigo fica um pouco feio XD, mas foi a minha saída:</p>
+<blockquote><p>
+<span style="font-family:monospace;"><br />
+<span style="color:#008b8b;">$stdout</span>.print <span style="color:#6a5acd;">"</span><span style="color:#ff00ff;">ARGS</span><span style="color:#6a5acd;">"</span><br />
+runtime_args.each { |<span style="color:#008b8b;">i</span>|  <span style="color:#008b8b;">$stdout</span>.print<span style="color:#6a5acd;">"</span><span style="color:#6a5acd;">#{</span>i<span style="color:#6a5acd;">}</span><span style="color:#6a5acd;">\n</span><span style="color:#6a5acd;">"</span> }<br />
+</span></p></blockquote>
+<p>Bo isso funciona e garante alguns dias a mais sem Testes.</p>
+<p><a href="http://maxonrails.wordpress.com/tag/getna/" target="_self">Para ver todos os posts Sobre Getna clique aqui</a></p>

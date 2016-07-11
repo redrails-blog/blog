@@ -1,0 +1,81 @@
+---
+layout: post
+title: 'GEtna - Ep. 3: Mapeando Tabelas do Banco de Dados'
+date: 2008-08-07 13:00:43.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+tags:
+- ActiveRecord
+- Banco de Dados
+- Getna
+- Monografia
+- Rails
+- Ruby
+meta:
+  _edit_last: '4325090'
+  _efficient_related_posts: 'a:10:{i:0;a:4:{s:2:"ID";s:3:"580";s:10:"post_title";s:70:"Monografia:
+    GEtna  -  Gerador Ruby On Rails a Partir de banco de Dados";s:7:"matches";s:1:"4";s:9:"permalink";s:101:"http://www.redrails.com.br/2009/09/monografia-getna-gerador-ruby-on-rails-a-partir-de-banco-de-dados/";}i:1;a:4:{s:2:"ID";s:3:"145";s:10:"post_title";s:31:"GEtna
+    - Ep. 2: Primeiros Passos";s:7:"matches";s:1:"4";s:9:"permalink";s:63:"http://www.redrails.com.br/2008/08/getna-ep-2-primeiros-passos/";}i:2;a:4:{s:2:"ID";s:3:"139";s:10:"post_title";s:23:"GEtna
+    - Ep. 1:  A ideia";s:7:"matches";s:1:"4";s:9:"permalink";s:54:"http://www.redrails.com.br/2008/08/getna-ep-1-a-ideia/";}i:3;a:4:{s:2:"ID";s:3:"943";s:10:"post_title";s:65:"Object-Relational
+    Mapping(ORM) - Mapeamento de Objeto-Relacional ";s:7:"matches";s:1:"3";s:9:"permalink";s:96:"http://www.redrails.com.br/2011/04/object-relational-mappingorm-mapeamento-de-objeto-relacional/";}i:4;a:4:{s:2:"ID";s:3:"285";s:10:"post_title";s:23:"GEtna:
+    Gerador Funcinal";s:7:"matches";s:1:"3";s:9:"permalink";s:58:"http://www.redrails.com.br/2008/11/getna-gerador-funcinal/";}i:5;a:4:{s:2:"ID";s:3:"198";s:10:"post_title";s:74:"GEtna
+    na &#124;&#124; Semana Acadêmica de Ciências da Computação - UFT";s:7:"matches";s:1:"3";s:9:"permalink";s:91:"http://www.redrails.com.br/2008/09/getna-na-semana-academica-de-ciencias-da-computacao-uft/";}i:6;a:4:{s:2:"ID";s:3:"171";s:10:"post_title";s:64:"Getna
+    : Uma Abordagem geral sobre o processo de desenvolvimento.";s:7:"matches";s:1:"3";s:9:"permalink";s:97:"http://www.redrails.com.br/2008/09/getna-uma-abordagem-geral-sobre-o-processo-de-desenvolvimento/";}i:7;a:4:{s:2:"ID";s:3:"934";s:10:"post_title";s:20:"Geradores
+    de Código";s:7:"matches";s:1:"2";s:9:"permalink";s:53:"http://www.redrails.com.br/2011/04/gerador-de-codigo/";}i:8;a:4:{s:2:"ID";s:3:"905";s:10:"post_title";s:47:"PromoCast
+    - Gestão de Promoções para Rádios";s:7:"matches";s:1:"2";s:9:"permalink";s:77:"http://www.redrails.com.br/2011/02/promocast-gestao-de-promocoes-para-radios/";}i:9;a:4:{s:2:"ID";s:3:"778";s:10:"post_title";s:36:"Prawn::Errors::CannotFit
+    (Resolvido)";s:7:"matches";s:1:"2";s:9:"permalink";s:68:"http://www.redrails.com.br/2010/10/prawn-errors-cannotfit-resolvido/";}}'
+  _relation_threshold: '2'
+  views: '2'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p>Primeiro passo de nosso gerador Rails era buscar todas as tabelas do banco de dados e criar a estrutura inicial... outro problema após algumas horas vendo documentação... bingo! nada XD, Pedindo ajuda para nossa comunidade de sábios desenvolvedores do <a href="http://groups.google.com/group/rails-br?hl=pt-BR" target="_blank">rails-br</a>, obtive varias sugestões como: De Buscar Pelo Model de <a href="http://workingwithrails.com/person/13057-abra-o-coelho-carvalho" target="_blank">Abraão Coelho</a>, <a href="http://cassiomarques.wordpress.com/">Cássio Marques</a>, infelizmente não serviu, pois ainda não tenho model algum, necessito cria-los. <span class="fontsize2 author"><span style="color:#c88900;">Renan Andrade</span></span> teve uma otima ideia, já que até agora eu defini que o banco seria MySQL poderia fazer um simples:</p>
+<blockquote>
+<h3>mysql&gt; <span style="color:#a52a2a;"><strong>show</strong></span> <span style="color:#a52a2a;"><strong>tables</strong></span>; &lt;= mostra <span style="color:#a52a2a;"><strong>as</strong></span> tabelas;<br />
+mysql&gt; <span style="color:#a52a2a;"><strong>describe</strong></span> suatabela; &lt;= exibe sua tabela com <span style="color:#a52a2a;"><strong>as</strong></span> descrições do campo.</h3>
+</blockquote>
+<p>OK, Mas queria algo mais pratico, tinha certeza que o ActiveRecord poderia fazer isso, e não ia desistir de encontrar.</p>
+<p>Estava tentando algo bem bobo como:</p>
+<blockquote>
+<h3><span class="fixed_width" style="font-family:Courier,Monospaced;">ActiveRecord::Base.column_names</span></h3>
+</blockquote>
+<p>Me deparei com o seguinte erro:</p>
+<blockquote><p><span class="fixed_width" style="font-family:Courier,Monospaced;">NoMethodError: undefined method `abstract_class?' for Object:Class<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1915:in `class_of_active_record_descendant'<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1277:in `base_class'<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1012:in `reset_table_name'<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1008:in `table_name'<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1145:in `columns'<br />
+from /var/lib/gems/1.8/gems/activerecord-2.1.0/lib/active_record/<br />
+base.rb:1158:in `column_names'<br />
+from (irb):16 </span></p></blockquote>
+<p><a href="https://explore.twitter.com/shadow11" target="_self"><span class="fn">Ricardo S Yasuda</span></a> e <a href="http://blog.impactmedia.com.br/">Davis Zanetti</a> Me abriram os olhos quanto ao metodo que só funciona em uma instancia do ActiveRecord e não em uma Classe Abstrata, isso foi muito importante para a minha conclusão.</p>
+<p><span class="fontsize2 author"><span style="color:#009486;">Ulisses de Albuquerque</span></span> Deu uma dica boa sobre Adapters mas isso ainda não era claro pra mim, mas foi muito importante isso ai.</p>
+<p><a href="http://younoodle.com/people/juan_maiz" target="_blank">Juan Maiz</a> então me endicou uma saída, utilizar o <a href="http://rubyforge.org/projects/sequel" target="_blank">Sequel</a> Uma solução perfeita para meus problemas, mas fiquei um pouco desanimado pensando que o ActiveRecord... o Poderoso ActiveRecord não tinha tal funcionalidade... e tambem que meu simples generator tenha que usar alguma dependência tão primitivamente para realizar uma pequena tarefa. Bom não desisti e fui feliz em minha busca e insistência.</p>
+<blockquote>
+<h3><span style="color:#008b8b;">@con</span> = ActiveRecord::Base.connection<br />
+<span style="color:#008b8b;">@table_names</span> = <span style="color:#008b8b;">@con.execute</span>(<span style="color:#ff00ff;">'show tables'</span>)</h3>
+</blockquote>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela.png" alt="" /></p>
+<p>Está ai, nossas tabelas :) legal né, saí juntando as dicas do pessoal todo e bingo, saiu alguma coisa, bom com isso já posso começar..., mas como sou meio curioso e me animei com esse negocio e não custava nada dar uma adentrada a mais... olha o que descobri...</p>
+<blockquote>
+<h3><span style="color:#008b8b;">@con</span> = ActiveRecord::Base.connection<br />
+<span style="color:#008b8b;">@table_names</span> = <span style="color:#008b8b;">@con.tables</span></h3>
+</blockquote>
+<p><img src="{{ site.baseurl }}/assets/captura_da_tela-1.png" alt="" /></p>
+<p>:D Que legal, não era que o ActiveRecord Tinha mesmo o bendito Método... só um pouco de pesquisa e fica simples.</p>
+<p>Agradeço a toda a Comunidade.</p>
+<p>Abraços</p>
+<p><a href="http://maxonrails.wordpress.com/tag/getna/" target="_self">Para ver todos os posts Sobre Getna clique aqui</a></p>

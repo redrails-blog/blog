@@ -1,0 +1,138 @@
+---
+layout: post
+title: 'Parte 1: Calculando coordenadas finais possuindo um ponto inicial, a distância
+  e o Azimute ( ângulo)'
+date: 2010-11-26 11:05:14.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Artigos
+- Desenvolvimento
+- Projetos
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _aioseop_title: " Calculando coordenadas finais possuindo um ponto inicial, a distância
+    e o Azimute ( ângulo)"
+  views: '7'
+  _jd_tweet_this: 'yes'
+  _aioseop_description: 'Contornos de Propagação para Radiodifusão plotados no Google
+    Earth parte 1: Calculando coordenadas finais possuindo um ponto inicial, a distância
+    e o Azimute'
+  _responsive_layout: default
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<h2>Contornos de Propagação para Radiodifusão plotados no Google Earth parte 1</h2>
+<p>.</p>
+<h3>Parte 1: Calculando coordenadas finais possuindo um ponto inicial, a distância e o Azimute ( ângulo)</h3>
+<p>Olá esporádicos leitores do RedRails, hoje vamos começar uma serie sobre cálculos de coordenadas, Google Earth e Ruby. Me foi proposto um problema, um engenheiro de telecomunicações tem um grande trabalho na hora de desenvolver seus projetos quanto ao desenho do alcance de uma antena de radiodifusão, pois deve traçar o raio de alcance dessa antena em todas as direções, ou seja, se ele for considerar os 360 graus do circulo e sendo que deve desenhar quatro contornos de alcance teríamos 1440 pontos, isso dá um trabalho considerável.</p>
+<p>Logo abaixo temos uma amostra do resultado a ser atingido. Temos 3 traçados visíveis, pois o contorno 2 e o contorno protegido são equivalentes. A antena é simbolizada pelo triângulo no centro dos contornos, observem a irregularidade apresentada no lado direito da imagem. É exatamente esse o intuído dessa plotagem demonstrar visualmente o alcance e as possíveis adversidades que seu sinal pode encontrar em nosso exemplo uma cadeia de montanhas está obstruindo o sinal.</p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/gerador_de_poligonos_2.jpeg"><img class="aligncenter size-full wp-image-873" title="gerador_de_poligonos_2" src="{{ site.baseurl }}/assets/gerador_de_poligonos_2.jpeg" alt="" width="653" height="534" /></a><!--more--></p>
+<p>Como podemos solucionar esse tipo de problema? Primeiro analisaremos nossas variáveis, conhecemos uma coordenada inicial (onde a torre se encontra, ou um provável local para sua implantação): lat1, lon1. A ANATEL disponibiliza para esse tipo de trabalho as distâncias para até os contornos para cada azimute (grau de inclinação da reta em relação ao norte verdadeiro) que em nosso caso vai ser uma sequencia definida da criação do contorno.</p>
+<p>Agora para calcular a coordenada referente a cada dado disponibilizado foi a parte mais trabalhosa, depois de algum tempo de pesquisa conseguimos encontrar uma função matemática que resolveu nosso problema.</p>
+<h2>A Fórmula Direta de Vincenty (Vincenty ‘Direct’ formula)</h2>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/vinc_d.jpg"><img class="aligncenter size-full wp-image-874" title="vinc_d" src="{{ site.baseurl }}/assets/vinc_d.jpg" alt="" width="750" height="429" /></a></p>
+<p>Para facilitar o entendimento nosso amigo <a href="http://www.movable-type.co.uk/scripts/latlong-vincenty-direct.html">Chris Veness</a> a converteu em algoritmo:</p>
+<blockquote><p><em>a</em>, <em>b</em> = major &amp; minor semiaxes of the ellipsoid<br />
+<em>f</em> = flattening (<em>a</em>−<em>b</em>)/<em>a</em><br />
+φ<sub>1</sub>, φ<sub>2</sub> = geodetic latitude<br />
+<em>s</em> = length of the geodesic<br />
+α<sub>1</sub>, α<sub>2</sub> = azimuths of the geodesic <em>(initial/final bearing)</em></p>
+<p>tan<em>U</em><sub>1</sub> = (1−<em>f</em>).tanφ<sub>1</sub> <em>(U is ‘reduced latitude’)</em><br />
+cos<em>U</em><sub>1</sub> = 1/√(1+tan²<em>U</em><sub>1</sub>), sin<em>U</em><sub>1</sub> = tan<em>U</em><sub>1</sub>.cos<em>U</em><sub>1</sub> <em>(trig identities; §6)</em><br />
+σ<sub>1</sub> = atan2(tan<em>U</em><sub>1</sub>, cosα<sub>1</sub>) (1) sinα = cos<em>U</em><sub>1</sub>.sinα<sub>1</sub> (2) cos²α = 1 − sin²α <em>(trig identity; §6)</em><br />
+<em>u</em>² = cos²α.(<em>a</em>²−<em>b</em>²)/<em>b</em>²<br />
+<em>A</em> = 1+<em>u</em>²/16384.{4096+<em>u</em>².[−768+<em>u</em>².(320−175.<em>u</em>²)]}(3)<br />
+<em>B</em> = <em>u</em>²/1024.{256+<em>u</em>².[−128+<em>u</em>².(74−47.<em>u</em>²)]}(4)<br />
+σ = <em>s</em> / <em>b.A</em> <em>(1st approximation)</em>, σ′ = 2π</p>
+<p>while abs(σ−σ′) &gt; 10<sup>-12</sup> { <em>(i.e. 0.06mm)</em><br />
+cos2σ<sub>m</sub> = cos(2.σ<sub>1</sub> + σ) (5)<br />
+Δσ = <em>B</em>.sinσ.{cos2σ<sub>m</sub> + <em>B</em>/4.[cosσ.(−1 + 2.cos²2σ<sub>m</sub>) − <em>B</em>/6.cos2σ<sub>m</sub>.(−3 + 4.sin²σ).(−3 + 4.cos²2σ<sub>m</sub>)]} (6)   σ′ = σ     σ = <em>s</em> / <em>b.A</em> + Δσ (7)<br />
+}</p>
+<p>φ<sub>2</sub> = atan2(sin<em>U</em><sub>1</sub>.cosσ + cos<em>U</em><sub>1</sub>.sinσ.cosα<sub>1</sub>, (1−<em>f</em>).√[sin²α + (sin<em>U</em><sub>1</sub>.sinσ − cos<em>U</em><sub>1</sub>.cosσ.cosα<sub>1</sub>)²]) (8)<br />
+λ = atan2(sinσ.sinα<sub>1</sub>, cosU<sub>1</sub>.cosσ − sin<em>U</em><sub>1</sub>.sinσ.cosα<sub>1</sub>) (9)</p>
+<p><em>C</em> = <em>f</em>/16.cos²α.[4+<em>f</em>.(4−3.cos²α)] (10)<br />
+<em>L</em> = λ − (1−<em>C</em>).<em>f</em>.sinα.{σ+<em>C</em>.sinσ.[cos2σ<sub>m</sub> + <em>C</em>.cosσ.(−1 + 2.cos²2σ<sub>m</sub>)]} <em>(difference in longitude)</em> (11) α<sub>2</sub> = atan2(sinα, −sin<em>U</em><sub>1</sub>.sinσ + cos<em>U</em><sub>1</sub>.cosσ.cosα<sub>1</sub>) <em>(reverse azimuth)</em> (12)<br />
+p<sub>2</sub> = (φ<sub>2</sub>, λ<sub>1</sub>+L)</p></blockquote>
+<h3>E finalmente nosso código em Ruby.</h3>
+<p>[ruby]<br />
+&lt;pre&gt;<br />
+&lt;div id="LC4"&gt;class Vincent&lt;/div&gt;<br />
+&lt;div id="LC5"&gt;  def initialize(lat1,lon1)&lt;/div&gt;<br />
+&lt;div id="LC6"&gt;    #Origem e Destino&lt;/div&gt;<br />
+&lt;div id="LC7"&gt;    @lat1 = lat1&lt;/div&gt;<br />
+&lt;div id="LC8"&gt;    @lon1=lon1&lt;/div&gt;<br />
+&lt;div id="LC9"&gt;&lt;/div&gt;<br />
+&lt;div id="LC10"&gt;    #---- Dados do Elipsóide de Revolução --------------------------------------&lt;/div&gt;<br />
+&lt;div id="LC11"&gt;    #http://pt.wikipedia.org/wiki/Figura_da_Terra&lt;/div&gt;<br />
+&lt;div id="LC12"&gt;    @a = 6378137 # Maior semi-eixo da Elipsóide Terrestre - WGS66 (1966)[EUA/DoD]&lt;/div&gt;<br />
+&lt;div id="LC13"&gt;    @b = 6356752.3142 # Maior semi-eixo da Elipsóide Terrestre - WGS66 (1966)[EUA/DoD]&lt;/div&gt;<br />
+&lt;div id="LC14"&gt;    @f = 1/298.257223563 # Achatamento inverso - WGS66 (1966)[EUA/DoD]&lt;/div&gt;<br />
+&lt;div id="LC15"&gt;  end&lt;/div&gt;<br />
+&lt;div id="LC17"&gt;  #------------ ADDONS ------------------------&lt;/div&gt;<br />
+&lt;div id="LC18"&gt;  def todeg(num)&lt;/div&gt;<br />
+&lt;div id="LC19"&gt;    num*57.29578&lt;/div&gt;<br />
+&lt;div id="LC20"&gt;  end&lt;/div&gt;<br />
+&lt;div id="LC22"&gt;  def torad(angle)&lt;/div&gt;<br />
+&lt;div id="LC23"&gt;    angle/57.29578&lt;/div&gt;<br />
+&lt;div id="LC24"&gt;  end&lt;/div&gt;<br />
+&lt;div id="LC26"&gt;  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -&lt;/div&gt;<br />
+&lt;div id="LC27"&gt;  #&lt;/div&gt;<br />
+&lt;div id="LC28"&gt;  #{} Calculate destination point given start point lat/long (numeric degrees),&lt;/div&gt;<br />
+&lt;div id="LC29"&gt;  # bearing (numeric degrees) &amp; distance (in m).&lt;/div&gt;<br />
+&lt;div id="LC30"&gt;  #&lt;/div&gt;<br />
+&lt;div id="LC31"&gt;  # from: Vincenty direct formula - T Vincenty, "Direct and Inverse Solutions of Geodesics on the&lt;/div&gt;<br />
+&lt;div id="LC32"&gt;  # Ellipsoid with application of nested equations", Survey Review, vol XXII no 176, 1975&lt;/div&gt;<br />
+&lt;div id="LC33"&gt;  # http://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf&lt;/div&gt;<br />
+&lt;div id="LC34"&gt;  #&lt;/div&gt;<br />
+&lt;div id="LC35"&gt;  def calculate(az, dist)&lt;/div&gt;<br />
+&lt;div id="LC36"&gt;    s = dist&lt;/div&gt;<br />
+&lt;div id="LC37"&gt;    alpha1 = torad(az)&lt;/div&gt;<br />
+&lt;div id="LC38"&gt;    cos_alpha1 = Math.cos(alpha1)&lt;/div&gt;<br />
+&lt;div id="LC39"&gt;    sin_alpha1 = Math.sin(alpha1)&lt;/div&gt;<br />
+&lt;div id="LC41"&gt;    tan_u1 = (1-@f) * Math.tan(torad(@lat1))&lt;/div&gt;<br />
+&lt;div id="LC42"&gt;    cos_u1 = 1 / Math.sqrt((1 + tan_u1*tan_u1))&lt;/div&gt;<br />
+&lt;div id="LC43"&gt;    sin_u1 = tan_u1*cos_u1&lt;/div&gt;<br />
+&lt;div id="LC44"&gt;    sigma1 = Math.atan2(tan_u1, cos_alpha1)&lt;/div&gt;<br />
+&lt;div id="LC45"&gt;    sin_alpha = cos_u1 * sin_alpha1;&lt;/div&gt;<br />
+&lt;div id="LC46"&gt;    cos_sq_alpha = 1 - sin_alpha*sin_alpha;&lt;/div&gt;<br />
+&lt;div id="LC47"&gt;    u_sq = cos_sq_alpha * (@a*@a - @b*@b) / (@b*@b)&lt;/div&gt;<br />
+&lt;div id="LC48"&gt;    an = 1 + u_sq/16384*(4096+u_sq*(-768+u_sq*(320-175*u_sq)));&lt;/div&gt;<br />
+&lt;div id="LC49"&gt;    bn = u_sq/1024 * (256+u_sq*(-128+u_sq*(74-47*u_sq)));&lt;/div&gt;<br />
+&lt;div id="LC51"&gt;    sigma = (s / (@b*an))&lt;/div&gt;<br />
+&lt;div id="LC52"&gt;    sigma_p = (2*Math::PI)&lt;/div&gt;<br />
+&lt;div id="LC53"&gt;    while true&lt;/div&gt;<br />
+&lt;div id="LC54"&gt;      cos2_sigma_m = Math.cos(2*sigma1 + sigma);&lt;/div&gt;<br />
+&lt;div id="LC55"&gt;      sin_sigma = Math.sin(sigma)&lt;/div&gt;<br />
+&lt;div id="LC56"&gt;      cos_sigma = Math.cos(sigma)&lt;/div&gt;<br />
+&lt;div id="LC57"&gt;      delta_sigma = bn*sin_sigma*(cos2_sigma_m+bn/4*(cos_sigma*(-1+2*cos2_sigma_m*cos2_sigma_m)-&lt;/div&gt;<br />
+&lt;div id="LC58"&gt;            bn/6*cos2_sigma_m*(-3+4*sin_sigma*sin_sigma)*(-3+4*cos2_sigma_m*cos2_sigma_m)));&lt;/div&gt;<br />
+&lt;div id="LC59"&gt;      sigma_p = sigma;&lt;/div&gt;<br />
+&lt;div id="LC60"&gt;      sigma = s / (@b*an) + delta_sigma;&lt;/div&gt;<br />
+&lt;div id="LC61"&gt;      break if ((sigma.abs-sigma_p) &gt; 1.0e-012) or sigma.abs==sigma_p&lt;/div&gt;<br />
+&lt;div id="LC62"&gt;    end&lt;/div&gt;<br />
+&lt;div id="LC64"&gt;    tmp = sin_u1*sin_sigma - cos_u1*cos_sigma*cos_alpha1;&lt;/div&gt;<br />
+&lt;div id="LC65"&gt;    lat2 = Math.atan2(sin_u1*cos_sigma + cos_u1*sin_sigma*cos_alpha1,&lt;/div&gt;<br />
+&lt;div id="LC66"&gt;      (1-@f)*Math.sqrt(sin_alpha*sin_alpha + tmp*tmp));&lt;/div&gt;<br />
+&lt;div id="LC67"&gt;    lambda = Math.atan2(sin_sigma*sin_alpha1, cos_u1*cos_sigma - sin_u1*sin_sigma*cos_alpha1);&lt;/div&gt;<br />
+&lt;div id="LC68"&gt;    cn = @f/16*cos_sq_alpha*(4+@f*(4-3*cos_sq_alpha));&lt;/div&gt;<br />
+&lt;div id="LC69"&gt;    ln = lambda - (1-cn) * @f * sin_alpha *&lt;/div&gt;<br />
+&lt;div id="LC70"&gt;    (sigma + cn*sin_sigma*(cos2_sigma_m+cn*cos_sigma*(-1+2*cos2_sigma_m*cos2_sigma_m)));&lt;/div&gt;<br />
+&lt;div id="LC72"&gt;    rev_az = Math.atan2(sin_alpha, -tmp);&lt;/div&gt;<br />
+&lt;div id="LC74"&gt;    {:lat=&gt;todeg(lat2),:lon=&gt; @lon1+todeg(ln),:rev_az=&gt;rev_az}&lt;/div&gt;<br />
+&lt;div id="LC75"&gt;#C: -9.740848496159662,-48.04187046994603&lt;/div&gt;<br />
+&lt;div id="LC77"&gt;  end&lt;/div&gt;<br />
+&lt;div id="LC80"&gt;end&lt;/div&gt;&lt;/pre&gt;<br />
+[/ruby]</p>
+<p>Logo mais teremos mais post sobre o assunto.<br />
+o Projeto já implementado vocês podem conferir em meu <a title="LuizCarvalho On Github" href="https://github.com/LuizCarvalho/azimute" target="_blank">Github</a><br />
+<a title="Ir para página do projeto Azimute" href="https://github.com/LuizCarvalho/azimute" target="_blank"><img src="{{ site.baseurl }}/assets/logov3-hover.png" alt="Ir para página do projeto Azimute" /></a></p>
+<p>Agradecimentos a Eng. Antonio Ernani por toda colaboração e para geração dos poligonos vejam o próximo post (http://www.redrails.com.br/2010/11/desenho-de-poligonos-no-google-earth-usando-ruby/)</p>

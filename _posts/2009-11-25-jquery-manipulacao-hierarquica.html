@@ -1,0 +1,112 @@
+---
+layout: post
+title: JQuery Manipulação Hierárquica
+date: 2009-11-25 10:48:50.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Sem categoria
+tags: []
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _wp_old_slug: '651'
+  views: '32'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p style="text-align: justify;">Hola pessoal estarei postando vários artigos sobre jQuery, como primeiro post iniciarei com uma serie de post sobre seletores e depois iremos para coisas mais interessantes <img src="{{ site.baseurl }}/assets/icon_biggrin.gif" alt=":D" /></p>
+<p style="text-align: justify;"><span id="more-45"> </span></p>
+<p style="text-align: justify;">Inicialmente alguns conceitos serão necessários:</p>
+<p style="text-align: justify;"><strong>Descendente:</strong> É um elemento que é filho,neto ou  descendente mais distante de um elemento do documento.</p>
+<p style="text-align: justify;"><strong>Ancestral:</strong> É o elemento que é pai,avo ou ancestral mais distante do elemento de um elemento documento.</p>
+<p style="text-align: justify;"><strong>Filho:</strong> É um elemento que é descendente direto de um elemento do documento.</p>
+<p style="text-align: justify;"><strong>Pai:</strong> É um elemento que é ancestral direto de um elemento do documento.</p>
+<p style="text-align: justify;"><strong>Adjacente:</strong> É um elemento irmão, ou seja possui o mesmo pai no, de um elemento do documento.</p>
+<p>Bom ao trabalho:</p>
+<p><strong>Universal:</strong> *</p>
+<p>Obtém todos os elementos do DOM</p>
+<p>Exemplo: $(”*”)</p>
+<p><strong>Elemento:</strong> E</p>
+<p>Retorna todos os elementos com a tag  “E”</p>
+<p>Exemplo:</p>
+<p>$(”div”) :isto retorna todos os elementos que tenham a tag “div”;</p>
+<p><strong>Id:</strong> #meuId</p>
+<p>Retorna o elemento cujo atributo   “id” igual a “meuId</p>
+<p>Exemplo:</p>
+<p>$(”#meuId”): retorna o elemento cujo atributo id igual a “meuId”</p>
+<p>Sempre lembrando que no seu DOM nenhum id devera ser repetir.</p>
+<p><!--more--></p>
+<p><strong>Classe: </strong>.minhaClasse</p>
+<p>retorna todos os elementos cujo atributo “class” é igual a “minhaClasse”</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”.minhaClasse”): retorna todos os elementos cujo atributo “class” é igual a “minhaClasse”</p>
+<p style="text-align: justify;">$(”div .minhaClasse”): retorna todos os elementos cuja tag seja “div” e cujo atributo “class” é igual a “minhaClasse”</p>
+<p style="text-align: justify;">Uma boa observação é que o segundo seletor terá um desempenho melhor que primeiro, pois usa o método nativo “getElementsByTagName()” para realizar uma filtragem no DOM e porque jQuery não usa o método nativo “getElementsByClassName()” fazendo assim o 1° seletor percorrer todo o DOM, bom depois aprofundaremos mais este assunto.</p>
+<p><strong>Descendentes: </strong>E F</p>
+<p>Obtém o elemento F que é descendente do elemento E no DOM</p>
+<p>Exemplo:</p>
+<p>$(”div table”):obtém todas as tables que sejam descendentes de alguma div.</p>
+<p><strong>Filho:</strong> E &gt; F</p>
+<p>Exemplo:</p>
+<p>$(”ul li”): obtém todos os elementos li que sejam filhos de algum ul.</p>
+<p><strong>Adjacente e Imediato:</strong> E+F</p>
+<p>Obtém o elemento F que é imediatamente adjacente a E.</p>
+<p>Exemplo:</p>
+<p>$(”div#myDiv table”): obtém a tabela que seja imediatamente adjacente a div com atributo “id” igual a “myDiv”.</p>
+<p><strong>Adjacente:</strong> E~F</p>
+<p>Obtém o elemento F que é adjacente a E.</p>
+<p>$(”div#myDiv table”): obtém as tabelas que sejam adjacentes a div com atributo “id” igual a “myDiv”.</p>
+<p><strong>Múltiplos Elementos: </strong>A,B,C</p>
+<p>Permite retornar vários elementos com seletores diferentes.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”div,.myClass,table span”): retorna todas as divs do documento, todos os elementos que tenham atributo “class” igual a “myClass” e todos os elementos “span” descendentes de alguma “table”.</p>
+<p><strong>N-ésimo filho: </strong>“:nth-child(n)”</p>
+<p>Todos os elementos que são os n-ésimos filhos de seus pais.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”p:nth-child(1)”): Obtém todos os elementos cuja tag seja “p” e que sejam os primeiros filhos de seus pais.</p>
+<p><strong>Observação:</strong></p>
+<p style="text-align: justify;">Como a implementação da jQuery de nth-child() é diretamente derivada da implementação CSS, o valor de n tem base 1 – a contagem inicia do 1 e não do. Para todos os outros seletores jQuery usa o padrão javascript ou seja tem por base 0, por exemplo o método “:nth()” é um método jQuery, ou seja, :nth(1) retornara o 2° elemento filho.</p>
+<p style="text-align: justify;">Outra boa observação é a diferença entre os métodos “:nth-child()” e o “:nth()”, ambos são usados para retornar elementos filhos de um outro elemento, porem podem retornar resultados completamente diferentes, pois:</p>
+<p style="text-align: justify;"><strong>nth-child():</strong> este método barre todos os elementos filhos, ainda que sejam de tags diferentes, e retorna o elemento se na n-ésima<strong> posição</strong> tiver um elemento que case com o seletor.</p>
+<p style="text-align: justify;"><strong>nth():</strong> este método só barre os elementos do tipo selecionado e retorna a n-ésima elemento deste conjunto.</p>
+<p>Um exemplo:</p>
+<p><strong>&lt;div&gt;</strong></p>
+<p><strong> &lt;h2&gt;….&lt;/h2&gt;</strong></p>
+<p><strong> &lt;p&gt;….&lt;/p&gt;</strong></p>
+<p><strong> &lt;p&gt;….&lt;/p&gt;</strong></p>
+<p><strong>&lt;div&gt;</strong></p>
+<p style="text-align: justify;">$(”p:nth-child(1)”): não retorna nada, pois não existe elemento “p” que seja o primeiro filho de algum outro elemento.</p>
+<p style="text-align: justify;">$(”p:nth(1)”): retorna o segundo “p”, pois ele é o segundo elemento “p” que é filho de algum outro elemento.</p>
+<p><strong>Primeiro Filho:</strong> “:first-child”</p>
+<p>Obtém todos os elementos que são os primeiros filhos de seus pais.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”p:first-child”): obtém todos os elementos “p” que são o primeiro filho de seus pais.</p>
+<p><strong>Ultimo Filho:</strong> “:last-child”</p>
+<p>Obtém todos os elementos que são os últimos filhos de seus pais.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”p:first-child”): obtém todos os elementos “p” que são o ultimo filho de seus pais.</p>
+<p><strong>Filho Único:</strong> “:only-child”</p>
+<p>Obtém todos os elementos que sejam os únicos filhos de seus pais.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”div:only-child”): retorna todos os elementos “div” que são filhos únicos de seus respectivos pais.</p>
+<p><strong>Vazio:</strong> “:empty”</p>
+<p>Obtém todos os elementos que não possuam filhos (incluindo nós de texto)</p>
+<p>Exemplo:</p>
+<p>$(”p:empty”): retorna todos os elementos “p” que não possuam filhos.</p>
+<p><strong>Negação:</strong> “:not(s)”</p>
+<p>Obtém todos os elementos que não sejam selecionados pelo seletor “s”.</p>
+<p>Exemplo:</p>
+<p style="text-align: justify;">$(”:not(.myClass)”): retorna todos os elementos que não possuem atributo “class” igual a “myClass”.</p>
+<p style="text-align: justify;">Para pégar remover uma linha da tabela $(this).parent().parent().remove();</p>
+<p style="text-align: justify;">Abraços</p>
+<p style="text-align: justify;">
+<p style="text-align: justify;">Creditos do Post: <a href="http://freeman.eti.br/wp/2009/01/jquery-seletores-css/" target="_blank">Zuela do Blog printf("Olá mundo ;-]";);</a></p>
+<div id="_mcePaste" style="overflow: hidden; position: absolute; left: -10000px; top: 3156px; width: 1px; height: 1px;">
+<pre id="line1">printf(&amp;quot;Olá mundo ;-]&amp;quot;);</pre>
+</div>

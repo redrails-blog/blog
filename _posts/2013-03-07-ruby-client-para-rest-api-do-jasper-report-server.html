@@ -1,0 +1,137 @@
+---
+layout: post
+title: Ruby Client para REST API do Jasper Report Server
+date: 2013-03-07 14:37:14.000000000 -03:00
+type: post
+published: true
+status: publish
+categories:
+- Ruby
+tags: []
+meta:
+  image_100_100: http://www.redrails.com.br/wp-content/uploads/2013/03/ruby-report-jasper-server+logo.png
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+author:
+  login: admin
+  email: maximusmano@gmail.com
+  display_name: Luiz Carvalho
+  first_name: Luiz
+  last_name: Carvalho
+---
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/ruby-report-jasper-server+logo.png"><img class="size-medium wp-image-1927 alignleft" alt="ruby-report-jasper-server+logo" src="{{ site.baseurl }}/assets/ruby-report-jasper-server+logo-300x300.png" width="300" height="300" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Utilizar chamadas REST no Jasper Report Server foi uma bom desafio pra mim, aqui pra vocês o resultiado disso, um pequeno Script que resolve esse "problema" rapidinho. Utilizando BASIC AUTHENTICATION + mais a interface RESTFul do JasperReport.</p>
+<p><strong>Look Code in my Github</strong> <a href="https://github.com/LuizCarvalho/JasperRest/tree/master/ruby">https://github.com/LuizCarvalho/JasperRest/tree/master/ruby</a></p>
+<p>[geshi lang="ruby" nums="1" target="_blank" ]</p>
+<pre>#!/usr/bin/env ruby
+# encoding: utf-8
+
+require "rubygems"
+require "net/http"
+require "rexml/document"
+
+REPORT_NAME = 'StandardChartsReport'
+REPORT_GROUP = "samples"
+SERVER_ROOT = "127.0.0.1" #MUDE PARA O ENDERECO DE SEU SERVIDOR 
+SERVER_PORT = 8080
+SERVER_USER = "jasperadmin"
+SERVER_PASSWORD = "jasperadmin"
+FORMAT = "PDF"
+FILE_NAME = "report.pdf"
+
+REPORT_PATH = "http://#{SERVER_ROOT}:#{SERVER_PORT}/jasperserver/rest/report"
+
+def to_ms(time)
+	start = Time.new(1970,1,1)
+	((time.to_f - start.to_f) * 1000.0).to_i
+end
+
+#parametros sendo passados somente como exemplo
+PARAMS = {:criacao_inicio=&gt;to_ms(Time.new(2011,01,01)),:criacao_final=&gt;to_ms(Time.new(2014,01,01))}
+
+def build_xml_request
+	url_string = "/reports/#{REPORT_GROUP}/#{REPORT_NAME}"
+	request_body = "<label>null</label>"
+	puts "CRIANDO XML PARA: #{url_string} "
+	PARAMS.each do|k,v| 
+		request_body += "#{v.to_s}"
+		puts "PARAMETROS: #{k}=#{v.to_s}; "
+	end
+	request_body += ""
+end
+
+def get_uuid_and_cookie
+
+	body = ""
+	cookie = ""
+	puts "FULL URL: #{"#{REPORT_PATH}/reports/#{REPORT_GROUP}/#{REPORT_NAME}"}"
+	uri = URI.parse("#{REPORT_PATH}/reports/#{REPORT_GROUP}/#{REPORT_NAME}")
+	http = Net::HTTP.new(uri.host, uri.port)
+	http.start do |http|
+		req = Net::HTTP::Put.new(uri.path + "?RUN_OUTPUT_FORMAT=#{FORMAT}")
+		puts "ACESSANDO: #{uri.path}?RUN_OUTPUT_FORMAT=#{FORMAT}"
+		req.basic_auth(SERVER_USER, SERVER_PASSWORD)
+		req.body = build_xml_request
+		resp = http.request(req)
+		body = resp.body
+		puts "COOKIE RECEBIDO: #{resp['Set-Cookie']}"		
+		cookie = resp['Set-Cookie']
+	end
+
+	xml = REXML::Document.new(body)
+	puts "\n\n XML \n #{xml} \n\n"
+	uuid_xml = xml.elements["report/uuid"]
+
+	if uuid_xml
+		uuid = uuid_xml.text
+		puts "UUID RECEBIDO: #{uuid}" 
+		return uuid,cookie
+	else
+		puts "PROBLEMA AO RECEBER UUID. RESPOSTA: #{uuid_xml}" 
+		return false,false
+	end
+end
+
+def get_file
+	body_get = nil
+	uuid,cookie = get_uuid_and_cookie
+	if uuid
+		uri_get = URI.parse("#{REPORT_PATH}/#{uuid}")
+		puts "URL DO RELATORIO: #{uri_get}"
+		http_get = Net::HTTP.new(uri_get.host, uri_get.port)
+
+		http_get.start do |http|
+			req = Net::HTTP::Get.new(uri_get.path + "?file=report")		
+			puts "REQ: #{req.path}"
+			req.basic_auth(SERVER_USER, SERVER_PASSWORD)
+			req['cookie'] = cookie
+			resp = http.request(req)
+			body_get = resp.body		
+		end
+	end
+	body_get
+end
+
+file = get_file
+if file 
+	#puts file
+	f = File.new(FILE_NAME, 'wb')
+	f.write(file)
+	f.close
+else
+	puts "Não foi possível criar o relatório"
+end</pre>
+<p>[/geshi]</p>
+<p>[github file = "{https://github.com/LuizCarvalho/JasperRest/blob/master/ruby/report_rest.rb}"]</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
