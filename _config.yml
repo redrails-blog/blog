@@ -9,17 +9,3 @@ resume: Blog sobre Tecnologia e Inovação
 
 # Build settings
 markdown: kramdown
-
-gems:
-  - jekyll-assets
-
-assets:
-  compress:
-    css: sass
-
-  sources:
-    - css
-  autowrite: true
-
-sass:
-    sass_dir: _sass
