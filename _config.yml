@@ -2,10 +2,18 @@ title: RedRails - Blog sobre tecnologia, Ruby on Rails, Tecnologia e muito mais
 email: contato@luizcarvalho.com
 description: > # this means to ignore newlines until "baseurl:"
    RedRails - Blog sobre tecnologia, Ruby on Rails, Tecnologia e muito mais
+<<<<<<< HEAD
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://redrails.com.br" # the base hostname & protocol for your site
 name: RedRails
 resume: Blog sobre Tecnologia e Inovação
+=======
+baseurl: ""
+url: "http://luizcarvalho.github.io/redrails" # the base hostname & protocol for your site
+name: RedRails
+resume: Blog sobre Tecnologia e Inovação
+gravatar: http://www.gravatar.com/avatar/5593abb6ec21bc7a9c2070a82a27e4e3
+>>>>>>> gh-pages
 
 # Build settings
 markdown: kramdown

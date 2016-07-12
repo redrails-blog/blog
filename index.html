@@ -5,6 +5,7 @@ layout: default
 <div class="home-page-posts animated fadeIn ">
   {% for post in site.posts %}
     <article class="post">
+<<<<<<< HEAD
       <div class="post-preview col-xs-10  no-gutter">        
         <h2>
           {% if post.external_url %}
@@ -25,10 +26,33 @@ layout: default
           <!-- <a href="category.html">Storytime</a>  -->
           <i class="link-spacer"></i> 
           <i class="fa fa-bookmark"></i> 
+=======
+      <div class="post-preview col-xs-10  no-gutter">
+        <h3>
+          {% if post.external_url %}
+            <a href="{{ post.external_url }}" target="_blank">{{ post.title | escape }}</a>
+          {% else %}
+            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
+          {% endif %}
+        </h3>
+
+
+
+        <p class="meta">
+          {% if post.author.name %}
+            {{ post.author.name | escape }}
+            in
+          {% endif %}
+          {{ post.category | escape }}
+          <!-- <a href="category.html">Storytime</a>  -->
+          <i class="link-spacer"></i>
+          <i class="fa fa-bookmark"></i>
+>>>>>>> gh-pages
           {{ post.date | date: "%b %-d, %Y" }}
         </p>
       </div>
 
+<<<<<<< HEAD
       <div class="col-xs-2 no-gutter">     
         {% if post.author.image_url %}  
           <img src="{{ post.author.image_url }}" class="user-icon" alt="user-image"> 
@@ -38,4 +62,15 @@ layout: default
       </div>
     </article>
   {% endfor %}  
+=======
+      <div class="col-xs-2 no-gutter">
+        {% if post.author.image_url %}
+          <img src="{{ post.author.image_url }}" class="user-icon" alt="user-image">
+        {% else %}
+          <img src="{{ site.gravatar }}" class="user-icon" alt="user-image">
+        {% endif %}
+      </div>
+    </article>
+  {% endfor %}
+>>>>>>> gh-pages
 </div>
