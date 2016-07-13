@@ -21,14 +21,16 @@ author:
   last_name: Carvalho
 ---
 <p>Comecei a brincar com Docker e a medida que vou encontrando erros e solucionando vou ṕstando no blog para ajudar outras pessoas. Depois de Instalar, surge o primeiro problema ao tentar rodar o Docker,</p>
-<p>> docker run -d -p 80:80 -e SECRET_KEY_BASE=secretkey .</p>
+<code>> docker run -d -p 80:80 -e SECRET_KEY_BASE=secretkey</code>
 <p>que resultou em:</p>
-<p>2015/01/28 09:25:23 Post http:///var/run/docker.sock/v1.12/containers/create: dial unix /var/run/docker.sock: permission denied</p>
-<p>Ao rodar<br />
-> docker -d</p>
+<pre>2015/01/28 09:25:23 Post http:///var/run/docker.sock/v1.12/containers/create: dial unix /var/run/docker.sock: permission denied</pre>
+<p>Ao rodar:</p>
+
+<code>> docker -d</code>
+
 <p>Recebo<br />
-2015/01/28 09:26:22 The Docker daemon needs to be run as root<br />
+<pre>2015/01/28 09:26:22 The Docker daemon needs to be run as root</pre>
  Confirmo o problema de permissão do Docker, para solucionar basta executar o seguinte comando </p>
-<p>> sudo usermod -a -G docker <nome_do_seu_usuário></p>
+<code> sudo usermod -a -G docker <nome_do_seu_usuário></code>
 <p>e reiniciar a maquina!</p>
-<p>sudo usermod -a -G docker</p>
+<code> sudo usermod -a -G docker</code> 
