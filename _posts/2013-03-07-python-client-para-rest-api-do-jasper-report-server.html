@@ -18,7 +18,7 @@ author:
   first_name: Luiz
   last_name: Carvalho
 ---
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/python-report-jasper-server+logo.png"><img class="alignleft size-medium wp-image-1931" alt="python-report-jasper-server+logo" src="{{ site.baseurl }}/assets/python-report-jasper-server+logo-300x300.png" width="300" height="300" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/python-report-jasper-server+logo.png"><img class="alignleft size-medium wp-image-1931" alt="python-report-jasper-server+logo" src="{{ site.baseurl }}/assets/posts/python-report-jasper-server+logo-300x300.png" width="300" height="300" /></a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -33,7 +33,7 @@ author:
 <p>[geshi lang="python" nums="1" target="_blank" ]</p>
 <pre># -*- coding: utf-8 -*-
 '''
- Python Rest Client for Jasper Report Server 
+ Python Rest Client for Jasper Report Server
  Biblioteca para facilitar o processo de comunicação com servidor
  de relatório Jasper Report Server
 '''
@@ -69,14 +69,14 @@ class RestReport():
 
     def __init__(self,report_path,report_name,format='pdf'):
         '''
-        PARAMS: 
+        PARAMS:
             report_path:`string`
                 ex: 'athenas','athenas/rh','athenas/edoc'
             report_name:`string`
                 ex: 'protocolo','contracheque'
             format:`string` (optional)
                 ex: 'pdf','csv','xml','xls'
-        OBS: para passar os parâmetros para consulta utilize  o metodo +set_params(parametros)+       
+        OBS: para passar os parâmetros para consulta utilize  o metodo +set_params(parametros)+
         '''
         self.report_name = report_name
         self.report_path = report_path
@@ -116,9 +116,9 @@ class RestReport():
     def authenticator(self):
         '''
         Realiza a autenticação e preparação no servidor Jasper Report para que seja possível a geração do relatório.
-        '''        
+        '''
         handle = None
-        body = ""        
+        body = ""
         uri = REPORT_URI+"reports/"+self.report_path+"/"+self.report_name+"/?RUN_OUTPUT_FORMAT="+self.format
         req = urllib2.Request(uri)
         base64string = base64.encodestring('%s:%s' % (USERNAME, PASSWORD))[:-1]
@@ -131,14 +131,14 @@ class RestReport():
                 handle = urllib2.urlopen(req)
                 self.auth_cookie =    handle.headers["Set-Cookie"]
                 body = handle.read()
-        except Exception, e:                
+        except Exception, e:
                 raise RestError(e,"O Servidor não está respondendo ao endereço solicitado: "+uri)
 
-        xml = ET.fromstring(body)    
-        try:            
-            uuid = xml.find('uuid').text            
-        except Exception, e:            
-            raise ValueError(e,"Identificador do Relatório Não Encontrado (UUID)")            
+        xml = ET.fromstring(body)
+        try:
+            uuid = xml.find('uuid').text
+        except Exception, e:
+            raise ValueError(e,"Identificador do Relatório Não Encontrado (UUID)")
         self.uuid = uuid
 
     def generate_report(self):
@@ -157,7 +157,7 @@ class RestReport():
         try:
             handle = urllib2.urlopen(req)
             report_data = handle.read()
-        except Exception, e:            
+        except Exception, e:
             raise RestError(e,"Não foi possível obter o relatório do servidor: "+req.get_full_url())
 
         return report_data
@@ -168,9 +168,9 @@ class RestReport():
         PARAMS:
             a_time:`datetime`
         RETURN:
-            time_in_ms:`int`    
+            time_in_ms:`int`
         '''
-        start = datetime.utcfromtimestamp(0) #1970,1,1        
+        start = datetime.utcfromtimestamp(0) #1970,1,1
         final_ms = time.mktime(final.timetuple())
         start_ms = time.mktime(start.timetuple())
         return int(final_ms-start_ms)*1000
@@ -178,7 +178,7 @@ class RestReport():
 class RestError(Exception):
     """Rest Report exception"""
 
-    def __init__(self, reason, message=None):        
+    def __init__(self, reason, message=None):
         self.reason = str(reason)
         self.full_message = str(message+"\n"+self.reason)
         #print "REST REPORT ERROR: "+self.reason

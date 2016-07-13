@@ -19,7 +19,7 @@ author:
   first_name: Luiz
   last_name: Carvalho
 ---
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/ruby-report-jasper-server+logo.png"><img class="size-medium wp-image-1927 alignleft" alt="ruby-report-jasper-server+logo" src="{{ site.baseurl }}/assets/ruby-report-jasper-server+logo-300x300.png" width="300" height="300" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/ruby-report-jasper-server+logo.png"><img class="size-medium wp-image-1927 alignleft" alt="ruby-report-jasper-server+logo" src="{{ site.baseurl }}/assets/posts/ruby-report-jasper-server+logo-300x300.png" width="300" height="300" /></a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -42,7 +42,7 @@ require "rexml/document"
 
 REPORT_NAME = 'StandardChartsReport'
 REPORT_GROUP = "samples"
-SERVER_ROOT = "127.0.0.1" #MUDE PARA O ENDERECO DE SEU SERVIDOR 
+SERVER_ROOT = "127.0.0.1" #MUDE PARA O ENDERECO DE SEU SERVIDOR
 SERVER_PORT = 8080
 SERVER_USER = "jasperadmin"
 SERVER_PASSWORD = "jasperadmin"
@@ -63,7 +63,7 @@ def build_xml_request
 	url_string = "/reports/#{REPORT_GROUP}/#{REPORT_NAME}"
 	request_body = "<label>null</label>"
 	puts "CRIANDO XML PARA: #{url_string} "
-	PARAMS.each do|k,v| 
+	PARAMS.each do|k,v|
 		request_body += "#{v.to_s}"
 		puts "PARAMETROS: #{k}=#{v.to_s}; "
 	end
@@ -84,7 +84,7 @@ def get_uuid_and_cookie
 		req.body = build_xml_request
 		resp = http.request(req)
 		body = resp.body
-		puts "COOKIE RECEBIDO: #{resp['Set-Cookie']}"		
+		puts "COOKIE RECEBIDO: #{resp['Set-Cookie']}"
 		cookie = resp['Set-Cookie']
 	end
 
@@ -94,10 +94,10 @@ def get_uuid_and_cookie
 
 	if uuid_xml
 		uuid = uuid_xml.text
-		puts "UUID RECEBIDO: #{uuid}" 
+		puts "UUID RECEBIDO: #{uuid}"
 		return uuid,cookie
 	else
-		puts "PROBLEMA AO RECEBER UUID. RESPOSTA: #{uuid_xml}" 
+		puts "PROBLEMA AO RECEBER UUID. RESPOSTA: #{uuid_xml}"
 		return false,false
 	end
 end
@@ -111,19 +111,19 @@ def get_file
 		http_get = Net::HTTP.new(uri_get.host, uri_get.port)
 
 		http_get.start do |http|
-			req = Net::HTTP::Get.new(uri_get.path + "?file=report")		
+			req = Net::HTTP::Get.new(uri_get.path + "?file=report")
 			puts "REQ: #{req.path}"
 			req.basic_auth(SERVER_USER, SERVER_PASSWORD)
 			req['cookie'] = cookie
 			resp = http.request(req)
-			body_get = resp.body		
+			body_get = resp.body
 		end
 	end
 	body_get
 end
 
 file = get_file
-if file 
+if file
 	#puts file
 	f = File.new(FILE_NAME, 'wb')
 	f.write(file)

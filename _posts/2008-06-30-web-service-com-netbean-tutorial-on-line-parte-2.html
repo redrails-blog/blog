@@ -35,18 +35,18 @@ Olá Gente,</p>
 <p>Voltando ao nosso Tutorial, vamos para o proximo passo: Adiconar uma operação ao nosso WebService</p>
 <p><strong>Adicionar Operação:</strong></p>
 <p>Clique no botão <em>ADD OPERATION</em></p>
-<p><img src="{{ site.baseurl }}/assets/image007.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/image007.png" alt="" /></p>
 <p>Irá aparecer a janela abaixo, Vamos criar um simples Somador de números. Então Vamos lá.<br />
 Em Name Coloque o nome da sua Operação(metodo), no nosso caso soma em Retun Type o valor que a Operação irá retornar [int](Java.lang.Integer), logo abaixo os parâmetros que devem ser passados(x:int e y:int). pronto, aperto OK.</p>
-<p><img src="{{ site.baseurl }}/assets/image008.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/image008.png" alt="" /></p>
 <p>Vai ficar assim</p>
-<p><img src="{{ site.baseurl }}/assets/image009.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/image009.png" alt="" /></p>
 <p><strong>Editando Operação:</strong><br />
 Vamos Agora dizer o que nosso método deve fazer:<br />
 Temos dois modos de edição: Source(Código) e Design(Interface). Para alterarmos de modo utilize os dois botões referentes a ele[Source] e [Design](Mostrados na figura abaixo), ou as teclas de atalho [Ctrl+Alt+page Down] ou [Ctrl+Alt+page Up]. E encontre o metodo SOMA.</p>
-<p><img src="{{ site.baseurl }}/assets/006.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/006.png" alt="" /></p>
 <p>Ou ainda mais fácil e ágil na janela Navigator(Navegação) [CTRL+7] dê um duplo clique em soma.</p>
-<p><img src="{{ site.baseurl }}/assets/007.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/007.png" alt="" /></p>
 <p>Você irá ser Direcionado para este método:</p>
 <blockquote><p><code> <strong>@WebMethod</strong>(operationName = <span style="color:#ff0000;">"soma"</span>)<br />
 public Integer soma(<strong>@WebParam</strong>(name = <span style="color:#ff0000;">"x"</span>)<br />
@@ -64,9 +64,9 @@ int <span style="color:#0000ff;">y</span>) {</p>
 <p>Bom com nossa Operação pronta vamos ver como está.</p>
 <p><strong>Iniciando e testando o Web Service:</strong></p>
 <p>Com a aba Project(Projetos) selecionada(Ctrl+1), clicamos com o direito no projeto e em UnDeploy and Deploy (Desimplantar e Implantar  ) nosso projeto.</p>
-<p><img src="{{ site.baseurl }}/assets/008.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/008.png" alt="" /></p>
 <p>Agora é Só Executar apertando na seta verde no topo da aplicação(Ou Simplesmente F6):</p>
-<p><img src="{{ site.baseurl }}/assets/009.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/009.png" alt="" /></p>
 <p>Se tudo Ocorreu certo Seu Navegador irá abrir automaticamente com a Mensagem “HELLO WORLD”, no endereço<span style="color:#0000ff;"> http://localhost:8080/MyWebService/</span></p>
 <p>Bom mais uma fase de nossa produção foi concluida.<br />
 Até A proxima!<br />

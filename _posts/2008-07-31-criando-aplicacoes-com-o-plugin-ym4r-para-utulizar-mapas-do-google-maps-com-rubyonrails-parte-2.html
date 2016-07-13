@@ -62,17 +62,17 @@ Definimos a legenda e o texto que irá aparecer no balão.</p>
 <p>@map.overlay_init(marker)<br />
 Ai, informamos que desejamos rendenrizar o marcador que criamos. Agora vamos a nossa view, no nosso caso o show de mapas, escolhido por nós(EU) para ser nossa interface para o mapa.</p>
 <p>/app/views/mapas/show.html.erb Adicione o seguinte código 600, :height =&gt; 400) %&gt; Onde você pode definir o tamanho do seu mapa com :width e :height.</p>
-<p><img src="{{ site.baseurl }}/assets/showhtml.jpg" alt="" /></p>
-<p>Ok, cadastramos nossa Localidade. <img src="{{ site.baseurl }}/assets/captura_da_tela-9.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/showhtml.jpg" alt="" /></p>
+<p>Ok, cadastramos nossa Localidade. <img src="{{ site.baseurl }}/assets/posts/captura_da_tela-9.png" alt="" /></p>
 <p>E vamos mostrar nosso resultado.</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-10.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-10.png" alt="" /></p>
 <p><strong> Colocando a Aplicação em produção</strong></p>
 <p>Após ser feita a transição para modo de produção seu mapa não apareceu mais?<br />
 Bom, como dito no inicio necessitamos de uma chave real do Google Maps, então vamos lá. Essa chave pode ser adquirida aqui. Aceite os termos e digite o endereço de sua aplicação</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-11.png" alt="" /></p>
-<p>E aperte o botão [Generate API Key] Bom essa é sua chave a copie para um lugar seguro. <img src="{{ site.baseurl }}/assets/captura_da_tela-12.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-11.png" alt="" /></p>
+<p>E aperte o botão [Generate API Key] Bom essa é sua chave a copie para um lugar seguro. <img src="{{ site.baseurl }}/assets/posts/captura_da_tela-12.png" alt="" /></p>
 <p>Ok, agora vamos até nosso arquivo config/gmaps_api_key.yml E Colocamos nossa chave lá. Do modo que está lá você informa o domínio e a chave para aquele domínio, para mim não deu certo, deu certo apenas quando coloquei a chave direto em production como esta em no exemplo abaixo:</p>
-<p><img src="{{ site.baseurl }}/assets/apykey.jpg" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/apykey.jpg" alt="" /></p>
 <p>Isso Funcionou apenas o modo de Produção, para o Desenvolviemtno deixe o codigo como esta.</p>
 <p>Pronto sua aplicação deve estar funcionando. Qualquer duvida:<br />
 Comente e Volte para ler sua resposta. Obrigado pela paciência e se acharem erros (com certeza acharão muitos) me avisem, por favor, para que possa corrigi-los.</p>

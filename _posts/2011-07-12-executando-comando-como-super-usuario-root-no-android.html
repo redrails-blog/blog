@@ -37,7 +37,7 @@ author:
   first_name: Luiz
   last_name: Carvalho
 ---
-<p><img src="{{ site.baseurl }}/assets/android2.jpg" alt="Android Hacker Super User RedRails" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/android2.jpg" alt="Android Hacker Super User RedRails" /></p>
 <p>Implementação do sistema de sondagem de sinal</p>
 <p>Para realizarmos um ping no Android precisamos executar chamadas em recursos do sistema através de métodos presentes no Java, já que esse recurso não está presente na API do sistema da Google. Um problema na realização dessa técnica para executar o PING é que ela necessita de permissões de super usuário para ser realizada em um</p>
 <p>Para realizar um ping no java, podemos utilizar o método Runtime.getRuntime().exec(); que realiza uma chamada no sistema, permitindo executar comandos como se estivessemos no console do sistema operacional. O problema desse procedimento é que o executável ping (/system/bin/ping) está limitado para usuários normais (figura 1), essa limitação permite que o ping serja feito apenas em endereço local (figura 2). Dessa maneira necessitamos de acesso de super usuário para que possamos realizar o ping sem tal empecilho.</p>

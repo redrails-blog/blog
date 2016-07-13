@@ -59,29 +59,29 @@ E o <a href="http://www.nomedojogo.com/2008/07/29/rails-podcast-brasil-episodio-
 <p>Primeira coisa é criar nosso projeto RubyOnRails.<br />
 Arquivo-&gt;Novo Projeto-&gt;Ruby-&gt;Ruby On Rails<br />
 PROXIMO&gt;</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela.png" alt="" /></p>
 <p>Renomeie a seu gosto!</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-1.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-1.png" alt="" /></p>
 <p>Criado nosso projeto vamos atrás de nosso Plugin.<br />
 Clique com o direito no ícone do seu projeto e vá até [Pligins Rails] e na janela que se abrir clique na aba [Repositórios]</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-2.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-2.png" alt="" /></p>
 <p>Logo após aperte o botão [Adicionar URL] e coloque a URL do repositório do YM4R</p>
 <p>http://ym4r.rubyforge.org/svn/ym4r/Plugins/GM/trunk<br />
 [OK]</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-3.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-3.png" alt="" /></p>
 <p>Agora vá até a Aba [Novos Pligins] espere os plugins carregarem então escolha o nosso YM4R</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-4.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-4.png" alt="" /></p>
 <p>E aperte [Instalar]</p>
 <p>Após baixar e instalar o Plugin Aperte [Fechar] e [Fechar].</p>
 <p>Ou utilize na linha de comando apenas:</p>
 <p>(Obrigado pela dica Eduardo)</p>
 <p><span style="text-decoration:underline;"><em>ruby script/plugin install svn://rubyforge.org/var/svn/ym4r/Plugins/GM/trunk/ym4r_gm</em></span></p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-5.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-5.png" alt="" /></p>
 <p>Agora vamos criar o banco se não nossa aplicação não vai funfar.</p>
 <p>Clique com o direito no seu projeto</p>
 <p><span style="text-decoration:underline;">Executar Tarefa Rake -&gt; db -&gt; create</span></p>
 <p>Vou criar um Scaffold com algumas informações relevantes, Clique com o direito no Projeto e na opção [Gerar]</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-6.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-6.png" alt="" /></p>
 <p>No Campo NOME DO MODELO digite:</p>
 <p>mapa nome:string longitude:string latitude:string</p>
 <p>Antes de Qualquer coisa vamos aplicar as migrates</p>
@@ -93,16 +93,16 @@ Clique com o direito no ícone do seu projeto e vá até [Pligins Rails] e na ja
 -&gt; 0.0183s<br />
 == 20080725214621 CreateMapas: migrated (0.0187s) =============================</p>
 <p>Vamos testar. Basta apenas apertar F6</p>
-<p><img src="{{ site.baseurl }}/assets/captura_da_tela-7.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/captura_da_tela-7.png" alt="" /></p>
 <p>Ok, Tudo pronto vamos aos mapas.</p>
 <p>Na pasta Configuração você encontra o arquivo chamado  onde você irá colocar sua chave do Google Maps. Em modo de desenvolvimento isso ainda não é necessário, mas quando formos colocá-lo em produção iremos dizer como realizar esse procedimento<br />
-<img src="{{ site.baseurl }}/assets/captura_da_tela-8.png" alt="" /></p>
+<img src="{{ site.baseurl }}/assets/posts/captura_da_tela-8.png" alt="" /></p>
 <p>Precisamos agora carregar os Java Scripts do Google Maps para nossa aplicação, vamos ao : /app/views/layouts/mapas.html.erb</p>
 <p>Adicionamos as linhas, entre as tags Heads:</p>
 <pre><span class="line-number"> </span>  <span class="ST3">&lt;%=</span> <span class="ST4">GMap</span>.header <span class="ST3">%&gt; e </span><span class="ST3">&lt;%=</span> javascript_include_tag <span class="ST2">'</span><span class="ST2">ym4r-gm</span><span class="ST2">'</span>    <span class="ST3">%&gt;</span></pre>
-<p><img src="{{ site.baseurl }}/assets/mapas.jpg" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/mapas.jpg" alt="" /></p>
 <p>Após isso vamos ao nosso controller.</p>
 <p>/app/controllers/mapas_controller.rb</p>
-<p><img src="{{ site.baseurl }}/assets/mapas_controller.jpg" alt="" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/mapas_controller.jpg" alt="" /></p>
 <p>Até A <a href="http://maxonrails.wordpress.com/2008/07/31/criando-aplicacoes-com-o-plugin-ym4r-para-utulizar-mapas-do-google-maps-com-rubyonrails-parte-2/">Parte 2</a><br />
 Abraços!</p>

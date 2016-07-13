@@ -35,10 +35,10 @@ author:
 ---
 <p>Olá voltei um pouco (er... bastante) no tempo, pois precisei fazer um programinha bem simples e que não dava pra usar Ruby, minha primeira opção era usar Java, mas sinceramente aquela sintaxe me dá horrores, então resolvi usar o velho e bom C++ para ser mais exato Borland C++ Builder 6, pro que o 6,  já que existem outros bem mais atuais? simples primeiro o tamanho da IDE que não chegava aos 200 MB enquanto a versão 7 tendia aos 1GB... Segundo é a nostalgia de programar novamente na primeira linguagem que me disponibilizava uma interface gráfica, antes dela desenvolvia apenas em C por linha de comando.</p>
 <p>OK, vamos ao que interessa. Nesse nosso pequeno tutorial vamos desenvolver algo semelhante a isso, com funcionalidade apenas de inserir dois registros em um pequeno grid.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-3.jpg"><img title="Grid_on_builder (3)" src="{{ site.baseurl }}/assets/Grid_on_builder-3.jpg" alt="" width="631" height="470" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-3.jpg"><img title="Grid_on_builder (3)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-3.jpg" alt="" width="631" height="470" /></a></p>
 <p><!--more--><br />
 Após você criar seu projeto e nomear como bem queira ( o meu chamei de Meu Exemplo -.-', pensei em um nome legal depois mas já era tarde ), adicionamos 2 campos ( TEdit ) chamados Campo1 e Campo2.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-1.jpg"><img class="aligncenter size-full wp-image-845" title="Grid_on_builder (1)" src="{{ site.baseurl }}/assets/Grid_on_builder-1.jpg" alt="" width="638" height="473" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-1.jpg"><img class="aligncenter size-full wp-image-845" title="Grid_on_builder (1)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-1.jpg" alt="" width="638" height="473" /></a></p>
 <p>Em seguida adicionamos um Grid ( <em>TStringGrid </em>)</p>
 <p>Na aba properities alterei os seguintes valores<br />
 <em>ColCount </em>para 2<br />
@@ -47,24 +47,24 @@ Após você criar seu projeto e nomear como bem queira ( o meu chamei de Meu Exe
 <em>RowCount</em> para 2<br />
 E alterei a largura das celular para o tamanho do Grid.</p>
 <p>Isso define nosso Grid inicial com 2 linhas, sendo uma o cabeçalho e só.  Após essas alterações deve ficar como a imagem abaixo.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-4.jpg"><img title="Grid_on_builder (4)" src="{{ site.baseurl }}/assets/Grid_on_builder-4.jpg" alt="" width="631" height="476" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-4.jpg"><img title="Grid_on_builder (4)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-4.jpg" alt="" width="631" height="476" /></a></p>
 <p>Bom para definirmos um cabeçalho é bem estranho, pelo menos eu achei, todo o grid é uma matriz inclusive o cabeçalho, definidos pela linha 0(zero), a matriz definida pelo StringGrid é definida por [coluna][linha] ou seja nosso cabeçalho é definido pela sequencia [0][0],[1][0],[2][0] ... [n][0]. Em nosso exemplo teremos apenas 2 colunas então temos que atribuir as legendas de nosso cabeçalhos em algum momento, definirei na criação do form.</p>
 <p>Clique em qualquer área do form que não tenha outro componente e deve aparecer Form1 TForm1 ( caso não tenha feito nenhuma alteração ) em nosso Object Inspector.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-5.jpg"><img title="Grid_on_builder (5)" src="{{ site.baseurl }}/assets/Grid_on_builder-5.jpg" alt="" width="376" height="589" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-5.jpg"><img title="Grid_on_builder (5)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-5.jpg" alt="" width="376" height="589" /></a></p>
 <p>Mude para a aba events e clique duas vezes no campo OnCreate</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-6.jpg"><img title="Grid_on_builder (6)" src="{{ site.baseurl }}/assets/Grid_on_builder-6.jpg" alt="" width="467" height="427" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-6.jpg"><img title="Grid_on_builder (6)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-6.jpg" alt="" width="467" height="427" /></a></p>
 <p>Irá abrir o editor e criará um método FormCreate insira as duas linhas responsáveis pelacriação das legendas de nosso cabeçalho.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-7.jpg"><img title="Grid_on_builder (7)" src="{{ site.baseurl }}/assets/Grid_on_builder-7.jpg" alt="" width="409" height="111" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-7.jpg"><img title="Grid_on_builder (7)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-7.jpg" alt="" width="409" height="111" /></a></p>
 <p>Ao executar nosso projeto teremos algo assim:</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-8.jpg"><img title="Grid_on_builder (8)" src="{{ site.baseurl }}/assets/Grid_on_builder-8.jpg" alt="" width="635" height="469" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-8.jpg"><img title="Grid_on_builder (8)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-8.jpg" alt="" width="635" height="469" /></a></p>
 <p>Tudo estruturado vamos adicionar novas linhas ao nosso grid, criaremos um botão com o Caption Adicionar, então dê um duplo clique nele</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-9.jpg"><img title="Grid_on_builder (9)" src="{{ site.baseurl }}/assets/Grid_on_builder-9.jpg" alt="" width="627" height="473" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-9.jpg"><img title="Grid_on_builder (9)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-9.jpg" alt="" width="627" height="473" /></a></p>
 <p>Novamente irá abrir o editor e criará automaticamente o seguinte método BitBnt1Click</p>
 <p>Como haviamos dito anteriormente nosso StringGrid não passa de uma matriz então o que devemos é percorre-la e adicionar valores em suas células. Utilizamos o método Cells passando a coluna e a linha respectivamente e adicionando a esse o valor text de um determinado campo.</p>
 <p>O método abaixo exemplifica essa inserção.</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-2.jpg"><img class="aligncenter size-full wp-image-846" title="Grid_on_builder (2)" src="{{ site.baseurl }}/assets/Grid_on_builder-2.jpg" alt="" width="440" height="159" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-2.jpg"><img class="aligncenter size-full wp-image-846" title="Grid_on_builder (2)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-2.jpg" alt="" width="440" height="159" /></a></p>
 <p>Pronto, temos nosso Grid populado =D</p>
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-3.jpg"><img class="aligncenter size-full wp-image-847" title="Grid_on_builder (3)" src="{{ site.baseurl }}/assets/Grid_on_builder-3.jpg" alt="" width="631" height="470" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-3.jpg"><img class="aligncenter size-full wp-image-847" title="Grid_on_builder (3)" src="{{ site.baseurl }}/assets/posts/Grid_on_builder-3.jpg" alt="" width="631" height="470" /></a></p>
 <p><a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-4.jpg"><br />
 </a> [download id="4"]<a href="http://www.redrails.com.br/wp-content/uploads/2010/11/Grid_on_builder-10.jpg"><br />
 </a></p>

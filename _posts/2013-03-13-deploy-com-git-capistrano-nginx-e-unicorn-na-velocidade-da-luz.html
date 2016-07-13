@@ -24,7 +24,7 @@ author:
   first_name: Luiz
   last_name: Carvalho
 ---
-<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/rocket+git+capistrano+rails+unicorn+nginx.png"><img class="alignleft size-medium wp-image-1943" alt="rocket+git+capistrano+rails+unicorn+nginx" src="{{ site.baseurl }}/assets/rocket+git+capistrano+rails+unicorn+nginx-300x242.png" width="300" height="242" /></a></p>
+<p><a href="http://www.redrails.com.br/wp-content/uploads/2013/03/rocket+git+capistrano+rails+unicorn+nginx.png"><img class="alignleft size-medium wp-image-1943" alt="rocket+git+capistrano+rails+unicorn+nginx" src="{{ site.baseurl }}/assets/posts/rocket+git+capistrano+rails+unicorn+nginx-300x242.png" width="300" height="242" /></a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -63,7 +63,7 @@ author:
 <p>&nbsp;</p>
 <blockquote>
 <pre>apt-get update
-apt-get upgrade -y    
+apt-get upgrade -y
 apt-get install build-essential ruby-full libmagickcore-dev imagemagick libxml2-dev \
   libxslt1-dev git-core postgresql postgresql-client postgresql-server-dev-9.1 nginx curl
 apt-get build-dep ruby1.9.1</pre>
@@ -187,7 +187,7 @@ server {
 </blockquote>
 <p>E mais isso</p>
 <blockquote>
-<pre># /etc/nginx/nginx.conf 
+<pre># /etc/nginx/nginx.conf
 user deployer staff;
 
 # Change this depending on your hardware
@@ -321,7 +321,7 @@ end</p></blockquote>
 <p>Abra seu config/deploy.rb e substitua pelos seguintes comandos</p>
 <p>Este script de deploy não é totalmente abrangente, mas possui um pulo do gato, quando deletamos a pasta atual, mantendo apenas a última versão do projeto, assim não acumulando espaço desnecessário.</p>
 <blockquote>
-<pre># config/deploy.rb 
+<pre># config/deploy.rb
 require "bundler/capistrano"
 
 set :scm,             :git
@@ -435,7 +435,7 @@ namespace :deploy do
   desc "Stop unicorn"
   task :stop, :except =&gt; { :no_release =&gt; true } do
     run "kill -s QUIT `cat /tmp/unicorn.my_site.pid`"
-  end  
+  end
 
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"
