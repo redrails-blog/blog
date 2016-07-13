@@ -11,7 +11,11 @@ author:
   last_name: Carvalho
 ---
 
+
+![Migrate from Wordpress to Jekyll logo]({{ site.baseurl }}/assets/posts/2016-07-13-wordpress--to-jekyll-github-pages.png)
+
 ### TL;DR
+
 **Exportação:**
 
 `https://YOUR-USER-NAME.wordpress.com/wp-admin/export.php`
@@ -26,6 +30,7 @@ author:
       "assets_folder" => "assets"
     })'
 {% endhighlight %}
+<hr/>
 
 ## Introdução
 
