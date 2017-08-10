@@ -5,15 +5,16 @@ description: ""
 category:
 tags: []
 author:
-  email: contato@luizcarvalho.com
-  display_name: Luiz Carvalho
-  first_name: Luiz
-  last_name: Carvalho
+  email: cynthiamariaah@gmail.com
+  display_name: Cynthia Barreto
+  first_name: Cynthia
+  last_name: Barreto
 ---
+
+_Das startups selecionadas para a 1ª etapa, apenas duas são do estado do Tocantins_
 
 ![Banner Parlo no Inovativa]({{ site.baseurl }}/assets/posts/parlo-inovativa.png)
 
-_Das startups selecionadas para a 1ª etapa, apenas duas são do estado do Tocantins_
 
 O projeto Parlo, que é um Chatbot produzido por uma startup de Palmas, Tocantins, foi selecionado para o Inovativa Brasil, o maior programa de aceleração brasileiro. As escolhas dos projetos passam por duas etapas, na primeira foram inscritas 926 propostas e a Startup Parlo ficou entre as 255 com maior potencial inovador do Brasil. Nessa fase as startups recebem cursos e mentorias, no final são avaliadas três dimensões: Proposta de valor, Validação da proposta de valor e Estratégia de vendas. Após essa avaliação apenas 125 propostas poderão passar para a segunda etapa.
 
