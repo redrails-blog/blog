@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Migração do blog do RedRails de Wordpress para Github Pages"
+title: "Chatbot produzido em Palmas é selecionado para o Inovativa Brasil"
 description: ""
 category:
 tags: []
@@ -10,67 +10,29 @@ author:
   first_name: Luiz
   last_name: Carvalho
 ---
+**Chatbot produzido em Palmas é selecionado para o Inovativa Brasil**
 
+_Das startups selecionadas para a 1ª etapa, apenas duas são do estado do Tocantins_
 
-![Migrate from Wordpress to Jekyll logo]({{ site.baseurl }}/assets/posts/2016-07-13-wordpress--to-jekyll-github-pages.png)
+O projeto Parlo, que é um Chatbot produzido por uma startup de Palmas, Tocantins, foi selecionado para o Inovativa Brasil, o maior programa de aceleração brasileiro. As escolhas dos projetos passam por duas etapas, na primeira foram inscritas 926 propostas e a Startup Parlo ficou entre as 255 com maior potencial inovador do Brasil. Nessa fase as startups recebem cursos e mentorias, no final são avaliadas três dimensões: Proposta de valor, Validação da proposta de valor e Estratégia de vendas. Após essa avaliação apenas 125 propostas poderão passar para a segunda etapa.
 
-### TL;DR
+Os finalistas selecionados para a segunda devem participar de alguns cursos da Inovativa Brasil e passarão por avaliação de possíveis investidores e apoiadores, no qual as startups de destaque, que possuam interesse e condições de atuarem no exterior, poderão receber apoio para internacionalização além de acesso a diversos recursos fornecidos por parceiros.
 
-**Exportação:**
+Para Luiz Carvalho, co-fundador e desenvolvedor do chatbot, ter sido selecionado pelo programa Inovativa Brasil é sinônimo de conquista e também de responsabilidade.  &quot;Ter nosso projeto selecionado em um programa desse porte é uma grande conquista e uma grande responsabilidade. Vamos aproveitar esse momento para acelerar o crescimento de nosso produto e buscar investimentos, que é o maior objetivo do programa&quot;, destacou.
 
-`https://YOUR-USER-NAME.wordpress.com/wp-admin/export.php`
+Daiane Santana, co-fundadora e idealizadora da startup, compartilha do  mesmo sentimento e afirma que pretende aperfeiçoar ainda mais o trabalho.  &quot;Ter sido selecionada no Inovativa foi sensacional, corroborou com que já imaginávamos, que a ideia era boa e que valia muito a pena colocar em prática e aperfeiçoar cada vez mais. Para ser bem sincera, às vezes parece que a ficha não caiu. Feliz demais.&quot;, pontuou a empreendedora.
 
-**Importação:**
+**Como funciona o Parlo**
 
-{% highlight ruby %}
-    $ ruby -rubygems -e 'require "jekyll-import";
-    JekyllImport::Importers::WordpressDotCom.run({
-      "source" => "wordpress.xml",
-      "no_fetch_images" => false,
-      "assets_folder" => "assets"
-    })'
-{% endhighlight %}
-<hr/>
+Parlo é um chatbot de interação, isto é, um chatbot com softwares que rodam dentro de um aplicativo de troca de mensagem. O contato pode ser entre usuários com estabelecimentos (comerciais, bares, restaurantes, etc.) e entre usuários com usuários que estão no mesmo ambiente físico. O navegante também pode compartilhar algumas informações para outras redes sociais, para divulgar promoções e ações do estabelecimento que está inserido no Parlo, por exemplo.
 
-## Introdução
+Além das funcionalidades de comunicação por meio de chat, os usuários podem ter acesso ao cardápio do estabelecimento, bem como as promoções do dia/semana, programação do ambiente e ter acesso direto com o gerente do local, por meio de um link que é disponibilizado na ferramenta. O objetivo é que as pessoas possam se conhecer e ter uma relação amigável com o estabelecimento, sem a necessidade de fazer nenhum download de aplicativo, já que o chatbot é utilizado pelo próprio Messenger do Facebook.
 
-Eu vinha tendo muitos problemas com **Wordpress** nos últimos tempos, ataques e mais ataques. Não lembro de todos pois o blog existe a mais de 8 anos, o último ataque, de alguma forma (um plugin talvez), começou a redirecionar todo e qualquer acesso ao site para uma página de [scam](http://canaltech.com.br/o-que-e/hacker/O-que-e-Phishing-Scam/) desabilitei todos os plugins e voltei para o tema padrão do *Wordpress* e não resolveu.
+Apesar de o chatbot possuir pouco tempo no mercado, menos de um mês de funcionamento, e estar em fase experimental, já teve um total de 629 mensagens recebidas e cerca de 100 usuários ativos. Percebendo o potencial da ferramenta, os idealizadores estão começando a apresentar o projeto para outros empreendimentos da capital e analisando a expansão para outros Estados.
 
-Há algum tempo eu vinha buscando uma alternativa mais flexível para migrar o blog do **RedRails** e como já tinha criado o [luizcarvalho.com](http://luizcarvalho.com) no [Github Pages](https://pages.github.com/) achei que poderia ser uma boa solução, mesmo imaginando que daria muito trabalho fazer toda essa importação, estava completamente enganado.
+Bateu curiosidade sobre a ferramenta? Então acesse o link ( [m.me/parlochat](http://m.me/parlochat)) e conheça melhor as possibilidades do chatbot tocantinense.
 
-Ambas plataformas fornecem recursos muito interessantes para a migração (tanto o Wordpress para exportação, quando o **Jekyll** para importação de blogs como o **Wordpress**). Bastou uma pesquisa rápida e já encontramos a [documentação](http://import.jekyllrb.com/docs/wordpressdotcom/) do próprio **Jekyll** mostrando como realizar o procedimento.
+**Inovativa Brasil**
 
-## Exportação
-Entre em seu `Admin do Wordpress -> Configurações -> Exportar` ou diretamente em `https://YOUR-USER-NAME.wordpress.com/wp-admin/export.php`. A documentação é aplicada a blogs hospedados no *Wordpress.com*, mas pode ser aplicado também aos *Wordpress.org*.
-
-## Importação
-Depois de exportar seus posts em formato `XML`, vamos transformar isso em algo que o **Jekyll** possa utilizar. Para isso precisaremos de uma gem chamada `jekyll-import`.
-
-    gem install jekyll-import
-
-Então basta rodar o seguinte comando ou criar um `script` com ele (lembrando de colocar o `require "jekyll-import"` dentro do arquivo)
-
-{% highlight ruby %}
-  $ ruby -rubygems -e 'require "jekyll-import";
-      JekyllImport::Importers::WordpressDotCom.run({
-        "source" => "wordpress.xml",
-        "no_fetch_images" => false,
-        "assets_folder" => "assets"
-      })'
-{% endhighlight %}
-
-> **Atenção com o nome do arquivo XML**: Verifique o nome que foi exportado pelo seu **Wordpress** e altere seu script, caso seja necessário.
-
-
-
-## Resultado
-
-![Markdown generated]({{ site.baseurl }}/assets/posts/2016-07-13-wordpress-html-to-jekyll-markdown.png)
-
-Bom o processo de conversão dos posts, identifica as imagens dentro de cada post e faz o download do arquivo dentro da pasta `assets_folder` que você definir em seu script e o endereço é alterado para a nova localização. Uma coisa que pode dar um pouco de trabalho pra você é que o texto dos posts continuam em `HTML` para tentar manter o máximo da formatação antiga, mas como muita coisa de seus estilos pode ter ficado do Wordpress é uma boa você dar uma olhada post a post para dar um tapa na formatação dos textos.
-
-
-Para o layout utilizamos o template do [exflow](http://exflow.io) que também foi feito com **Jekyll** e está hospedado no **Github  Pages**. Ainda estamos nesse processo de corrigir alguns posts que não ficaram bem formatados ou trouxeram muitas formatações desnecessárias.
-
-
+No dia 07 de agosto foi divulgada a lista de aprovados da 1° etapa do ciclo 2017/2 do Inovativa Brasil, que é um programa gratuito de aceleração em larga escala para negócios inovadores de qualquer setor e lugar do Brasil, realizado pelo Ministério da Indústria, Comércio Exterior e Serviços (MDIC) e pelo Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (SEBRAE), com execução da Fundação Centros de Referência em Tecnologias Inovadoras (CERTI).
 
